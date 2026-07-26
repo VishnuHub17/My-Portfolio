@@ -3,338 +3,941 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Pathwisse — Practice Labs. Owning the UX for a feature helping college students build placement-readiness through daily aptitude and AI-driven communication practice.">
-  <title>Pathwisse — Practice Labs | S Vishnu Vardhan</title>
+  <meta name="description" content="Pathwisse — B2B student success platform connecting academic management, career development and placement preparation across four role-based portals. Full product case study by S Vishnu Vardhan.">
+  <title>Pathwisse — Student Success Platform | S Vishnu Vardhan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
-      --font-mono: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Courier New', monospace;
-
-      --bg:           #FAFAF9;
-      --surface:      #FFFFFF;
-      --border:       #E8E8E6;
-      --border-hover: #C8C8C6;
-
-      --text-1: #111111;
-      --text-2: #55554F;
-      --text-3: #9A9A94;
-
-      --accent:        #1A40CC;
-      --accent-hover:  #1230A3;
-      --accent-bg:     #EFF2FF;
-      --accent-border: #CDD5FF;
-
-      --ph-bg:     #F4F4F2;
-      --ph-border: #D4D4D0;
-
-      --max-w:      1120px;
-      --nav-h:      68px;
-      --ease:       cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --font:'Outfit',system-ui,-apple-system,sans-serif;
+      --mono:'SF Mono','Cascadia Code','Fira Code','Courier New',monospace;
+      --bg:#fafaf9;--surface:#fff;--soft:#f4f4f2;
+      --border:#e8e8e6;--border-2:#d4d4d0;
+      --text:#111;--muted:#55554f;--light:#8a8a84;
+      --navy:#172554;--indigo:#1a40cc;--indigo-soft:#eff2ff;--indigo-border:#cdd5ff;
+      --green:#147d52;--green-soft:#eaf8f0;--green-border:#b7e4c7;
+      --orange:#9a4b06;--orange-soft:#fff4e5;--orange-border:#f3c892;
+      --max:1120px;--nav:68px;--ease:cubic-bezier(.22,1,.36,1)
     }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    .container{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,5vw,60px)}
 
-    html { scroll-behavior: smooth; }
+    /* Nav */
+    .nav{position:fixed;inset:0 0 auto;z-index:50;height:var(--nav);background:rgba(250,250,249,.92);border-bottom:1px solid var(--border);backdrop-filter:blur(14px)}
+    .nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .nav-logo{font-size:15px;font-weight:700;text-decoration:none;letter-spacing:-.02em}
+    .nav-links{display:flex;gap:4px;list-style:none}
+    .nav-links a{font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;padding:7px 13px;border-radius:7px;transition:color .2s,background .2s}
+    .nav-links a:hover{color:var(--text);background:var(--border)}
+    .nav-cta{color:var(--indigo)!important;background:var(--indigo-soft)!important;border:1px solid var(--indigo-border)!important}
 
-    body {
-      font-family: var(--font-sans);
-      background: var(--bg);
-      color: var(--text-1);
-      font-size: 17px;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:11px 20px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;border:1px solid transparent;white-space:nowrap;transition:transform .2s var(--ease),background .2s,border-color .2s}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:var(--text);color:#fff}
+    .btn-primary:hover{background:#2a2a2a}
+    .btn-secondary{background:transparent;border-color:var(--border-2);color:var(--text)}
+    .btn-secondary:hover{background:var(--surface);border-color:var(--text)}
+    .btn-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+
+    /* Tags */
+    .tag{display:inline-flex;align-items:center;min-height:26px;padding:3px 9px;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--light);font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+    .tag.green{color:var(--green);background:var(--green-soft);border-color:var(--green-border)}
+    .tag.orange{color:var(--orange);background:var(--orange-soft);border-color:var(--orange-border)}
+    .tag.indigo{color:var(--indigo);background:var(--indigo-soft);border-color:var(--indigo-border)}
+    .tag-row{display:flex;flex-wrap:wrap;gap:8px}
+
+    /* Hero */
+    .hero{padding:clamp(116px,14vw,156px) 0 56px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,#fff 0%,var(--bg) 100%)}
+    .back-link{display:inline-flex;gap:6px;margin-bottom:30px;color:var(--muted);font-size:14px;font-weight:600;text-decoration:none;transition:color .2s}
+    .back-link:hover{color:var(--text)}
+    .eyebrow{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo);margin-bottom:14px}
+    h1{max-width:860px;font-size:clamp(32px,5vw,58px);line-height:1.04;letter-spacing:-.04em;color:var(--text);margin-bottom:14px}
+    .hero-sub{max-width:740px;font-size:clamp(17px,2vw,21px);color:var(--muted);line-height:1.5;margin-bottom:20px}
+    .disclaimer{display:inline-flex;max-width:740px;margin-bottom:24px;padding:7px 10px;border:1px solid var(--border-2);border-radius:6px;background:var(--soft);color:var(--light);font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+
+    /* Hero stat strip */
+    .stat-strip{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--border);border-radius:12px;background:var(--surface);overflow:hidden;margin-top:28px;max-width:740px}
+    .stat-strip-item{flex:1;min-width:120px;padding:16px 20px;border-right:1px solid var(--border)}
+    .stat-strip-item:last-child{border-right:none}
+    .stat-strip-val{font-size:22px;font-weight:800;letter-spacing:-.03em;color:var(--navy);margin-bottom:3px}
+    .stat-strip-label{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--light)}
+
+    /* Case layout */
+    .case-main{padding:64px 0 84px}
+    .case-section{display:grid;grid-template-columns:minmax(150px,220px) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:start;margin-bottom:72px}
+    .section-kicker{position:sticky;top:calc(var(--nav) + 24px)}
+    .section-number{font-family:var(--mono);font-size:11px;font-weight:800;color:var(--indigo);margin-bottom:8px}
+    h2{font-size:clamp(20px,2.5vw,28px);line-height:1.15;letter-spacing:-.025em;color:var(--text)}
+    h3{font-size:17px;line-height:1.25;color:var(--text);letter-spacing:-.01em}
+    h4{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px}
+    .stack{display:grid;gap:18px}
+    .stack p,.stack li{max-width:850px;color:var(--muted)}
+    .lead{font-size:18px;font-weight:700;color:var(--text)!important}
+    .small-note{font-size:14px;color:var(--light)!important}
+
+    /* Cards */
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px}
+    .card p,.card li{font-size:15px;color:var(--muted);line-height:1.6}
+    .card h3{margin-bottom:8px}
+    .card ul{padding-left:18px;margin-top:8px}
+    .card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .card-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .card.accent-top{border-top:4px solid var(--indigo)}
+    .card.green-top{border-top:4px solid var(--green)}
+    .card.orange-top{border-top:4px solid var(--orange)}
+
+    /* Stat cards */
+    .stats-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+    .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px}
+    .stat-card strong{display:block;font-size:22px;line-height:1.1;color:var(--navy);letter-spacing:-.03em;margin-bottom:5px}
+    .stat-card span{font-size:13px;color:var(--muted)}
+
+    /* Insight callout */
+    .insight-callout{background:var(--indigo-soft);border:1px solid var(--indigo-border);border-radius:18px;text-align:center;padding:clamp(32px,6vw,56px)}
+    .insight-callout blockquote{font-size:clamp(22px,3.5vw,36px);font-weight:800;line-height:1.15;letter-spacing:-.03em;color:var(--indigo);margin-bottom:14px}
+    .insight-callout p{max-width:700px;margin:0 auto;color:var(--muted)}
+
+    /* Flow list */
+    .flow-list{counter-reset:flow;display:grid;gap:10px}
+    .flow-item{counter-increment:flow;display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px;align-items:start;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px}
+    .flow-item::before{content:counter(flow);display:grid;place-items:center;width:32px;height:32px;border-radius:999px;background:var(--indigo-soft);color:var(--indigo);font-size:13px;font-weight:800}
+    .flow-item p{font-size:15px;color:var(--muted)}
+
+    /* Screenshot placeholder */
+    .screenshot-slot{border:2px dashed var(--border-2);border-radius:14px;background:var(--soft);padding:32px 24px;text-align:center}
+    .screenshot-slot.wide{aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .screenshot-slot.tall{aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .ss-label{font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+    .ss-title{font-size:14px;font-weight:700;color:var(--muted);margin-bottom:4px}
+    .ss-hint{font-size:12px;color:var(--light)}
+
+    /* Ownership table */
+    .ownership-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .ownership-col{border-radius:12px;padding:20px}
+    .ownership-col.mine{background:var(--indigo-soft);border:1px solid var(--indigo-border)}
+    .ownership-col.shared{background:var(--soft);border:1px solid var(--border-2)}
+    .ownership-col.eng{background:#fff;border:1px solid var(--border)}
+    .ownership-col-label{font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+    .ownership-col.mine .ownership-col-label{color:var(--indigo)}
+    .ownership-col.shared .ownership-col-label{color:var(--muted)}
+    .ownership-col.eng .ownership-col-label{color:var(--light)}
+    .ownership-col ul{padding-left:16px;display:grid;gap:6px}
+    .ownership-col li{font-size:14px;color:var(--muted);line-height:1.5}
+
+    /* Table */
+    .table{overflow:hidden;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+    .table-row{display:grid;grid-template-columns:minmax(200px,.5fr) 1fr;gap:18px;padding:15px 20px;border-bottom:1px solid var(--border)}
+    .table-row:last-child{border-bottom:0}
+    .table-head{background:var(--soft);font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--light)}
+    .table-key{font-weight:700;color:var(--text);font-size:15px}
+    .table-value{color:var(--muted);font-size:15px}
+
+    /* Portal section */
+    .portal-header{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+    .portal-badge{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;flex-shrink:0}
+    .portal-badge.student{background:var(--indigo-soft);color:var(--indigo);border:1px solid var(--indigo-border)}
+    .portal-badge.faculty{background:var(--green-soft);color:var(--green);border:1px solid var(--green-border)}
+    .portal-badge.hod{background:var(--orange-soft);color:var(--orange);border:1px solid var(--orange-border)}
+    .portal-badge.mgmt{background:var(--soft);color:var(--muted);border:1px solid var(--border-2)}
+
+    /* Final CTA */
+    .final-cta{background:var(--text);color:#fff;border-radius:18px;padding:clamp(28px,5vw,48px);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+    .final-cta h2{color:#fff;margin-bottom:6px}
+    .final-cta p{color:#d7d7d2}
+    .final-cta .btn-primary{background:#fff;color:var(--text)}
+    .final-cta .btn-secondary{color:#fff;border-color:rgba(255,255,255,.3)}
+
+    /* Footer */
+    .site-footer{border-top:1px solid var(--border);padding:32px 0}
+    .footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--light);font-size:14px}
+
+    /* Reveal */
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    @media(prefers-reduced-motion:reduce){.reveal,.reveal.visible{opacity:1;transform:none;transition:none}}
+
+    /* Responsive */
+    @media(max-width:980px){
+      .case-section{grid-template-columns:1fr}
+      .section-kicker{position:static}
+      .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .card-grid.three,.ownership-grid{grid-template-columns:1fr 1fr}
+      .stat-strip{flex-direction:column}
+      .stat-strip-item{border-right:none;border-bottom:1px solid var(--border)}
+      .stat-strip-item:last-child{border-bottom:none}
     }
-
-    a { color: inherit; }
-
-    .container {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 clamp(20px, 5vw, 60px);
-    }
-
-    /* ---- Nav ---- */
-    .nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
-      height: var(--nav-h);
-      background: rgba(250, 250, 249, 0.92);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 clamp(20px, 5vw, 60px);
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .nav-logo {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text-1);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-      transition: color 0.2s;
-    }
-    .nav-logo:hover { color: var(--accent); }
-    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
-    .nav-links a {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-2);
-      text-decoration: none;
-      padding: 7px 13px;
-      border-radius: 7px;
-      transition: color 0.2s, background 0.2s;
-      white-space: nowrap;
-    }
-    .nav-links a:hover { color: var(--text-1); background: var(--border); }
-    .nav-cta-link {
-      color: var(--accent) !important;
-      background: var(--accent-bg) !important;
-      border: 1px solid var(--accent-border) !important;
-    }
-    .nav-cta-link:hover { background: var(--accent) !important; color: #fff !important; border-color: var(--accent) !important; }
-
-    /* ---- Buttons / tags ---- */
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--text-1);
-      color: #fff;
-      font-family: var(--font-sans);
-      font-size: 14px;
-      font-weight: 600;
-      padding: 12px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s var(--ease);
-      white-space: nowrap;
-    }
-    .btn-primary:hover { background: #2a2a2a; transform: translateY(-1px); }
-
-    .tag {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-3);
-      background: var(--bg);
-      border: 1px solid var(--border);
-      padding: 3px 8px;
-      border-radius: 4px;
-    }
-
-    .section-label {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.13em;
-      color: var(--text-3);
-      margin-bottom: 16px;
-    }
-
-    /* ---- Case hero ---- */
-    .case-hero {
-      padding: clamp(120px, 14vw, 168px) 0 56px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .case-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-2);
-      text-decoration: none;
-      margin-bottom: 28px;
-      transition: color 0.2s;
-    }
-    .case-back:hover { color: var(--text-1); }
-
-    .case-hero-title {
-      font-size: clamp(30px, 4.2vw, 48px);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 16px;
-    }
-
-    .case-hero-dek {
-      font-size: clamp(16px, 1.8vw, 19px);
-      color: var(--text-2);
-      max-width: 640px;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .case-tags-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    /* ---- Case content ---- */
-    .case-main { padding: 56px 0 var(--nav-h); }
-    .case-content-wrap { max-width: 700px; }
-    .case-section { margin-bottom: 40px; }
-
-    .cs-label {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--text-3);
-      margin-bottom: 10px;
-    }
-
-    .case-section p,
-    .case-section li {
-      font-size: 16px;
-      color: var(--text-2);
-      line-height: 1.75;
-    }
-
-    .case-section ul { padding-left: 18px; margin-top: 8px; }
-    .case-section ul li { margin-bottom: 6px; }
-
-    /* ---- Placeholder block ---- */
-    .ph-block {
-      background: var(--ph-bg);
-      border: 1px dashed var(--ph-border);
-      border-radius: 10px;
-      padding: 28px 32px;
-    }
-    .ph-label {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      margin-bottom: 10px;
-    }
-    .ph-block h4 { font-size: 17px; font-weight: 600; color: var(--text-2); margin-bottom: 8px; }
-    .ph-block p { font-size: 14px; color: var(--text-3); line-height: 1.65; }
-    .ph-block ul { padding-left: 18px; margin-top: 10px; }
-    .ph-block ul li { font-size: 14px; color: var(--text-3); line-height: 1.6; margin-bottom: 5px; }
-
-    .case-cta-row {
-      margin-top: 36px;
-      padding-top: 28px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .case-cta-note { font-size: 13px; color: var(--text-3); }
-
-    /* ---- Footer ---- */
-    .site-footer { border-top: 1px solid var(--border); padding: 32px 0; }
-    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-    .footer-name { font-size: 14px; font-weight: 600; color: var(--text-2); }
-    .footer-tagline { font-size: 13px; color: var(--text-3); }
-
-    /* ---- Reveal ---- */
-    .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    @media (prefers-reduced-motion: reduce) {
-      .reveal, .reveal.visible { opacity: 1; transform: none; transition: none; }
-    }
-
-    @media (max-width: 600px) {
-      .nav-links a:not(.nav-cta-link) { display: none; }
+    @media(max-width:640px){
+      .nav-links a:not(.nav-cta){display:none}
+      .hero{padding-top:104px}
+      .card-grid,.card-grid.three,.stats-grid,.ownership-grid{grid-template-columns:1fr}
+      .table-row{grid-template-columns:1fr;gap:4px}
+      .btn-row{flex-direction:column;align-items:stretch}
     }
   </style>
 </head>
 <body>
 
   <nav class="nav">
-    <div class="nav-inner">
+    <div class="container nav-inner">
       <a href="index.html" class="nav-logo">S Vishnu Vardhan</a>
       <ul class="nav-links">
-        <li><a href="index.html#case-studies">All Work</a></li>
-        <li><a href="index.html#connect" class="nav-cta-link">Let's Connect</a></li>
+        <li><a href="index.html#work">All Work</a></li>
+        <li><a href="index.html#connect" class="nav-cta">Let's Connect</a></li>
       </ul>
     </div>
   </nav>
 
-  <header class="case-hero">
+  <!-- Hero -->
+  <header class="hero">
     <div class="container">
-      <a href="index.html#case-studies" class="case-back">&#8592; Back to all work</a>
-      <p class="section-label reveal">Case Study</p>
-      <h1 class="case-hero-title reveal">Pathwisse &mdash; Practice Labs</h1>
-      <p class="case-hero-dek reveal">As a core product-team member at Shaquantum Labs, I owned the UX for Practice Labs &mdash; a feature helping college students build placement-readiness through daily aptitude practice and AI-driven communication practice. Built from on-site college discovery; demoed to 5+ colleges with strong feedback.</p>
-      <div class="case-tags-row reveal">
+      <a href="index.html#work" class="back-link reveal">&larr; Back to all work</a>
+      <p class="eyebrow reveal">Flagship Case Study &middot; Shaquantum Labs</p>
+      <h1 class="reveal">Pathwisse &mdash; Student Success Platform</h1>
+      <p class="hero-sub reveal">A B2B role-based platform connecting academic management, career development and placement preparation across four portals &mdash; for students, faculty, HODs and management.</p>
+      <div class="tag-row reveal">
+        <span class="tag indigo">B2B EdTech</span>
+        <span class="tag">Student Success</span>
+        <span class="tag">Role-based Portals</span>
+        <span class="tag">Product Discovery</span>
         <span class="tag">Shaquantum Labs</span>
-        <span class="tag">EdTech</span>
-        <span class="tag">Product &amp; UX</span>
+      </div>
+      <div class="stat-strip reveal">
+        <div class="stat-strip-item">
+          <div class="stat-strip-val">5</div>
+          <div class="stat-strip-label">Colleges Discovered</div>
+        </div>
+        <div class="stat-strip-item">
+          <div class="stat-strip-val">160+</div>
+          <div class="stat-strip-label">Stakeholders</div>
+        </div>
+        <div class="stat-strip-item">
+          <div class="stat-strip-val">4</div>
+          <div class="stat-strip-label">Role-based Portals</div>
+        </div>
+        <div class="stat-strip-item">
+          <div class="stat-strip-val">4</div>
+          <div class="stat-strip-label">Colleges Onboarded</div>
+        </div>
       </div>
     </div>
   </header>
 
   <main class="case-main">
-    <div class="container case-content-wrap">
+    <div class="container">
 
-      <div class="ph-block reveal" style="margin-bottom: 40px;">
-        <div class="ph-label">Full write-up coming soon</div>
-        <h4>This case study is still being written</h4>
-        <p>Sections to add next:</p>
-        <ul>
-          <li>The problem: what placement-readiness gap students were facing, and how on-site college discovery surfaced it</li>
-          <li>My role: research, requirements, wireframes, and what I personally decided vs. what the team built</li>
-          <li>How Practice Labs works: daily aptitude practice + AI-driven communication practice, walked through</li>
-          <li>Demo feedback: what the 5+ colleges said, and what changed because of it</li>
-          <li>Artifacts: wireframes, flow diagrams, or screenshots</li>
-          <li>What's next for the feature</li>
-        </ul>
-      </div>
+      <!-- 01 Context -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">01</div>
+          <h2>Context</h2>
+        </div>
+        <div class="stack">
+          <div class="stats-grid">
+            <div class="stat-card"><strong>20+</strong><span>HODs interviewed</span></div>
+            <div class="stat-card"><strong>40</strong><span>Faculty members</span></div>
+            <div class="stat-card"><strong>100+</strong><span>Students</span></div>
+            <div class="stat-card"><strong>4</strong><span>Role-based portals built</span></div>
+          </div>
+          <p class="lead">Pathwisse is a B2B student success platform built at Shaquantum Labs. It connects academic management, career development and placement preparation in a single system used by students, faculty, heads of departments and institutional management.</p>
+          <p>Discovery started on-site, not in a spreadsheet. The team visited five colleges, met over 160 stakeholders across all roles, and built the platform to solve the problems that actually surfaced in those conversations.</p>
+        </div>
+      </section>
 
-      <div class="case-section reveal">
-        <div class="cs-label">The Short Version</div>
-        <p>I'm a core product-team member at Shaquantum Labs, where I own the UX for Practice Labs &mdash; a feature that helps college students build placement-readiness through daily aptitude practice and AI-driven communication practice. The work started with on-site discovery at colleges, and the feature has been demoed to 5+ colleges with strong feedback.</p>
-      </div>
+      <!-- 02 Product Overview -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">02</div>
+          <h2>Product Overview</h2>
+        </div>
+        <div class="stack">
+          <p>Pathwisse gives every role in an institution a portal designed for their actual job &mdash; not a generic dashboard they have to adapt.</p>
+          <div class="card-grid">
+            <div class="card accent-top">
+              <div class="portal-header">
+                <div class="portal-badge student">S</div>
+                <h3>Student Portal</h3>
+              </div>
+              <ul>
+                <li>Career roadmap selection and personalised learning</li>
+                <li>Daily aptitude and communication practice</li>
+                <li>AI mock-interview voice agent</li>
+                <li>Progress dashboard</li>
+                <li>Opportunities layer</li>
+              </ul>
+            </div>
+            <div class="card green-top">
+              <div class="portal-header">
+                <div class="portal-badge faculty">F</div>
+                <h3>Faculty Portal</h3>
+              </div>
+              <ul>
+                <li>Assigned student tracking</li>
+                <li>Readiness and progress visibility</li>
+                <li>Intervention flags for at-risk students</li>
+                <li>Activity and engagement view</li>
+              </ul>
+            </div>
+            <div class="card orange-top">
+              <div class="portal-header">
+                <div class="portal-badge hod">H</div>
+                <h3>HOD Portal</h3>
+              </div>
+              <ul>
+                <li>Department-wide performance dashboard</li>
+                <li>Aggregate readiness view by batch and course</li>
+                <li>Faculty and student summary</li>
+              </ul>
+            </div>
+            <div class="card">
+              <div class="portal-header">
+                <div class="portal-badge mgmt">M</div>
+                <h3>Management Portal</h3>
+              </div>
+              <ul>
+                <li>Institutional-level placement readiness view</li>
+                <li>Cross-department comparison</li>
+                <li>Progress and engagement reporting</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <div class="case-cta-row reveal">
-        <a href="index.html#connect" class="btn-primary">Ask me about it &#8594;</a>
-        <span class="case-cta-note">Full case study with artifacts coming soon</span>
-      </div>
+      <!-- 03 The Problem -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">03</div>
+          <h2>The Fragmented Student-Success Problem</h2>
+        </div>
+        <div class="stack">
+          <div class="insight-callout">
+            <blockquote>Placement readiness was treated as a final-year problem, not a continuous process.</blockquote>
+            <p>Every role in the institution had a version of the same problem: no unified view, no early signals, no connected workflow between academics and career preparation.</p>
+          </div>
+          <div class="table">
+            <div class="table-row table-head"><div>Role</div><div>Pain point</div></div>
+            <div class="table-row">
+              <div class="table-key">Students</div>
+              <div class="table-value">No structured guidance from academics to placement readiness. Practice was self-managed, career planning was reactive and came too late.</div>
+            </div>
+            <div class="table-row">
+              <div class="table-key">Faculty</div>
+              <div class="table-value">No single view of which students were progressing or falling behind. Tracking was manual, visibility was limited, and intervention came after the damage.</div>
+            </div>
+            <div class="table-row">
+              <div class="table-key">HODs</div>
+              <div class="table-value">No department-wide aggregate without manual collation across spreadsheets and individual reports. No ability to spot batch-level trends early.</div>
+            </div>
+            <div class="table-row">
+              <div class="table-key">Management</div>
+              <div class="table-value">No institutional dashboard. Placement readiness data existed in silos by department with no cross-college or cross-department view.</div>
+            </div>
+          </div>
+          <p>The gap was structural: the same student's academic record, career readiness practice, and placement eligibility lived in completely separate systems with no connection between them.</p>
+        </div>
+      </section>
+
+      <!-- 04 Discovery -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">04</div>
+          <h2>Discovery Across Five Colleges</h2>
+        </div>
+        <div class="stack">
+          <p class="lead">Discovery was on-site, not assumed. The team visited five colleges and met 160+ stakeholders across all four roles before any product decisions were made.</p>
+          <div class="card-grid">
+            <div class="card accent-top">
+              <h3>Who we met</h3>
+              <ul>
+                <li>20+ Heads of Department</li>
+                <li>40 Faculty members</li>
+                <li>100+ Students across years and courses</li>
+                <li>Institutional management and placement coordinators</li>
+              </ul>
+            </div>
+            <div class="card accent-top">
+              <h3>What we explored</h3>
+              <ul>
+                <li>How placement readiness was currently tracked</li>
+                <li>What tools and workflows faculty actually used</li>
+                <li>How students self-managed practice and career planning</li>
+                <li>What information management needed but wasn't getting</li>
+              </ul>
+            </div>
+          </div>
+          <div class="flow-list">
+            <div class="flow-item"><p>On-site visits to five colleges across the target region</p></div>
+            <div class="flow-item"><p>Structured interviews with HODs and faculty about current workflows and pain points</p></div>
+            <div class="flow-item"><p>Student sessions to understand how they approached practice, career planning and placement preparation</p></div>
+            <div class="flow-item"><p>Management conversations to understand reporting needs and institutional goals</p></div>
+            <div class="flow-item"><p>Synthesis of insights into common problems across roles and colleges</p></div>
+          </div>
+          <p class="small-note">Discovery was a shared team effort. My ownership was synthesis, problem definition and requirements — see Section 12 for the full ownership breakdown.</p>
+        </div>
+      </section>
+
+      <!-- 05 Research Insights -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">05</div>
+          <h2>Research Insights</h2>
+        </div>
+        <div class="stack">
+          <div class="card-grid three">
+            <div class="card accent-top">
+              <h3>Students need structure, not just access</h3>
+              <p>Access to practice material was not the problem. Students needed a guided roadmap that connected their current academic stage to a concrete path toward placement readiness.</p>
+            </div>
+            <div class="card accent-top">
+              <h3>Faculty want early signals, not end-of-term reports</h3>
+              <p>By the time placement season started, it was too late to intervene meaningfully. Faculty needed visibility into student progress throughout the academic cycle &mdash; not just at the end.</p>
+            </div>
+            <div class="card accent-top">
+              <h3>HODs need aggregates, not individual records</h3>
+              <p>HODs did not want to track individual students. They needed department-wide and batch-level summaries that let them identify systemic gaps without reviewing case by case.</p>
+            </div>
+            <div class="card accent-top">
+              <h3>Management needed cross-college visibility</h3>
+              <p>Institutional management could not compare placement readiness across departments or colleges. Every report was produced on demand, manually.</p>
+            </div>
+            <div class="card accent-top">
+              <h3>Readiness is a process, not an event</h3>
+              <p>Across all five colleges and all four roles, the common theme was the same: placement readiness was treated as something to address in the final year, not built continuously from year one.</p>
+            </div>
+            <div class="card accent-top">
+              <h3>Communication skills were consistently underserved</h3>
+              <p>Aptitude preparation had workarounds &mdash; coaching classes, practice papers. Communication and interview skills had almost none. That gap was the strongest signal for Practice Labs.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 Product Decision and Roadmap -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">06</div>
+          <h2>Product Decision &amp; Roadmap Prioritisation</h2>
+        </div>
+        <div class="stack">
+          <p class="small-note">Roadmap decisions were shared with the core team. I contributed problem synthesis and requirements; strategy and commercial positioning were team decisions.</p>
+          <p class="lead">The four-portal architecture was the foundational decision. Every feature that followed was built on top of role-based access and a shared data layer.</p>
+          <div class="table">
+            <div class="table-row table-head"><div>Priority</div><div>Decision and rationale</div></div>
+            <div class="table-row">
+              <div class="table-key">Foundation</div>
+              <div class="table-value">Build all four portals with role-based permissions first. Without the institutional hierarchy in place, individual features would have no context to sit in.</div>
+            </div>
+            <div class="table-row">
+              <div class="table-key">Early high-value feature</div>
+              <div class="table-value">Practice Labs — aptitude and communication practice. It was the most consistently requested feature across all five colleges and was demonstrable quickly, making it the right feature to lead with.</div>
+            </div>
+            <div class="table-row">
+              <div class="table-key">Differentiated value</div>
+              <div class="table-value">Career roadmaps and personalised learning. This was what separated Pathwisse from a generic practice tool — the connection between where a student is and where they need to go.</div>
+            </div>
+            <div class="table-row">
+              <div class="table-key">Depth feature</div>
+              <div class="table-value">AI mock-interview voice agent. High effort, high signal — built after the core platform was validated so the team could invest in it with confidence.</div>
+            </div>
+            <div class="table-row">
+              <div class="table-key">Future layer</div>
+              <div class="table-value">Opportunities layer &mdash; connecting placement-ready students to relevant opportunities. Planned and scoped; execution depends on partner institutional relationships.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 Product Architecture -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">07</div>
+          <h2>Product Architecture</h2>
+        </div>
+        <div class="stack">
+          <p>Pathwisse is structured around a shared data layer that connects all four portals. A student's activity in the student portal becomes visible to their assigned faculty, aggregated for the HOD, and rolled up for management &mdash; each role seeing only what is relevant and appropriate for their function.</p>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Role-based access and permissions</h3>
+              <p>Each portal is scoped to the role. A faculty member sees only the students assigned to them. An HOD sees their department. Management sees across departments and colleges. Access control was specified in requirements before any implementation began.</p>
+            </div>
+            <div class="card">
+              <h3>Connected data flow</h3>
+              <p>Student activity &rarr; Faculty tracking view &rarr; HOD department rollup &rarr; Management institutional report. Data flows upward by role without any manual export or report generation step.</p>
+            </div>
+          </div>
+          <div class="screenshot-slot wide reveal">
+            <div class="ss-label">Screenshot needed</div>
+            <div class="ss-title">Platform architecture or portal navigation overview</div>
+            <div class="ss-hint">Recommended: 16:9 &middot; shows the four-portal structure and how they connect</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 08 Student Portal -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">08</div>
+          <h2>Student Portal</h2>
+        </div>
+        <div class="stack">
+          <div class="portal-header">
+            <div class="portal-badge student">S</div>
+            <p class="lead">The student's primary interface for career preparation, practice, and progress tracking.</p>
+          </div>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Dashboard</h3>
+              <p>A personalised view of where the student stands: readiness score, recent practice activity, upcoming tasks, and career roadmap progress.</p>
+            </div>
+            <div class="card">
+              <h3>Career Roadmap</h3>
+              <p>Students select a career path and receive a structured progression from their current academic stage toward placement readiness. The roadmap adapts based on progress.</p>
+            </div>
+            <div class="card">
+              <h3>Practice Labs</h3>
+              <p>Daily aptitude practice and AI-driven communication exercises, delivered in short structured sessions. Designed for consistent daily engagement rather than last-minute cramming.</p>
+            </div>
+            <div class="card">
+              <h3>AI Mock Interview</h3>
+              <p>A voice-based AI agent simulating a real interview. Students practise speaking, structuring answers and handling follow-up questions in a low-stakes environment.</p>
+            </div>
+            <div class="card">
+              <h3>Progress View</h3>
+              <p>Completion rates, streaks, readiness milestones and skill coverage &mdash; so students can see what they've done and what still needs attention.</p>
+            </div>
+            <div class="card">
+              <h3>Opportunities Layer</h3>
+              <p>Relevant placement opportunities surfaced based on the student's career roadmap and readiness level. Designed so placement eligibility is visible before application, not discovered during.</p>
+            </div>
+          </div>
+          <div class="card-grid">
+            <div class="screenshot-slot wide reveal">
+              <div class="ss-label">Screenshot needed</div>
+              <div class="ss-title">Student dashboard</div>
+              <div class="ss-hint">16:9 &middot; readiness score, activity summary, roadmap progress</div>
+            </div>
+            <div class="screenshot-slot wide reveal">
+              <div class="ss-label">Screenshot needed</div>
+              <div class="ss-title">Opportunities screen</div>
+              <div class="ss-hint">16:9 &middot; filtered opportunity list based on readiness</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 09 Faculty Portal -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">09</div>
+          <h2>Faculty Portal</h2>
+        </div>
+        <div class="stack">
+          <div class="portal-header">
+            <div class="portal-badge faculty">F</div>
+            <p class="lead">Gives faculty members real-time visibility into their assigned students, without manual tracking.</p>
+          </div>
+          <div class="card-grid">
+            <div class="card green-top">
+              <h3>Assigned student tracking</h3>
+              <p>A list of all students assigned to the faculty member, with their current readiness level, recent activity and engagement status visible without any manual data pull.</p>
+            </div>
+            <div class="card green-top">
+              <h3>Progress and readiness view</h3>
+              <p>Each student's practice completion, roadmap progress and skill coverage &mdash; visible across the full semester, not just at assessment points.</p>
+            </div>
+            <div class="card green-top">
+              <h3>Intervention flags</h3>
+              <p>Students who are inactive, falling behind a readiness threshold, or missing consistent practice are flagged automatically so faculty can intervene early rather than reactively.</p>
+            </div>
+            <div class="card green-top">
+              <h3>Academic view integration</h3>
+              <p>Assignment and academic context visible alongside placement readiness, giving faculty a fuller picture of each student rather than a siloed view of one data type.</p>
+            </div>
+          </div>
+          <div class="card-grid">
+            <div class="screenshot-slot wide reveal">
+              <div class="ss-label">Screenshot needed</div>
+              <div class="ss-title">Faculty assigned-student tracking view</div>
+              <div class="ss-hint">16:9 &middot; student list with readiness status and intervention flags</div>
+            </div>
+            <div class="screenshot-slot wide reveal">
+              <div class="ss-label">Screenshot needed</div>
+              <div class="ss-title">Academic or assignment screen</div>
+              <div class="ss-hint">16:9 &middot; academic context alongside readiness data</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10 HOD Portal -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">10</div>
+          <h2>HOD Portal</h2>
+        </div>
+        <div class="stack">
+          <div class="portal-header">
+            <div class="portal-badge hod">H</div>
+            <p class="lead">Department-level aggregation so HODs can spot systemic gaps without reviewing individual records.</p>
+          </div>
+          <div class="card-grid">
+            <div class="card orange-top">
+              <h3>Department dashboard</h3>
+              <p>A high-level view of placement readiness across the entire department &mdash; by batch, by year, by course &mdash; without requiring the HOD to review individual student records.</p>
+            </div>
+            <div class="card orange-top">
+              <h3>Batch and cohort comparison</h3>
+              <p>Compare readiness levels across different batches or years to identify whether gaps are specific to one cohort or a department-wide pattern.</p>
+            </div>
+            <div class="card orange-top">
+              <h3>Faculty performance summary</h3>
+              <p>Aggregate view of engagement and progress across faculty-assigned student groups, so HODs can see where students are progressing well and where additional support may be needed.</p>
+            </div>
+          </div>
+          <div class="screenshot-slot wide reveal">
+            <div class="ss-label">Screenshot needed</div>
+            <div class="ss-title">HOD department dashboard</div>
+            <div class="ss-hint">16:9 &middot; department-wide readiness view with batch and course breakdown</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11 Management Portal -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">11</div>
+          <h2>Management Portal</h2>
+        </div>
+        <div class="stack">
+          <div class="portal-header">
+            <div class="portal-badge mgmt">M</div>
+            <p class="lead">Institutional-level visibility across departments and colleges, without requiring manual reporting.</p>
+          </div>
+          <div class="card-grid">
+            <div class="card">
+              <h3>Institutional readiness overview</h3>
+              <p>Cross-department placement readiness at a glance &mdash; the view that management told us they could previously only get by requesting reports from each HOD individually.</p>
+            </div>
+            <div class="card">
+              <h3>Engagement and progress reporting</h3>
+              <p>Student activity, practice engagement, and readiness milestones rolled up to the institutional level so management can track the platform's impact without manual aggregation.</p>
+            </div>
+          </div>
+          <div class="screenshot-slot wide reveal">
+            <div class="ss-label">Screenshot needed</div>
+            <div class="ss-title">Management dashboard</div>
+            <div class="ss-hint">16:9 &middot; institutional-level view with cross-department placement readiness</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12 My Ownership -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">12</div>
+          <h2>My Ownership</h2>
+        </div>
+        <div class="stack">
+          <p>Pathwisse is a team product. The platform was built by a cross-functional team at Shaquantum Labs. This is an accurate account of what I owned, what we shared, and what engineering owned.</p>
+          <div class="ownership-grid">
+            <div class="ownership-col mine">
+              <div class="ownership-col-label">Vishnu owned</div>
+              <ul>
+                <li>On-site discovery sessions</li>
+                <li>Problem synthesis from 160+ stakeholder conversations</li>
+                <li>Product requirements documents</li>
+                <li>User flows and permissions mapping</li>
+                <li>UX definition and wireframe direction</li>
+                <li>Acceptance criteria for all portals</li>
+                <li>UAT planning and execution</li>
+                <li>College demonstrations</li>
+                <li>Feedback analysis and synthesis</li>
+              </ul>
+            </div>
+            <div class="ownership-col shared">
+              <div class="ownership-col-label">Shared with core team</div>
+              <ul>
+                <li>Product strategy</li>
+                <li>Roadmap priorities</li>
+                <li>Pilot planning</li>
+                <li>Institutional positioning</li>
+                <li>Commercial decisions</li>
+              </ul>
+            </div>
+            <div class="ownership-col eng">
+              <div class="ownership-col-label">Engineering owned</div>
+              <ul>
+                <li>Technical architecture</li>
+                <li>Frontend implementation</li>
+                <li>Backend implementation</li>
+                <li>Infrastructure</li>
+                <li>Deployment</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 13 Deep Dive: Tracking and Intervention -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">13</div>
+          <h2>Deep Dive: Tracking &amp; Intervention</h2>
+        </div>
+        <div class="stack">
+          <p class="lead">The most consistent request from faculty was not a feature &mdash; it was a timing problem. They wanted to know about struggling students before placement season, not during.</p>
+          <p>The tracking system was designed to surface two types of signal: engagement (is the student actively using the platform?) and progress (are they moving toward readiness targets at the expected pace?). Both matter independently. A student can be active but plateauing, or absent but not yet behind their cohort.</p>
+          <div class="card-grid">
+            <div class="card green-top">
+              <h3>Engagement signal</h3>
+              <p>Daily and weekly activity tracked at the individual level. Faculty see recency, frequency and streak information without needing to query the student directly.</p>
+            </div>
+            <div class="card green-top">
+              <h3>Progress signal</h3>
+              <p>Readiness milestones tracked against expected pace for the student's year and career roadmap. Progress that falls below threshold triggers a faculty flag, not a final-year crisis.</p>
+            </div>
+            <div class="card green-top">
+              <h3>Intervention design</h3>
+              <p>Flags are surfaced to the faculty member, not pushed to the student as a system alert. The intervention stays human &mdash; faculty decide when and how to act on a flag.</p>
+            </div>
+            <div class="card green-top">
+              <h3>HOD aggregate view</h3>
+              <p>At the department level, the HOD sees the proportion of students at risk, not individual flag lists. Intervention at the HOD level is about patterns, not cases.</p>
+            </div>
+          </div>
+          <div class="screenshot-slot wide reveal">
+            <div class="ss-label">Screenshot needed</div>
+            <div class="ss-title">Faculty intervention flag view</div>
+            <div class="ss-hint">16:9 &middot; at-risk student list with engagement and progress indicators</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 14 Deep Dive: Career Roadmaps and Personalised Learning -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">14</div>
+          <h2>Deep Dive: Career Roadmaps &amp; Personalised Learning</h2>
+        </div>
+        <div class="stack">
+          <p class="lead">Career roadmaps were the feature that separated Pathwisse from a generic practice tool. The question they answer is: given where this student is right now, what do they need to do to become placement-ready in their chosen career path?</p>
+          <div class="flow-list">
+            <div class="flow-item"><p>Student selects a career path (e.g. software engineering, data analysis, operations management)</p></div>
+            <div class="flow-item"><p>Pathwisse maps the gap between the student's current academic stage and the target role's placement requirements</p></div>
+            <div class="flow-item"><p>A structured learning progression is generated, covering skill areas the student needs to develop</p></div>
+            <div class="flow-item"><p>Practice sessions are assigned in the relevant skill areas, tied to the roadmap rather than generic topic lists</p></div>
+            <div class="flow-item"><p>Progress on the roadmap is updated as the student completes practice, so they always know where they stand</p></div>
+          </div>
+          <div class="card-grid">
+            <div class="screenshot-slot tall reveal">
+              <div class="ss-label">Screenshot needed</div>
+              <div class="ss-title">Career roadmap selection screen</div>
+              <div class="ss-hint">4:3 &middot; student choosing a career path</div>
+            </div>
+            <div class="screenshot-slot tall reveal">
+              <div class="ss-label">Screenshot needed</div>
+              <div class="ss-title">Roadmap progress view</div>
+              <div class="ss-hint">4:3 &middot; in-progress roadmap with milestones and skill coverage</div>
+            </div>
+          </div>
+          <p>Personalised learning means the roadmap responds to the student's actual progress. A student who covers aptitude skills quickly moves faster through that layer. A student who is weaker on communication gets more practice time allocated there.</p>
+        </div>
+      </section>
+
+      <!-- 15 Deep Dive: Practice Labs and AI Mock Interviews -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">15</div>
+          <h2>Deep Dive: Practice Labs &amp; AI Mock Interviews</h2>
+        </div>
+        <div class="stack">
+          <p class="lead">Practice Labs addresses the specific gap that all five college visits surfaced: students had some path to aptitude preparation, but almost no structured path to communication and interview readiness.</p>
+          <div class="card-grid">
+            <div class="card accent-top">
+              <h3>Aptitude practice</h3>
+              <p>Daily aptitude exercises covering quantitative reasoning, verbal ability, and logical reasoning. Designed for short daily sessions rather than long study blocks, with difficulty adapting based on performance.</p>
+            </div>
+            <div class="card accent-top">
+              <h3>Communication practice</h3>
+              <p>Structured exercises for clarity, confidence and structured response. Covers both written and spoken communication, with scenario-based prompts drawn from real placement interview patterns.</p>
+            </div>
+          </div>
+
+          <p class="lead" style="margin-top:8px">AI Mock Interview Voice Agent</p>
+          <p>The AI mock interview agent is a voice-based system that simulates a real interview conversation. The student speaks their answers; the agent responds with follow-up questions and evaluates clarity, structure and content.</p>
+          <div class="card-grid">
+            <div class="card accent-top">
+              <h3>Why voice, not text</h3>
+              <p>The gap students struggled with was not knowing what to say &mdash; it was saying it fluently under pressure. Text-based practice does not replicate that. Voice does.</p>
+            </div>
+            <div class="card accent-top">
+              <h3>Design decisions I owned</h3>
+              <p>User flow for the interview session, edge cases (connection drop, mic permissions, no-answer handling), feedback display requirements, and acceptance criteria for evaluation quality.</p>
+            </div>
+          </div>
+          <div class="card-grid">
+            <div class="screenshot-slot tall reveal">
+              <div class="ss-label">Screenshot needed</div>
+              <div class="ss-title">Practice Labs screen</div>
+              <div class="ss-hint">4:3 &middot; active practice session (aptitude or communication)</div>
+            </div>
+            <div class="screenshot-slot tall reveal">
+              <div class="ss-label">Screenshot needed</div>
+              <div class="ss-title">AI mock interview session</div>
+              <div class="ss-hint">4:3 &middot; voice agent interface during an active interview</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 16 Validation and Onboarding -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">16</div>
+          <h2>Validation &amp; Onboarding of Four Colleges</h2>
+        </div>
+        <div class="stack">
+          <p class="lead">Four colleges completed onboarding. The path from discovery to conversion was built on demonstrations to the actual stakeholders we had met during discovery.</p>
+          <div class="card-grid">
+            <div class="card green-top">
+              <h3>Demonstration process</h3>
+              <p>Demonstrations were conducted with HODs and management at target colleges. I owned the demo structure and delivery, walking institutional stakeholders through all four portals, with the interface tailored to the role of the person in the room.</p>
+            </div>
+            <div class="card green-top">
+              <h3>Feedback analysis</h3>
+              <p>Post-demonstration feedback was collected and synthesised into product changes. Objections and feature requests were triaged against the roadmap rather than reacted to immediately.</p>
+            </div>
+            <div class="card green-top">
+              <h3>Pilot planning</h3>
+              <p>Pilot planning was shared with the core team. I contributed onboarding requirements and user flow documentation so the pilot launch had clear success conditions for each role.</p>
+            </div>
+            <div class="card green-top">
+              <h3>UAT</h3>
+              <p>Acceptance testing was run against the acceptance criteria I had written. Issues found during UAT were logged with reproduction steps and priority so engineering could resolve them before institutional rollout.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 17 Current Limitations -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">17</div>
+          <h2>Current Limitations</h2>
+        </div>
+        <div class="stack">
+          <p>Pathwisse is a live, in-use product. These are honest limitations that exist at the point this case study was written.</p>
+          <div class="card-grid">
+            <div class="card orange-top">
+              <h3>Opportunities layer is planned, not fully live</h3>
+              <p>The opportunities layer is scoped and designed. Full execution depends on institutional partnerships and commercial agreements that are not yet in place.</p>
+            </div>
+            <div class="card orange-top">
+              <h3>AI mock interview is early-stage</h3>
+              <p>The voice agent is live and in use but is in an early stage. Evaluation accuracy and question quality improve with more usage data. The feedback loop between sessions and product improvement is still being established.</p>
+            </div>
+            <div class="card orange-top">
+              <h3>Outcome metrics are not yet measured</h3>
+              <p>Placement outcome data (whether students who used Pathwisse placed better) requires a full placement cycle with instrumented tracking. That data does not exist yet and I am not claiming it does.</p>
+            </div>
+            <div class="card orange-top">
+              <h3>Personalisation is rule-based, not adaptive</h3>
+              <p>Personalised learning currently follows structured roadmap progressions. True adaptive personalisation &mdash; where the system changes in real time based on individual performance patterns &mdash; is a future capability, not current.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 18 Metrics to Measure Next -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">18</div>
+          <h2>Metrics to Measure Next</h2>
+        </div>
+        <div class="stack">
+          <div class="tag-row"><span class="tag orange">Proposed metrics &mdash; not yet measured</span></div>
+          <div class="table">
+            <div class="table-row table-head"><div>Metric</div><div>What it would tell us</div></div>
+            <div class="table-row">
+              <div class="table-key">Daily active practice rate</div>
+              <div class="table-value">Whether students are building the consistent daily habit or only using the platform in bursts before assessments.</div>
+            </div>
+            <div class="table-row">
+              <div class="table-key">Readiness milestone completion by cohort</div>
+              <div class="table-value">Whether specific batches or years are systematically falling behind their roadmap targets &mdash; the HOD-level signal the platform is designed to surface.</div>
+            </div>
+            <div class="table-row">
+              <div class="table-key">Faculty intervention rate</div>
+              <div class="table-value">How often faculty act on at-risk flags. Low rate means either the flags are low-quality or the workflow to act on them is too friction-heavy.</div>
+            </div>
+            <div class="table-row">
+              <div class="table-key">AI mock interview completion vs abandonment</div>
+              <div class="table-value">Whether students are completing full interview sessions or dropping out mid-session. Abandonment patterns indicate friction in the voice agent experience.</div>
+            </div>
+            <div class="table-row">
+              <div class="table-key">College-to-onboarding conversion rate</div>
+              <div class="table-value">Of colleges that received a demonstration, how many completed onboarding. Tracks the effectiveness of the demo and onboarding process over time.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 19 Product Learnings -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">19</div>
+          <h2>Product Learnings</h2>
+        </div>
+        <div class="stack">
+          <div class="card-grid">
+            <div class="card accent-top">
+              <h3>Discovery at this scale changes your product</h3>
+              <p>Visiting five colleges and meeting 160+ stakeholders before building anything produced a fundamentally different product than a desk-based assumptions document would have. The four-portal structure, the intervention-first faculty view, and the focus on communication practice were all direct outputs of what we heard on-site.</p>
+            </div>
+            <div class="card accent-top">
+              <h3>Role-based design requires role-based research</h3>
+              <p>Every role had a different relationship with the same problem. HODs needed aggregates, not individual records. Faculty needed early signals, not end-of-term summaries. Building the right thing for each role required understanding each role independently before building a system that connected them all.</p>
+            </div>
+            <div class="card accent-top">
+              <h3>Acceptance criteria before UAT, not during</h3>
+              <p>Writing acceptance criteria before build &mdash; not after &mdash; made UAT faster and less ambiguous. Issues found during UAT had a clear definition of "resolved" because the expected behaviour had been specified in advance.</p>
+            </div>
+            <div class="card accent-top">
+              <h3>Be honest about what's proposed and what's measured</h3>
+              <p>Pathwisse has not yet produced placement outcome data. That's a real limitation. Claiming otherwise would have been dishonest in demonstrations and would have set expectations that erode trust. Honesty about what's early-stage is not a weakness in a demo &mdash; it's credibility.</p>
+            </div>
+          </div>
+          <div class="insight-callout" style="margin-top:8px">
+            <blockquote>The best product decision is the one you can defend with what you actually heard, not what you assumed.</blockquote>
+            <p>Every major product decision on Pathwisse &mdash; the four-portal structure, the focus on communication practice, the intervention-first design &mdash; was directly traceable to something a real stakeholder said in a real college. That traceability is what I believe makes product work trustworthy.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final CTA -->
+      <section class="final-cta reveal">
+        <div>
+          <h2>Pathwisse &mdash; Student Success Platform</h2>
+          <p>Flagship case study &middot; Shaquantum Labs &middot; B2B EdTech</p>
+        </div>
+        <div class="btn-row">
+          <a href="index.html#connect" class="btn btn-primary">Ask me about this work &rarr;</a>
+          <a href="index.html#work" class="btn btn-secondary">&larr; Back to all work</a>
+        </div>
+      </section>
 
     </div>
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <div class="footer-inner">
-        <span class="footer-name">S Vishnu Vardhan</span>
-        <span class="footer-tagline">Product (UX &amp; Decisions) &middot; Business Analyst at Vtiger CRM &middot; AI-assisted Builder</span>
-      </div>
+    <div class="container footer-inner">
+      <span>S Vishnu Vardhan</span>
+      <span>Product &middot; Business Analyst at Vtiger CRM</span>
     </div>
   </footer>
 
@@ -346,14 +949,11 @@
           revealObs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
+    }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
-
-    document.querySelectorAll('.case-hero .reveal').forEach((el, i) => {
+    document.querySelectorAll('.hero .reveal').forEach((el, i) => {
       setTimeout(() => el.classList.add('visible'), 80 + i * 70);
     });
   </script>
-
 </body>
 </html>

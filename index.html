@@ -622,6 +622,7 @@
       flex-direction: column;
       background: var(--surface);
       border: 1px solid var(--border);
+      border-top: 3px solid var(--accent);
       border-radius: 14px;
       overflow: hidden;
       text-decoration: none;
@@ -631,23 +632,26 @@
 
     a.work-card:hover {
       border-color: var(--border-hover);
+      border-top-color: var(--accent);
       transform: translateY(-3px);
       box-shadow: 0 16px 36px rgba(17, 17, 17, 0.08);
     }
 
-    .work-card-thumb {
-      aspect-ratio: 16 / 9;
-    }
-
-    .work-card-thumb-ph {
-      background: var(--ph-bg);
-      border-bottom: 2px dashed var(--ph-border);
+    .work-card-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
     }
-
-    .work-card-thumb-ph .ph-label { margin-bottom: 0; }
 
     .work-card-body {
       display: flex;
@@ -691,6 +695,89 @@
     a.work-card:hover .work-card-cta { gap: 10px; }
 
     .work-card-btn { align-self: flex-start; }
+
+    /* Featured card (Pathwisse) */
+    .work-card-featured {
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--accent);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .work-card-featured-body {
+      padding: 28px 32px 32px;
+    }
+    .work-card-featured-body h3 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 10px;
+      color: var(--text-1);
+    }
+    .work-card-featured-body p {
+      font-size: 15.5px;
+      color: var(--text-2);
+      line-height: 1.65;
+      max-width: 680px;
+      margin-bottom: 22px;
+    }
+    .work-card-featured-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 22px;
+      max-width: 580px;
+    }
+    .wc-stat {
+      flex: 1;
+      min-width: 100px;
+      padding: 14px 18px;
+      border-right: 1px solid var(--border);
+    }
+    .wc-stat:last-child { border-right: none; }
+    .wc-stat strong {
+      display: block;
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #172554;
+      margin-bottom: 3px;
+    }
+    .wc-stat span {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-3);
+    }
+    .work-card-disclaimer {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-3);
+      margin-bottom: 16px;
+      padding: 6px 10px;
+      background: var(--ph-bg);
+      border: 1px solid var(--ph-border);
+      border-radius: 5px;
+      max-width: fit-content;
+    }
+    .work-card-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    @media (max-width: 640px) {
+      .work-card-featured-body { padding: 20px; }
+      .work-card-featured-stats { flex-direction: column; max-width: 100%; }
+      .wc-stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .wc-stat:last-child { border-bottom: none; }
+    }
 
     .work-card-note {
       font-size: 12px;
@@ -826,6 +913,7 @@
       transition: border-color 0.2s, transform 0.2s var(--ease), background 0.2s;
     }
     .connect-link:hover { border-color: var(--text-1); transform: translateX(4px); }
+    .connect-link-pending { opacity: 0.55; cursor: default; pointer-events: none; }
 
     .connect-link-left {
       display: flex;
@@ -1013,8 +1101,7 @@
       </button>
       <ul class="nav-links" id="nav-links">
         <li><a href="#capabilities">Capabilities</a></li>
-        <li><a href="#case-studies">Case Studies</a></li>
-        <li><a href="#products">Products</a></li>
+        <li><a href="#work">Work</a></li>
         <li><a href="#craft">Craft</a></li>
         <li><a href="#approach">Approach</a></li>
         <li><a href="#connect" class="nav-cta-link">Let's Connect</a></li>
@@ -1042,18 +1129,10 @@
           </p>
           <div class="hero-ctas reveal reveal-d3">
             <a href="#case-studies" class="btn-primary">View My Work</a>
-            <a href="#" class="btn-secondary">Download Resume</a>
             <a href="#connect" class="btn-text">Let's Connect &#8594;</a>
           </div>
         </div>
 
-        <!-- Right: photo — replace the placeholder div with an <img> tag once you have the file -->
-        <div class="hero-image-wrap reveal reveal-d2">
-          <div class="hero-img-ph">
-            <div class="ph-label">Your photo here</div>
-            <p>Replace this div with:<br><code style="font-size:11px; background: var(--border); padding: 2px 6px; border-radius: 3px;">&lt;img src="your-photo.jpg" class="hero-img" alt="S Vishnu Vardhan"&gt;</code></p>
-          </div>
-        </div>
 
       </div>
     </div>
@@ -1137,7 +1216,7 @@
         <div class="cap-item">
           <div class="cap-num">04</div>
           <h3>CRM &amp; SaaS Workflows</h3>
-          <p>When your processes live in a CRM, I map, configure, and improve workflows so business users actually adopt them. (<span class="todo-flag">[X] workflows</span> &middot; <span class="todo-flag">[X] modules</span> at Vtiger)</p>
+          <p>When your processes live in a CRM, I map, configure, and improve workflows so business users actually adopt them. Grounded in hands-on work at Vtiger CRM across multiple workflow and module configurations.</p>
           <div class="cap-tags">
             <span class="tag">CRM Config</span>
             <span class="tag">Automation</span>
@@ -1167,7 +1246,7 @@
 
         <div class="toolkit-item">
           <h3>Requirements &amp; user stories</h3>
-          <p>User stories and acceptance criteria at Shaquantum Labs and at Vtiger (<span class="todo-flag">[X] workflows</span>) &mdash; written to remove ambiguity, not add formality.</p>
+          <p>User stories and acceptance criteria at Shaquantum Labs and at Vtiger &mdash; written to remove ambiguity, not add formality.</p>
         </div>
 
         <div class="toolkit-item">
@@ -1211,109 +1290,72 @@
 
 
   <!-- ============================================================
-       CASE STUDIES
+       SELECTED PRODUCT WORK
   ============================================================ -->
-  <section id="case-studies" class="section">
+  <section id="work" class="section">
     <div class="container">
-      <p class="section-label reveal">Case Studies</p>
-      <h2 class="section-heading reveal">Problem-first, written in full</h2>
-      <p class="section-sub reveal">Two deep dives: the problem, how I diagnosed it, the decisions I made, and what shipped or was proposed.</p>
+      <p class="section-label reveal">Selected Product Work</p>
+      <h2 class="section-heading reveal">Three projects. Real ownership. Real decisions.</h2>
 
-      <div class="work-cards reveal">
-
-        <a href="pathwisse.html" class="work-card">
-          <div class="work-card-thumb work-card-thumb-ph">
-            <div class="ph-label">Add thumbnail</div>
+      <!-- Pathwisse: Featured / flagship -->
+      <div class="work-card-featured reveal">
+        <div class="work-card-featured-body">
+          <div class="work-card-icon">P</div>
+          <div class="work-card-tags" style="margin-bottom:14px">
+            <span class="tag">Flagship</span>
+            <span class="tag">B2B EdTech</span>
+            <span class="tag">4 Portals</span>
+            <span class="tag">Shaquantum Labs</span>
           </div>
-          <div class="work-card-body">
-            <div class="work-card-tags">
-              <span class="tag">Shaquantum Labs</span>
-              <span class="tag">EdTech</span>
-            </div>
-            <h3>Pathwisse &mdash; Practice Labs</h3>
-            <p>As a core product-team member at Shaquantum Labs, I owned the UX for Practice Labs &mdash; a feature helping college students build placement-readiness through daily aptitude practice and AI-driven communication practice. Built from on-site college discovery; demoed to 5+ colleges with strong feedback.</p>
-            <span class="work-card-cta">Read case study &#8594;</span>
+          <h3>Pathwisse &mdash; Student Success Platform</h3>
+          <p>Discovery-led student success platform connecting academics, career development, readiness practice and institutional tracking across four role-based portals.</p>
+          <div class="work-card-featured-stats">
+            <div class="wc-stat"><strong>160+</strong><span>Stakeholders</span></div>
+            <div class="wc-stat"><strong>4</strong><span>Colleges onboarded</span></div>
+            <div class="wc-stat"><strong>4</strong><span>Role-based portals</span></div>
+            <div class="wc-stat"><strong>5</strong><span>Colleges discovered</span></div>
           </div>
-        </a>
-
-        <a href="agoda.html" class="work-card">
-          <div class="work-card-thumb work-card-thumb-ph">
-            <div class="ph-label">Add thumbnail</div>
-          </div>
-          <div class="work-card-body">
-            <div class="work-card-tags">
-              <span class="tag">Independent Case Study</span>
-              <span class="tag">TravelTech</span>
-            </div>
-            <h3>Agoda &mdash; Booking Assurance</h3>
-            <p>An independent product case study reframing a booking-trust problem into a prioritized, metric-driven solution.</p>
-            <span class="work-card-cta">Read case study &#8594;</span>
-          </div>
-        </a>
-
+          <a href="pathwisse.html" class="btn-primary work-card-btn">Read full case study &rarr;</a>
+        </div>
       </div>
-    </div>
-  </section>
 
-
-  <!-- ============================================================
-       PRODUCTS & SHIPPED WORK
-  ============================================================ -->
-  <section id="products" class="section">
-    <div class="container">
-      <p class="section-label reveal">Products &amp; Shipped Work</p>
-      <h2 class="section-heading reveal">Live, in the world</h2>
-      <p class="section-sub reveal">Not plans &mdash; things you can open and use right now.</p>
-
+      <!-- Agoda + Mentor Connect -->
       <div class="work-cards reveal">
 
-        <div class="work-card work-card-product">
-          <div class="work-card-thumb work-card-thumb-ph">
-            <div class="ph-label">Add screenshot</div>
-          </div>
+        <div class="work-card">
           <div class="work-card-body">
+            <div class="work-card-icon">A</div>
+            <div class="work-card-tags">
+              <span class="tag">Product Thinking</span>
+              <span class="tag">TravelTech</span>
+              <span class="tag">UX Case Study</span>
+            </div>
+            <h3>Agoda Booking Assurance &amp; Flexibility</h3>
+            <p>Reducing post-booking uncertainty in hotel bookings through a Booking Assurance Layer that makes hotel acknowledgment, detail-matching and risk status visible before check-in.</p>
+            <div class="work-card-disclaimer">Independent concept case study &mdash; not affiliated with Agoda. All metrics are proposed, not actual results.</div>
+            <div class="work-card-actions">
+              <a href="agoda.html" class="btn-primary work-card-btn">Read Case Study</a>
+              <a href="https://drive.google.com/file/d/11zVTObMYufiaz7DZqK9ErQ9-mLv9FBqF/view?usp=sharing" class="btn-secondary work-card-btn" target="_blank" rel="noopener noreferrer">View Deck</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="work-card-body">
+            <div class="work-card-icon">M</div>
             <div class="work-card-tags">
               <span class="tag">Live Product</span>
             </div>
             <h3>Mentor Connect</h3>
-            <p>A live web app to manage mentors and run webinars in one place. I owned product and UX.</p>
-            <a href="#" class="btn-primary work-card-btn">View live app &#8594;</a>
-            <span class="work-card-note todo-flag">[Add Mentor Connect URL]</span>
-          </div>
-        </div>
-
-        <div class="work-card work-card-product">
-          <div class="work-card-thumb work-card-thumb-ph">
-            <div class="ph-label">Add screenshot</div>
-          </div>
-          <div class="work-card-body">
-            <div class="work-card-tags">
-              <span class="tag">Live Site</span>
-            </div>
-            <h3>Shaquantum Labs Website</h3>
-            <p>Company website I designed and built for Shaquantum Labs.</p>
-            <a href="#" class="btn-primary work-card-btn">Visit site &#8594;</a>
-            <span class="work-card-note todo-flag">[Add website URL]</span>
+            <p>A live web app to manage mentors and run webinars in one place. I owned product definition, UX and requirements from discovery through to shipped features.</p>
+            <a href="#connect" class="btn-primary work-card-btn">Ask me about it &rarr;</a>
+            <span class="work-card-note">Case study in preparation</span>
           </div>
         </div>
 
       </div>
     </div>
   </section>
-
-
-  <!-- ============================================================
-       TESTIMONIAL 1
-  ============================================================ -->
-  <div class="testimonial-band">
-    <div class="container">
-      <div class="ph-block">
-        <div class="ph-label">Add Testimonial</div>
-        <h4>Ask a manager, developer, or collaborator for a 2 to 3 sentence quote</h4>
-        <p>Short and specific beats long and vague. Name, role, and company is all you need alongside it.</p>
-      </div>
-    </div>
-  </div>
 
 
   <!-- ============================================================
@@ -1386,20 +1428,6 @@
 
 
   <!-- ============================================================
-       TESTIMONIAL 2
-  ============================================================ -->
-  <div class="testimonial-band">
-    <div class="container">
-      <div class="ph-block">
-        <div class="ph-label">Add Second Testimonial</div>
-        <h4>A second voice from a different angle adds depth</h4>
-        <p>A developer speaking to your requirement clarity, or a business stakeholder speaking to your workflow thinking, creates a more complete picture than one quote alone.</p>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ============================================================
        CONNECT
   ============================================================ -->
   <section id="connect" class="section">
@@ -1421,27 +1449,25 @@
             <span class="connect-arrow">&#8594;</span>
           </a>
 
-          <a href="#" class="connect-link">
+          <div class="connect-link connect-link-pending">
             <div class="connect-link-left">
               <div class="connect-icon">in</div>
               <div>
                 <div class="connect-link-label">LinkedIn</div>
-                <div class="connect-link-desc"><span class="todo-flag">[Add your LinkedIn URL]</span></div>
+                <div class="connect-link-desc">Link coming soon</div>
               </div>
             </div>
-            <span class="connect-arrow">&#8594;</span>
-          </a>
+          </div>
 
-          <a href="#" class="connect-link">
+          <div class="connect-link connect-link-pending">
             <div class="connect-link-left">
               <div class="connect-icon">&#8595;</div>
               <div>
                 <div class="connect-link-label">Resume (PDF)</div>
-                <div class="connect-link-desc"><span class="todo-flag">[Upload your resume and link it here]</span></div>
+                <div class="connect-link-desc">Available on request &mdash; email above</div>
               </div>
             </div>
-            <span class="connect-arrow">&#8594;</span>
-          </a>
+          </div>
         </div>
       </div>
     </div>

@@ -3,427 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Agoda — Booking Assurance. An independent product case study reframing a booking-trust problem into a prioritized, metric-driven solution.">
-  <title>Agoda — Booking Assurance | S Vishnu Vardhan</title>
+  <meta name="description" content="Agoda Booking Assurance and Flexibility - independent Product and UX case study reducing post-booking uncertainty in hotel bookings.">
+  <title>Agoda Booking Assurance &amp; Flexibility | S Vishnu Vardhan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
-      --font-mono: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Courier New', monospace;
-
-      --bg:           #FAFAF9;
-      --surface:      #FFFFFF;
-      --border:       #E8E8E6;
-      --border-hover: #C8C8C6;
-
-      --text-1: #111111;
-      --text-2: #55554F;
-      --text-3: #9A9A94;
-
-      --accent:        #1A40CC;
-      --accent-hover:  #1230A3;
-      --accent-bg:     #EFF2FF;
-      --accent-border: #CDD5FF;
-
-      --ph-bg:     #F4F4F2;
-      --ph-border: #D4D4D0;
-
-      --max-w:      1120px;
-      --nav-h:      68px;
-      --ease:       cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--font-sans);
-      background: var(--bg);
-      color: var(--text-1);
-      font-size: 17px;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    a { color: inherit; }
-
-    .container {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 clamp(20px, 5vw, 60px);
-    }
-
-    /* ---- Nav ---- */
-    .nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
-      height: var(--nav-h);
-      background: rgba(250, 250, 249, 0.92);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 clamp(20px, 5vw, 60px);
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .nav-logo {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text-1);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-      transition: color 0.2s;
-    }
-    .nav-logo:hover { color: var(--accent); }
-    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
-    .nav-links a {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-2);
-      text-decoration: none;
-      padding: 7px 13px;
-      border-radius: 7px;
-      transition: color 0.2s, background 0.2s;
-      white-space: nowrap;
-    }
-    .nav-links a:hover { color: var(--text-1); background: var(--border); }
-    .nav-cta-link {
-      color: var(--accent) !important;
-      background: var(--accent-bg) !important;
-      border: 1px solid var(--accent-border) !important;
-    }
-    .nav-cta-link:hover { background: var(--accent) !important; color: #fff !important; border-color: var(--accent) !important; }
-
-    /* ---- Buttons / tags ---- */
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--text-1);
-      color: #fff;
-      font-family: var(--font-sans);
-      font-size: 14px;
-      font-weight: 600;
-      padding: 12px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s var(--ease);
-      white-space: nowrap;
-    }
-    .btn-primary:hover { background: #2a2a2a; transform: translateY(-1px); }
-
-    .tag {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-3);
-      background: var(--bg);
-      border: 1px solid var(--border);
-      padding: 3px 8px;
-      border-radius: 4px;
-    }
-
-    .section-label {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.13em;
-      color: var(--text-3);
-      margin-bottom: 16px;
-    }
-
-    /* ---- Case hero ---- */
-    .case-hero {
-      padding: clamp(120px, 14vw, 168px) 0 56px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .case-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-2);
-      text-decoration: none;
-      margin-bottom: 28px;
-      transition: color 0.2s;
-    }
-    .case-back:hover { color: var(--text-1); }
-
-    .case-hero-title {
-      font-size: clamp(30px, 4.2vw, 48px);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 16px;
-    }
-
-    .case-hero-dek {
-      font-size: clamp(16px, 1.8vw, 19px);
-      color: var(--text-2);
-      max-width: 640px;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .case-tags-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 24px;
-    }
-
-    .disclaimer-badge {
-      display: inline-flex;
-      align-items: center;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-3);
-      background: var(--ph-bg);
-      border: 1px solid var(--ph-border);
-      padding: 4px 10px;
-      border-radius: 4px;
-    }
-
-    /* ---- Case content ---- */
-    .case-main { padding: 56px 0 var(--nav-h); }
-
-    .case-content-wrap { max-width: 700px; }
-
-    .case-section { margin-bottom: 40px; }
-
-    .cs-label {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--text-3);
-      margin-bottom: 10px;
-    }
-
-    .case-section p,
-    .case-section li {
-      font-size: 16px;
-      color: var(--text-2);
-      line-height: 1.75;
-    }
-
-    .case-section ul { padding-left: 18px; margin-top: 8px; }
-    .case-section ul li { margin-bottom: 6px; }
-
-    .thinking-box {
-      background: var(--accent-bg);
-      border: 1px solid var(--accent-border);
-      border-radius: 8px;
-      padding: 20px 22px;
-      margin-top: 8px;
-    }
-    .thinking-box p { font-size: 16px; color: var(--text-1); line-height: 1.7; }
-
-    .result-list {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 6px 18px;
-      margin-top: 8px;
-    }
-    .result-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 15px;
-      color: var(--text-2);
-      line-height: 1.5;
-    }
-    .result-item:last-child { border-bottom: none; }
-    .result-item::before { content: '→'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-
-    .reflection-box {
-      border-left: 3px solid var(--accent);
-      padding: 14px 20px;
-      border-radius: 0 6px 6px 0;
-      margin-top: 8px;
-    }
-    .reflection-box p { font-size: 16px; color: var(--text-2); font-style: italic; line-height: 1.7; }
-
-    .case-cta-row {
-      margin-top: 36px;
-      padding-top: 28px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .case-cta-note { font-size: 13px; color: var(--text-3); }
-
-    /* ---- Footer ---- */
-    .site-footer { border-top: 1px solid var(--border); padding: 32px 0; }
-    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-    .footer-name { font-size: 14px; font-weight: 600; color: var(--text-2); }
-    .footer-tagline { font-size: 13px; color: var(--text-3); }
-
-    /* ---- Reveal ---- */
-    .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    @media (prefers-reduced-motion: reduce) {
-      .reveal, .reveal.visible { opacity: 1; transform: none; transition: none; }
-    }
-
-    @media (max-width: 600px) {
-      .nav-links a:not(.nav-cta-link) { display: none; }
-    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--font:'Outfit',system-ui,-apple-system,sans-serif;--mono:'SF Mono','Cascadia Code','Courier New',monospace;--bg:#fafaf9;--surface:#fff;--soft:#f4f4f2;--border:#e8e8e6;--border-2:#d4d4d0;--text:#111;--muted:#55554f;--light:#8a8a84;--navy:#172554;--indigo:#1a40cc;--indigo-soft:#eff2ff;--green:#147d52;--green-soft:#eaf8f0;--orange:#9a4b06;--orange-soft:#fff4e5;--red:#b42318;--red-soft:#fef3f2;--max:1120px;--nav:68px;--ease:cubic-bezier(.22,1,.36,1)}
+    html{scroll-behavior:smooth}body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}a{color:inherit}.container{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,5vw,60px)}
+    .nav{position:fixed;inset:0 0 auto;z-index:50;height:var(--nav);background:rgba(250,250,249,.92);border-bottom:1px solid var(--border);backdrop-filter:blur(14px)}.nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}.nav-logo{font-size:15px;font-weight:700;text-decoration:none;letter-spacing:-.02em}.nav-links{display:flex;gap:4px;list-style:none}.nav-links a{font-size:14px;font-weight:600;color:var(--muted);text-decoration:none;padding:7px 13px;border-radius:7px}.nav-links a:hover{color:var(--text);background:var(--border)}
+    .btn-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:11px 18px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;border:1px solid transparent;white-space:nowrap;transition:transform .2s var(--ease),background .2s,border-color .2s}.btn:hover{transform:translateY(-1px)}.btn-primary{background:var(--text);color:#fff}.btn-secondary{background:transparent;border-color:var(--border-2);color:var(--text)}.btn-secondary:hover{background:var(--surface);border-color:var(--text)}
+    .tag-row,.meta-row{display:flex;flex-wrap:wrap;gap:8px}.tag{display:inline-flex;align-items:center;min-height:26px;padding:4px 9px;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--light);font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}.tag.green{color:var(--green);background:var(--green-soft);border-color:#b7e4c7}.tag.orange{color:var(--orange);background:var(--orange-soft);border-color:#f3c892}
+    .hero{padding:clamp(116px,14vw,156px) 0 56px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,#fff 0%,var(--bg) 100%)}.back-link{display:inline-flex;gap:6px;margin-bottom:30px;color:var(--muted);font-size:14px;font-weight:600;text-decoration:none}.eyebrow{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo);margin-bottom:14px}h1{max-width:860px;font-size:clamp(34px,5vw,60px);line-height:1.04;letter-spacing:-.04em;color:var(--text);margin-bottom:16px}.hero-subtitle{max-width:760px;font-size:clamp(18px,2.1vw,23px);color:var(--muted);line-height:1.45;margin-bottom:18px}.meta-row{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--light);margin-bottom:18px}.disclaimer{display:inline-flex;max-width:760px;margin-bottom:24px;padding:7px 10px;border:1px solid var(--border-2);border-radius:6px;background:var(--soft);color:var(--light);font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+    .case-main{padding:64px 0 84px}.case-section{display:grid;grid-template-columns:minmax(150px,230px) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:start;margin-bottom:68px}.section-kicker{position:sticky;top:calc(var(--nav) + 24px)}.section-number{font-family:var(--mono);font-size:11px;font-weight:800;color:var(--indigo);margin-bottom:8px}h2{font-size:clamp(21px,2.5vw,30px);line-height:1.15;letter-spacing:-.025em;color:var(--text)}h3{font-size:17px;line-height:1.25;color:var(--text);letter-spacing:-.01em}.stack{display:grid;gap:18px}.stack p{max-width:850px;color:var(--muted)}.lead{font-size:18px;font-weight:700;color:var(--text)!important}.small-note{font-size:14px;color:var(--light)!important}    .stats-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.stat-card,.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px}.stat-card strong{display:block;font-size:24px;line-height:1.1;color:var(--navy);letter-spacing:-.03em;margin-bottom:6px}.stat-card span{font-size:14px;color:var(--muted)}.card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.card p,.card li{font-size:15px;color:var(--muted);line-height:1.6}.card h3{margin-bottom:8px}.card ul{padding-left:18px;margin-top:10px}.module-card{border-top:4px solid var(--indigo)}.verified-card{border-top:4px solid var(--green)}.risk-card{border-top:4px solid var(--orange)}
+    .visual-slot{min-height:320px;border:2px dashed var(--border-2);border-radius:16px;background:linear-gradient(180deg,#fff,#f4f4f2);display:grid;place-items:center;text-align:center;padding:28px}.visual-slot.compact{min-height:230px}.visual-label{font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:8px}.visual-slot p{max-width:360px;color:var(--light);font-size:14px}.insight-callout{background:var(--indigo-soft);border:1px solid #cdd5ff;border-radius:18px;text-align:center;padding:clamp(34px,6vw,58px)}.insight-callout blockquote{font-size:clamp(28px,4.5vw,48px);font-weight:800;line-height:1.12;letter-spacing:-.04em;color:var(--indigo);margin-bottom:16px}.insight-callout p{max-width:760px;margin:0 auto;color:var(--muted)}
+    .persona-card{display:grid;grid-template-columns:minmax(210px,.75fr) 1fr;gap:22px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px}.persona-name{font-size:25px;font-weight:800;color:var(--navy);line-height:1.1}.persona-meta{margin-top:10px;color:var(--light);font-size:14px}.table{overflow:hidden;border:1px solid var(--border);border-radius:12px;background:var(--surface)}.table-row{display:grid;grid-template-columns:minmax(210px,.45fr) 1fr;gap:18px;padding:17px 20px;border-bottom:1px solid var(--border)}.table-row:last-child{border-bottom:0}.table-head{background:var(--soft);font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--light)}.table-key{font-weight:800;color:var(--text)}.table-value{color:var(--muted)}
+    .flow-list{counter-reset:flow;display:grid;gap:10px}.flow-item{counter-increment:flow;display:grid;grid-template-columns:42px minmax(0,1fr);gap:14px;align-items:start;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:15px}.flow-item::before{content:counter(flow);display:grid;place-items:center;width:34px;height:34px;border-radius:999px;background:var(--indigo-soft);color:var(--indigo);font-size:14px;font-weight:800}.flow-item.risk::before{background:var(--orange-soft);color:var(--orange)}.flow-item.done::before{background:var(--green-soft);color:var(--green)}.flow-item p{font-size:15px;color:var(--muted)}
+    .wireframe-gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.wireframe{min-height:300px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(180deg,#fff,#f6f7f8);border:1px dashed var(--border-2);border-radius:14px;padding:18px}.wireframe h3{font-size:16px}.wire-badge{align-self:flex-start;font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);background:var(--orange-soft);border:1px solid #f3c892;border-radius:999px;padding:4px 8px}.wire-screen{display:grid;gap:10px;margin:16px 0}.wire-line{height:10px;border-radius:999px;background:#d8ddd8}.wire-line.short{width:58%}.wire-block{height:58px;border-radius:10px;background:#e9ece8;border:1px solid #d8ddd8}.wireframe p{font-size:13px;color:var(--light);line-height:1.5}
+    .hypothesis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.hypothesis-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px}.hypothesis-card strong{display:block;font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo);margin-bottom:8px}.hypothesis-card p{font-weight:700;color:var(--text)}.final-cta{background:var(--text);color:#fff;border-radius:18px;padding:clamp(28px,5vw,48px);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}.final-cta h2{color:#fff;margin-bottom:6px}.final-cta p{color:#d7d7d2}.final-cta .btn-primary{background:#fff;color:var(--text)}.final-cta .btn-secondary{color:#fff;border-color:rgba(255,255,255,.28)}.site-footer{border-top:1px solid var(--border);padding:32px 0}.footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--light);font-size:14px}.reveal{opacity:0;transform:translateY(14px);transition:opacity .55s var(--ease),transform .55s var(--ease)}.reveal.visible{opacity:1;transform:translateY(0)}
+    @media(prefers-reduced-motion:reduce){.reveal,.reveal.visible{opacity:1;transform:none;transition:none}}@media(max-width:980px){.case-section,.persona-card{grid-template-columns:1fr}.section-kicker{position:static}.stats-grid,.wireframe-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.card-grid.three,.hypothesis{grid-template-columns:1fr 1fr}}@media(max-width:640px){.nav-links a:not(:first-child){display:none}.hero{padding-top:104px}.disclaimer{display:flex}.btn,.btn-row{width:100%}.stats-grid,.card-grid,.card-grid.three,.wireframe-gallery,.hypothesis{grid-template-columns:1fr}.table-row{grid-template-columns:1fr;gap:6px}.visual-slot{min-height:240px}.wireframe{min-height:230px}.flow-item{grid-template-columns:36px minmax(0,1fr)}.final-cta{display:grid}}
   </style>
 </head>
 <body>
-
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo">S Vishnu Vardhan</a>
-      <ul class="nav-links">
-        <li><a href="index.html#case-studies">All Work</a></li>
-        <li><a href="index.html#connect" class="nav-cta-link">Let's Connect</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <header class="case-hero">
-    <div class="container">
-      <a href="index.html#case-studies" class="case-back">&#8592; Back to all work</a>
-      <p class="section-label reveal">Case Study</p>
-      <h1 class="case-hero-title reveal">Agoda &mdash; Booking Assurance</h1>
-      <p class="case-hero-dek reveal">An independent product case study reframing a booking-trust problem into a prioritized, metric-driven solution.</p>
-      <div class="case-tags-row reveal">
-        <span class="tag">Independent Case Study</span>
-        <span class="tag">TravelTech</span>
-        <span class="tag">Marketplace Trust</span>
-      </div>
-      <div class="disclaimer-badge reveal">Independent case study &middot; Not affiliated with Agoda &middot; Metrics are proposed, not actual results</div>
-    </div>
-  </header>
-
-  <main class="case-main">
-    <div class="container case-content-wrap">
-
-      <div class="case-section reveal">
-        <div class="cs-label">The Problem</div>
-        <p>Agoda users get platform confirmation but lack visibility into whether the hotel has received, acknowledged, and matched their reservation. That gap between "platform says confirmed" and "hotel actually has your booking" is where real trust breaks down &mdash; and where operational failures hide until check-in day.</p>
-        <p style="margin-top: 10px;">Evidence base: public regulatory reports (Japan Tourism Agency), hotel-side warnings (VMG Hotels), and Agoda partner documentation.</p>
-      </div>
-
-      <div class="case-section reveal">
-        <div class="cs-label">Why I Made This Call</div>
-        <div class="thinking-box">
-          <p>Started with cancellation and refund friction from my own booking experience. Then realised the more defensible, systemic problem was the trust gap between platform confirmation and hotel acknowledgment &mdash; not just a missing cancel button. Reframed the entire case study around Booking Assurance instead of a cancellation flow. The cancel button is a symptom; the trust gap is the disease.</p>
-        </div>
-      </div>
-
-      <div class="case-section reveal">
-        <div class="cs-label">Proposed Solution: Booking Assurance Layer</div>
-        <ul>
-          <li>Hotel acknowledgment status (has the hotel confirmed receipt?)</li>
-          <li>Booking detail match check (do the hotel's records match what you booked?)</li>
-          <li>Hotel reference number (surfaced to the traveler for direct verification)</li>
-          <li>Verification timeline (when to expect acknowledgment)</li>
-          <li>Risk detection (flags high-risk bookings proactively)</li>
-          <li>Issue tracker (visible trail if something goes wrong pre-arrival)</li>
-        </ul>
-      </div>
-
-      <div class="case-section reveal">
-        <div class="cs-label">Artifacts</div>
-        <ul>
-          <li>11-slide case study deck</li>
-          <li>Current vs. proposed booking journey tables</li>
-          <li>Wireframes: room selection, manage booking, cancellation preview</li>
-          <li>Persona: Arjun, business traveler (frequent international booker)</li>
-          <li>Hypothesis and validation plan</li>
-        </ul>
-      </div>
-
-      <div class="case-section reveal">
-        <div class="cs-label">Proposed Success Metrics</div>
-        <div class="result-list">
-          <div class="result-item">Hotel acknowledgment completion rate</div>
-          <div class="result-item">Time to acknowledgment (target window)</div>
-          <div class="result-item">Booking detail match rate</div>
-          <div class="result-item">Pre-trip support ticket volume (target: reduce)</div>
-          <div class="result-item">Booking confidence score (target: increase)</div>
-        </div>
-      </div>
-
-      <div class="case-section reveal">
-        <div class="cs-label">Retrospect</div>
-        <div class="reflection-box">
-          <p>The main learning: separating user-facing promises from operational system states is where the hardest PM work lives. "Confirmed" on the UI means nothing if the system behind it hasn't closed the loop with the hotel.</p>
-        </div>
-      </div>
-
-      <div class="case-cta-row reveal">
-        <a href="#" class="btn-primary">View Case Study Deck &#8599;</a>
-        <span class="case-cta-note">[Link to slide deck &mdash; add when ready]</span>
-      </div>
-
-    </div>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-inner">
-        <span class="footer-name">S Vishnu Vardhan</span>
-        <span class="footer-tagline">Product (UX &amp; Decisions) &middot; Business Analyst at Vtiger CRM &middot; AI-assisted Builder</span>
-      </div>
-    </div>
-  </footer>
-
+  <nav class="nav"><div class="container nav-inner"><a href="index.html" class="nav-logo">S Vishnu Vardhan</a><ul class="nav-links"><li><a href="index.html#case-studies">Case Studies</a></li><li><a href="index.html#connect">Contact</a></li></ul></div></nav>
+  <header class="hero"><div class="container"><a href="index.html#case-studies" class="back-link">&larr; Back to case studies</a><p class="eyebrow reveal">Case Study</p><h1 class="reveal">Agoda Booking Assurance &amp; Flexibility</h1><p class="hero-subtitle reveal">Reducing post-booking uncertainty in hotel bookings</p><div class="meta-row reveal"><span>Independent Product &amp; UX Case Study</span><span>&middot;</span><span>TravelTech</span><span>&middot;</span><span>Hotel Booking</span><span>&middot;</span><span>Concept Case Study</span></div><div class="disclaimer reveal">Independent case study &mdash; not affiliated with Agoda. All metrics are proposed, not actual results.</div></div></header>  <main class="case-main"><div class="container">
+    <section class="case-section reveal"><div class="section-kicker"><div class="section-number">00</div><h2>Context</h2></div><div class="stack"><div class="stats-grid"><div class="stat-card"><strong>200+</strong><span>countries served</span></div><div class="stat-card"><strong>Millions</strong><span>of properties listed</span></div><div class="stat-card"><strong>Booking Holdings</strong><span>part of the global travel group</span></div><div class="stat-card"><strong>Competitive set</strong><span>Booking.com, MakeMyTrip, Expedia</span></div></div><p class="lead">On a platform this large, even a small gap in post-booking trust affects millions of bookings.</p></div></section>
+    <section class="case-section reveal"><div class="section-kicker"><div class="section-number">01</div><h2>Overview</h2></div><div class="stack"><p>Hotel booking is a high-trust transaction. Once users pay and receive an Agoda confirmation, they assume the hotel has the booking and that all details are correct.</p><p>But platform confirmation doesn't show whether the hotel has acknowledged the booking, whether details match hotel records, or whether a hotel reference exists. This case study explores a Booking Assurance Layer that makes hotel acknowledgment, detail-matching, and risk status visible before the user travels.</p></div></section>
+    <section class="case-section reveal"><div class="section-kicker"><div class="section-number">02</div><h2>The Challenge / Problem Statement</h2></div><div class="stack"><p>Agoda users receive platform confirmation after payment but lack visibility into hotel-side acknowledgment, creating post-booking uncertainty that drives support contacts and manual hotel calls.</p><div class="card-grid"><div class="card risk-card"><h3>Users are left wondering</h3><ul><li>Has the hotel received my booking?</li><li>Do room type, dates, and guest count match?</li><li>Is there a hotel reference number?</li><li>What if the hotel record doesn't match Agoda's?</li></ul></div><div class="card"><h3>Core gap</h3><p class="lead">The space between Agoda confirmation and hotel assurance.</p></div></div></div></section>
+    <section class="case-section reveal"><div class="section-kicker"><div class="section-number">03</div><h2>Core Insight</h2></div><div class="stack"><div class="insight-callout"><blockquote>Booking confirmation is not the same as booking assurance.</blockquote><p>Users treat Agoda confirmation as final proof the stay is secured &mdash; but hotel acknowledgment, detail match, and issue visibility aren't exposed, so risk is discovered only at check-in, when resolution is urgent and stressful.</p></div></div></section>
+    <section class="case-section reveal"><div class="section-kicker"><div class="section-number">04</div><h2>My Role</h2></div><div class="stack"><p>Independent case study. I identified the problem from a real booking experience, mapped the current journey and friction points, designed the proposed user flow and the Booking Assurance Layer concept, prepared wireframe concepts, wrote the product hypothesis, and defined success metrics.</p><p class="small-note">This is concept and analysis work, not a shipped feature.</p></div></section>
+    <section class="case-section reveal"><div class="section-kicker"><div class="section-number">05</div><h2>User Persona</h2></div><div class="stack"><div class="persona-card"><div><div class="persona-name">Arjun, 28</div><div class="persona-meta">Business Traveler<br>Scenario: traveling for a client meeting.<br>Behavior: books on location, price, reliability, and check-in confidence.</div></div><div class="card-grid"><div class="card verified-card"><h3>Goals</h3><ul><li>Book with confidence</li><li>Know the hotel acknowledged the booking</li><li>Avoid check-in surprises</li><li>Get a hotel reference number</li><li>Avoid repeated support/hotel calls</li><li>Get early help if the booking is at risk</li></ul></div><div class="card risk-card"><h3>Pain points</h3><ul><li>Platform confirmation lacks hotel-side proof</li><li>Details not visibly matched</li><li>Uncertainty whether the room is truly secured</li><li>Issues discovered too late</li><li>Support is reactive, not proactive</li></ul></div></div></div></div></section>    <section class="case-section reveal"><div class="section-kicker"><div class="section-number">06</div><h2>Current User Journey</h2></div><div class="stack"><div class="flow-list"><div class="flow-item"><p>Search hotel</p></div><div class="flow-item"><p>Select room</p></div><div class="flow-item"><p>Pay</p></div><div class="flow-item"><p>Receive Agoda confirmation</p></div><div class="flow-item"><p>Assume hotel has booking</p></div><div class="flow-item risk"><p>No visible hotel acknowledgment</p></div><div class="flow-item"><p>Travel</p></div><div class="flow-item risk"><p>Possible issue at check-in: no reservation / room mismatch / guest mismatch / payment mismatch</p></div><div class="flow-item risk"><p>Contact hotel or support</p></div><div class="flow-item risk"><p>Resolution becomes urgent and stressful</p></div></div><div class="table"><div class="table-row table-head"><div>Friction Point</div><div>User Impact</div></div><div class="table-row"><div class="table-key">Booking confirmation shown as final state</div><div class="table-value">User assumes booking is fully secured</div></div><div class="table-row"><div class="table-key">Hotel acknowledgment not visible</div><div class="table-value">User doesn't know if hotel accepted the booking</div></div><div class="table-row"><div class="table-key">Booking details match not visible</div><div class="table-value">User can't verify room type, dates, guests, payment</div></div><div class="table-row"><div class="table-key">Hotel reference number not clearly shown</div><div class="table-value">User has limited proof when contacting hotel</div></div><div class="table-row"><div class="table-key">Risk discovered late</div><div class="table-value">Problems appear only at check-in</div></div><div class="table-row"><div class="table-key">Support is reactive</div><div class="table-value">User gets help only after stress has started</div></div></div></div></section>
+    <section class="case-section reveal"><div class="section-kicker"><div class="section-number">07</div><h2>Proposed Solution &mdash; Booking Assurance Layer</h2></div><div class="stack"><p class="lead">A post-booking verification experience showing whether the hotel has received, acknowledged, and matched the booking.</p><p>Appears across: booking confirmation page, Manage Booking page, trip details page, pre-check-in reminder, support flow.</p><div class="card-grid three"><div class="card module-card"><h3>Hotel Acknowledgment Status</h3><p>Shows if the hotel received and acknowledged the booking: sent / awaiting / acknowledged / delayed / action needed.</p></div><div class="card module-card"><h3>Booking Details Match Check</h3><p>Verifies room type, dates, guest count, payment status, and special inclusions against hotel records.</p></div><div class="card module-card"><h3>Hotel Reference Number</h3><p>Shows the hotel-side reference once available.</p></div><div class="card module-card"><h3>Verification Timeline</h3><p>Payment &rarr; sent to hotel &rarr; awaiting &rarr; acknowledged &rarr; details matched &rarr; ready for check-in.</p></div><div class="card risk-card"><h3>Risk Detected State</h3><p>Alerts the user if acknowledgment is delayed or details don't match.</p></div><div class="card module-card"><h3>Issue Tracker</h3><p>Shows what Agoda is doing, what's pending, who owns the next step, and the next update time.</p></div></div></div></section>
+    <section class="case-section reveal"><div class="section-kicker"><div class="section-number">08</div><h2>Proposed User Flow</h2></div><div class="stack"><div class="flow-list"><div class="flow-item"><p>Pay</p></div><div class="flow-item"><p>Agoda shows booking created and sent to hotel</p></div><div class="flow-item"><p>Booking appears in Assurance Layer</p></div><div class="flow-item"><p>Hotel acknowledgment status visible</p></div><div class="flow-item"><p>Detail-match check runs</p></div><div class="flow-item"><p>Hotel reference shown</p></div><div class="flow-item"><p>Verification timeline progresses</p></div><div class="flow-item risk"><p>If risk detected, flagged before check-in</p></div><div class="flow-item"><p>Issue tracker shows next update</p></div><div class="flow-item done"><p>User reaches check-in with verified confidence</p></div></div></div></section>
+    <section class="case-section reveal"><div class="section-kicker"><div class="section-number">09</div><h2>Product Hypothesis</h2></div><div class="stack"><div class="hypothesis"><div class="hypothesis-card"><strong>If</strong><p>Agoda provides a Booking Assurance Layer showing hotel acknowledgment, details-match status, and issue tracking</p></div><div class="hypothesis-card"><strong>Then</strong><p>Users feel more confident after booking</p></div><div class="hypothesis-card"><strong>Leading to</strong><p>Fewer support contacts and fewer check-in failure complaints</p></div></div></div></section>
+    <section class="case-section reveal"><div class="section-kicker"><div class="section-number">10</div><h2>Proposed Success Metrics</h2></div><div class="stack"><div class="tag-row"><span class="tag orange">Proposed metrics</span><span class="tag">Not actual results</span></div><div class="table"><div class="table-row table-head"><div>Metric</div><div>How it's measured / Why it matters</div></div><div class="table-row"><div class="table-key">Hotel acknowledgment completion rate</div><div class="table-value">Acknowledged bookings / total bookings. How many bookings the hotel actually confirms.</div></div><div class="table-row"><div class="table-key">Median time to hotel acknowledgment</div><div class="table-value">Median(acknowledgment time - payment time). How fast users get hotel-side confirmation.</div></div><div class="table-row"><div class="table-key">Booking details match rate</div><div class="table-value">Fully-matched bookings / total bookings. Whether room, dates, guests, payment match hotel records.</div></div><div class="table-row"><div class="table-key">Pre-trip confirmation support tickets</div><div class="table-value">"Is my booking confirmed?" tickets / total bookings. Reduction in anxiety-driven support contacts.</div></div><div class="table-row"><div class="table-key">Booking confidence score</div><div class="table-value">Post-booking survey rating. Whether users feel their stay is secured.</div></div></div></div></section>
+    <section class="case-section reveal"><div class="section-kicker"><div class="section-number">11</div><h2>Constraints &amp; Risks</h2></div><div class="stack"><div class="table"><div class="table-row table-head"><div>Constraint</div><div>Why it matters</div></div><div class="table-row"><div class="table-key">Hotel system integration</div><div class="table-value">Not all hotels update in real time.</div></div><div class="table-row"><div class="table-key">Data mismatch handling</div><div class="table-value">A clear workflow is needed when records differ.</div></div><div class="table-row"><div class="table-key">Operational ownership</div><div class="table-value">The issue tracker must show who owns the next step.</div></div><div class="table-row"><div class="table-key">False confidence risk</div><div class="table-value">Never show "verified" unless data is truly matched.</div></div><div class="table-row"><div class="table-key">Support escalation</div><div class="table-value">Some cases still need humans.</div></div></div></div></section>
+    <section class="case-section reveal"><div class="section-kicker"><div class="section-number">12</div><h2>Learnings</h2></div><div class="stack"><p>A booking product isn't only search, price, and payment &mdash; the post-booking experience matters just as much, because users need confidence the service they paid for will be honored.</p><p class="lead">Key learning: platform confirmation should evolve into booking assurance.</p></div></section>
+    <section class="case-section reveal"><div class="section-kicker"><div class="section-number">13</div><h2>Final Outcome</h2></div><div class="stack"><p>A Booking Assurance Layer can help Agoda reduce post-booking uncertainty by making hotel acknowledgment, detail match, and issue resolution visible before check-in &mdash; improving user confidence and reducing support dependency.</p><p class="small-note">This is a proposed concept outcome, not a measured result.</p></div></section>
+    <section class="final-cta reveal"><div><h2>Agoda Booking Assurance &amp; Flexibility</h2><p>Independent concept case study. Proposed metrics only.</p></div><div class="btn-row"><a href="https://drive.google.com/file/d/11zVTObMYufiaz7DZqK9ErQ9-mLv9FBqF/view?usp=sharing" class="btn btn-primary" target="_blank" rel="noopener noreferrer">View Full Deck (PDF)</a><a href="index.html#case-studies" class="btn btn-secondary">&larr; Back to Case Studies</a></div></section>
+  </div></main>
+  <footer class="site-footer"><div class="container footer-inner"><span>S Vishnu Vardhan</span><span>Business Analyst at Vtiger CRM &middot; Product Analyst / Associate PM track</span></div></footer>
   <script>
-    const revealObs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
-
-    document.querySelectorAll('.case-hero .reveal').forEach((el, i) => {
-      setTimeout(() => el.classList.add('visible'), 80 + i * 70);
-    });
+    const revealObs=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObs.unobserve(entry)}})},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+    document.querySelectorAll('.hero .reveal').forEach((el,i)=>setTimeout(()=>el.classList.add('visible'),80+i*70));
   </script>
-
 </body>
 </html>
