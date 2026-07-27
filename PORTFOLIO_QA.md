@@ -63,7 +63,7 @@ Test in a real browser via the local server (`python -m http.server 8000`).
 
 ### Hero
 - [ ] Stat strip shows: 5 / 160+ / 4 / 4
-- [ ] Tags display correctly (B2B EdTech, Student Success, Role-based Portals, Product Discovery, Shaquantum Labs)
+- [ ] Tags display correctly (B2B EdTech, Student Success, Role-based Portals, Product Discovery, Pathwisse)
 
 ### Sections
 - [ ] All 19 section numbers display in order (01–19)
@@ -89,11 +89,23 @@ Test in a real browser via the local server (`python -m http.server 8000`).
 - [ ] Back link links to `index.html#work`
 
 ### Content
-- [ ] Disclaimer visible in hero section
-- [ ] "View Full Deck (PDF)" button in final CTA section links to the correct Google Drive file URL
+- [ ] Disclaimer (yellow pill) visible in hero section
+- [ ] Scope & Disclaimer section (02) lists all six scope points clearly
+- [ ] "View Full Deck (PDF)" button in final CTA links to the correct Google Drive file URL
 - [ ] Drive link opens in a new tab
-- [ ] No "View Full Deck" button in the hero section (removed — bottom only)
-- [ ] "Proposed metrics only" tag visible in Section 10
+- [ ] All 17 section numbers display in order (01–17)
+- [ ] "Proposed plan — No experiment was run" tags visible in Section 13 (Validation Plan)
+- [ ] "Proposed metrics — Not actual results" tags visible in Section 14
+- [ ] Current User Journey (07) shows numbered journey diagram with friction/critical colour coding
+- [ ] Journey analysis note visible below the diagram
+- [ ] Concept disclaimer (amber) visible above wireframe screens in Section 11
+- [ ] Normal flow shows 4 screens in a 4-column grid
+- [ ] Exception flow shows 2 screens in a 2-column grid
+- [ ] All 6 wireframe images load (not broken) or placeholders display correctly if images not yet added
+- [ ] Clicking any wf-img opens the lightbox
+- [ ] Lightbox shows full image, caption, and close button
+- [ ] Pressing Escape closes the lightbox
+- [ ] Clicking outside the image in the lightbox closes it
 
 ---
 

@@ -1,108 +1,59 @@
-# Pathwisse Screenshot Checklist
+# Pathwisse Screenshot and Artefact Checklist
 
-Screens needed to complete the Pathwisse case study in `pathwisse.html`.
-Each placeholder shows the purpose and recommended aspect ratio.
-
----
-
-## Platform / Architecture (Section 07)
-
-| # | Screen | Purpose | Ratio | Status |
-|---|--------|---------|-------|--------|
-| 1 | Platform or portal navigation overview | Shows the four-portal structure and how they connect | 16:9 | ⬜ Needed |
+All items below are placeholders in the live case study. Replace each when a real asset is available. Do not publish fabricated or staged screenshots.
 
 ---
 
-## Student Portal (Section 08)
+## Section 03 — Discovery
 
-| # | Screen | Purpose | Ratio | Status |
-|---|--------|---------|-------|--------|
-| 2 | Student dashboard | Readiness score, activity summary, roadmap progress | 16:9 | ⬜ Needed |
-| 3 | Opportunities screen | Filtered opportunity list based on readiness | 16:9 | ⬜ Needed |
-
----
-
-## Faculty Portal (Section 09)
-
-| # | Screen | Purpose | Ratio | Status |
-|---|--------|---------|-------|--------|
-| 4 | Faculty assigned-student tracking view | Student list with readiness status and intervention flags | 16:9 | ⬜ Needed |
-| 5 | Academic or assignment screen | Academic context shown alongside placement readiness data | 16:9 | ⬜ Needed |
+| Slot | Type | Spec | Status |
+|------|------|------|--------|
+| Research artefact | Wide (16:9) | Stakeholder map, interview guide, sanitised insight board or research synthesis | Placeholder — DO NOT publish until verified |
 
 ---
 
-## HOD Portal (Section 10)
+## Section 06 — How the Four-Role Platform Works
 
-| # | Screen | Purpose | Ratio | Status |
-|---|--------|---------|-------|--------|
-| 6 | HOD department dashboard | Department-wide readiness with batch and course breakdown | 16:9 | ⬜ Needed |
-
----
-
-## Management Portal (Section 11)
-
-| # | Screen | Purpose | Ratio | Status |
-|---|--------|---------|-------|--------|
-| 7 | Management dashboard | Institutional-level view with cross-department placement readiness | 16:9 | ⬜ Needed |
+| Slot | Portal | Spec | Status |
+|------|--------|------|--------|
+| Student dashboard | Student | 16:9 · readiness score, roadmap progress, recent activity | Placeholder |
+| Faculty tracking view | Faculty | 16:9 · student list with readiness status and intervention flags | Placeholder |
+| HOD department dashboard | HOD | 16:9 · department-wide readiness with batch and course breakdown | Placeholder |
+| Management dashboard | Management | 16:9 · institutional-level view with cross-department readiness | Placeholder |
 
 ---
 
-## Tracking and Intervention (Section 13)
+## Section 08 — Deep Dive: Tracking and Intervention
 
-| # | Screen | Purpose | Ratio | Status |
-|---|--------|---------|-------|--------|
-| 8 | Faculty intervention flag view | At-risk student list with engagement and progress indicators | 16:9 | ⬜ Needed |
-
----
-
-## Career Roadmaps (Section 14)
-
-| # | Screen | Purpose | Ratio | Status |
-|---|--------|---------|-------|--------|
-| 9 | Career roadmap selection screen | Student choosing a career path | 4:3 | ⬜ Needed |
-| 10 | Roadmap progress view | In-progress roadmap with milestones and skill coverage | 4:3 | ⬜ Needed |
+| Slot | Type | Spec | Status |
+|------|------|------|--------|
+| Faculty intervention flag view | Wide (16:9) | At-risk student list with engagement and progress indicators | Placeholder |
+| Acceptance criteria or intervention flow | Wide (16:9) | Sanitised PRD excerpt or user flow for the at-risk threshold logic | Placeholder |
 
 ---
 
-## Practice Labs and AI Mock Interview (Section 15)
+## Section 09 — Deep Dive: Career Roadmaps
 
-| # | Screen | Purpose | Ratio | Status |
-|---|--------|---------|-------|--------|
-| 11 | Practice Labs screen | Active practice session — aptitude or communication | 4:3 | ⬜ Needed |
-| 12 | AI mock interview session | Voice agent interface during an active interview | 4:3 | ⬜ Needed |
-
----
-
-## How to add a screenshot
-
-1. Export the screen at 2x resolution (retina-quality)
-2. Save to `assets/screenshots/pathwisse/` (create folder if it does not exist)
-3. Use descriptive filenames: `student-dashboard.png`, `hod-department.png`, etc.
-4. In `pathwisse.html`, replace the `<div class="screenshot-slot ...">` block for that screen with:
-
-```html
-<img
-  src="assets/screenshots/pathwisse/your-filename.png"
-  alt="Brief description of what the screen shows"
-  class="case-screenshot"
-  loading="lazy"
->
-```
-
-5. Add to the CSS in `pathwisse.html` (once, near `.screenshot-slot`):
-
-```css
-.case-screenshot {
-  width: 100%;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-}
-```
+| Slot | Type | Spec | Status |
+|------|------|------|--------|
+| Career roadmap selection screen | Tall (4:3) | Student choosing a career path | Placeholder |
+| Roadmap progress view | Tall (4:3) | In-progress roadmap with milestones and skill coverage | Placeholder |
+| User flow diagram | Wide (16:9) | Flow from career selection through roadmap generation to first practice session | Placeholder |
 
 ---
 
-## Progress
+## Section 10 — Deep Dive: Practice Labs and AI Interviews
 
-- Total screens needed: **12**
-- Completed: **0**
-- Remaining: **12**
+| Slot | Type | Spec | Status |
+|------|------|------|--------|
+| Practice Labs screen | Tall (4:3) | Active practice session (aptitude or communication) | Placeholder |
+| AI mock interview session | Tall (4:3) | Voice agent interface during an active interview | Placeholder |
+
+---
+
+## Notes
+
+- All screenshot slots use `.screenshot-slot.wide` (16:9) or `.screenshot-slot.tall` (4:3)
+- To replace a placeholder: swap it for an `<img>` tag with `loading="lazy"` and meaningful `alt` text
+- Do not show private student names, emails, personal data or institutional names without explicit permission
+- Do not stage screenshots for a feature that is not live

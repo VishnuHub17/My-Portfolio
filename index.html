@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="S Vishnu Vardhan — Product builder (UX & decisions) at Shaquantum Labs and Business Analyst at Vtiger CRM. I talk to users, find the real problem, and ship the solution.">
-  <title>S Vishnu Vardhan | Product Builder</title>
+  <meta name="description" content="S Vishnu Vardhan — Product professional combining enterprise SaaS problem-solving at Vtiger CRM with zero-to-one product work at Pathwisse. Targeting Associate PM, PM and B2B SaaS roles.">
+  <title>S Vishnu Vardhan | Product Professional</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -30,8 +30,10 @@
 
       --accent:        #1A40CC;
       --accent-hover:  #1230A3;
-      --accent-bg:     #EFF2FF;
-      --accent-border: #CDD5FF;
+      --accent-bg:     #EEF2FF;
+      --accent-border: #CAD5FF;
+      --blue-bright:   #4263EB;
+      --navy-deep:     #10204F;
 
       --ph-bg:     #F4F4F2;
       --ph-border: #D4D4D0;
@@ -199,7 +201,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--text-1);
+      background: var(--accent);
       color: #fff;
       font-family: var(--font-sans);
       font-size: 14px;
@@ -212,26 +214,26 @@
       transition: background 0.2s, transform 0.2s var(--ease);
       white-space: nowrap;
     }
-    .btn-primary:hover { background: #2a2a2a; transform: translateY(-1px); }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
 
     .btn-secondary {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: transparent;
-      color: var(--text-1);
+      background: var(--accent-bg);
+      color: var(--accent);
       font-family: var(--font-sans);
       font-size: 14px;
       font-weight: 600;
       padding: 12px 22px;
       border-radius: 8px;
-      border: 1px solid var(--border-hover);
+      border: 1px solid var(--accent-border);
       text-decoration: none;
       cursor: pointer;
-      transition: border-color 0.2s, background 0.2s, transform 0.2s var(--ease);
+      transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.2s var(--ease);
       white-space: nowrap;
     }
-    .btn-secondary:hover { border-color: var(--text-1); background: var(--surface); transform: translateY(-1px); }
+    .btn-secondary:hover { background: var(--accent); color: #fff; border-color: var(--accent); transform: translateY(-2px); }
 
     .btn-text {
       display: inline-flex;
@@ -318,7 +320,9 @@
       display: flex;
       align-items: center;
       padding-top: var(--nav-h);
-      background: var(--bg);  /* explicitly set so it matches about */
+      background:
+        radial-gradient(circle at 80% 25%, rgba(66, 99, 235, 0.12), transparent 35%),
+        var(--bg);
     }
 
     .hero-inner {
@@ -351,7 +355,23 @@
       margin-bottom: 20px;
     }
 
-    .hero-headline span { color: var(--accent); }
+    .hero-hl-accent {
+      color: var(--accent);
+      display: block;
+      background: linear-gradient(to right, rgba(238, 242, 255, 0.75), rgba(238, 242, 255, 0));
+      padding: 2px 0 4px;
+      border-radius: 4px;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 1.7vw, 18px);
+      color: var(--text-2);
+      line-height: 1.6;
+      max-width: 580px;
+      margin-bottom: 12px;
+    }
 
     .hero-credential {
       font-family: var(--font-mono);
@@ -360,7 +380,7 @@
       color: var(--text-3);
       letter-spacing: 0.03em;
       line-height: 1.5;
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
 
     .hero-ctas {
@@ -533,6 +553,19 @@
     .cap-item:nth-child(3),
     .cap-item:nth-child(4)        { border-bottom: none; }
 
+    .cap-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--accent-bg);
+      color: var(--accent);
+      border: 1px solid var(--accent-border);
+      margin-bottom: 16px;
+      flex-shrink: 0;
+    }
+
     .cap-num {
       font-family: var(--font-mono);
       font-size: 11px;
@@ -700,13 +733,19 @@
     .work-card-featured {
       display: flex;
       flex-direction: column;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-top: 3px solid var(--accent);
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      border-top: 4px solid var(--accent);
       border-radius: 14px;
       overflow: hidden;
       margin-bottom: 20px;
     }
+    .work-card-featured .wc-stat strong { color: var(--accent); }
+    .work-card-featured .work-card-featured-stats {
+      background: rgba(255,255,255,0.6);
+      border-color: var(--accent-border);
+    }
+    .work-card-featured .wc-stat { border-right-color: var(--accent-border); }
     .work-card-featured-body {
       padding: 28px 32px 32px;
     }
@@ -1031,6 +1070,153 @@
       }
     }
 
+    /* ============================================================
+       PROOF STRIP
+    ============================================================ */
+    .proof-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .proof-item {
+      flex: 1;
+      min-width: 160px;
+      padding: 22px 28px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .proof-item:last-child { border-right: none; }
+    .proof-item:hover {
+      background: #F5F7FF;
+      box-shadow: inset 0 -3px 0 var(--accent-border);
+    }
+    .proof-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      flex-shrink: 0;
+    }
+    .proof-company {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+    .proof-item strong {
+      display: block;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--navy-deep);
+      margin-bottom: 2px;
+    }
+    .proof-item span {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-3);
+      line-height: 1.4;
+    }
+
+    /* ============================================================
+       EXPERIENCE SNAPSHOT
+    ============================================================ */
+    .exp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .exp-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--accent);
+      border-radius: 12px;
+      padding: 24px 26px;
+    }
+    .exp-company {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--text-1);
+      margin-bottom: 2px;
+    }
+    .exp-role {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-3);
+      margin-bottom: 14px;
+    }
+    .exp-item p {
+      font-size: 15px;
+      color: var(--text-2);
+      line-height: 1.65;
+      margin-bottom: 8px;
+    }
+    .exp-item p:last-child { margin-bottom: 0; }
+    .exp-secondary {
+      font-size: 13px !important;
+      color: var(--text-3) !important;
+    }
+
+    /* ============================================================
+       PRODUCT PRINCIPLES
+    ============================================================ */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 32px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .principle-item {
+      padding: 28px 26px;
+      border-right: 1px solid var(--border);
+    }
+    .principle-item:last-child { border-right: none; }
+    .principle-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+    .principle-item h3 {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-1);
+      margin-bottom: 8px;
+    }
+    .principle-item p {
+      font-size: 14.5px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
     @media (max-width: 860px) {
       .pillars {
         grid-template-columns: 1fr;
@@ -1058,6 +1244,13 @@
       .approach-steps { grid-template-columns: 1fr; }
       .approach-step { border-right: none; border-bottom: 1px solid var(--border); }
       .approach-step:last-child { border-bottom: none; }
+
+      .exp-grid { grid-template-columns: 1fr; }
+      .principles-grid { grid-template-columns: 1fr; }
+      .principle-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .principle-item:last-child { border-bottom: none; }
+      .proof-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .proof-item:last-child { border-bottom: none; }
     }
 
     @media (max-width: 768px) {
@@ -1102,8 +1295,7 @@
       <ul class="nav-links" id="nav-links">
         <li><a href="#capabilities">Capabilities</a></li>
         <li><a href="#work">Work</a></li>
-        <li><a href="#craft">Craft</a></li>
-        <li><a href="#approach">Approach</a></li>
+        <li><a href="#principles">Principles</a></li>
         <li><a href="#connect" class="nav-cta-link">Let's Connect</a></li>
       </ul>
     </div>
@@ -1111,32 +1303,68 @@
 
 
   <!-- ============================================================
-       HERO — TWO COLUMN
+       HERO
   ============================================================ -->
   <section id="home">
     <div class="container">
       <div class="hero-inner">
-
-        <!-- Left: text -->
         <div class="hero-text">
           <p class="hero-name reveal">S Vishnu Vardhan</p>
           <h1 class="hero-headline reveal reveal-d1">
-            Product builder who listens &amp; ships.<br>
-            <span>Builder who wireframes and prototypes.</span>
+            I turn complex customer and business problems into products
+            <span class="hero-hl-accent">teams can ship and users can adopt.</span>
           </h1>
+          <p class="hero-sub reveal reveal-d2">
+            Product professional combining enterprise SaaS problem-solving at Vtiger CRM with zero-to-one product work at Pathwisse.
+          </p>
           <p class="hero-credential reveal reveal-d2">
-            Product (UX &amp; Decisions), Shaquantum Labs &middot; Business Analyst, Vtiger CRM
+            Product &amp; UX, Pathwisse &middot; Business Analyst, Vtiger CRM
           </p>
           <div class="hero-ctas reveal reveal-d3">
-            <a href="#case-studies" class="btn-primary">View My Work</a>
-            <a href="#connect" class="btn-text">Let's Connect &#8594;</a>
+            <a href="#work" class="btn-primary">View Selected Work</a>
           </div>
         </div>
-
-
       </div>
     </div>
   </section>
+
+  <!-- ============================================================
+       PROOF STRIP
+  ============================================================ -->
+  <div class="proof-strip">
+    <div class="proof-item">
+      <div class="proof-icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div class="proof-company">Pathwisse</div>
+      <strong>160+</strong>
+      <span>Stakeholders engaged across 5 colleges</span>
+    </div>
+    <div class="proof-item">
+      <div class="proof-icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <div class="proof-company">Pathwisse</div>
+      <strong>4</strong>
+      <span>Colleges onboarded</span>
+    </div>
+    <div class="proof-item">
+      <div class="proof-icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+      </div>
+      <div class="proof-company">Vtiger CRM</div>
+      <strong>20+</strong>
+      <span>Enterprise customers engaged</span>
+    </div>
+    <div class="proof-item">
+      <div class="proof-icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div class="proof-company">Vtiger CRM</div>
+      <strong>3</strong>
+      <span>NextGen enhancements shipped</span>
+    </div>
+  </div>
 
 
   <!-- ============================================================
@@ -1148,27 +1376,9 @@
       <h2 class="section-heading reveal">Hello, I'm Vishnu</h2>
 
       <div class="about-intro reveal">
-        <p>I'm a core product-team member at an early-stage startup, where I've owned UX and product decisions since March 2025 &mdash; meeting users directly, finding the real problems, turning them into wireframes and specs, prototyping with AI tools, and shipping with developers. I also run business and operations there.</p>
-        <p>My foundation comes from business analysis at Vtiger CRM, where I learned to turn ambiguity into requirements teams can actually build from.</p>
+        <p>I work across product discovery, requirements, UX definition, validation and delivery. At Pathwisse, I helped shape a role-based student success platform through research across five colleges. At Vtiger CRM, I translate complex enterprise workflows into product improvements and scalable solutions.</p>
       </div>
 
-      <div class="pillars reveal">
-        <div class="pillar">
-          <div class="pillar-badge">Listener</div>
-          <h3>Users first</h3>
-          <p>I meet our main users directly and find the problem worth solving before anything gets built.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-badge">Builder</div>
-          <h3>Product decisions that ship</h3>
-          <p>From user conversations to wireframes to prototypes to shipped features. I'm on the build side, not just the planning side.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-badge">Operator</div>
-          <h3>Early-stage execution</h3>
-          <p>Product, operations, and business management in one seat &mdash; solving obstacles as they appear, not after the sprint ends.</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1184,6 +1394,9 @@
 
       <div class="caps-grid reveal">
         <div class="cap-item">
+          <div class="cap-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+          </div>
           <div class="cap-num">01</div>
           <h3>Product Discovery &amp; User Research</h3>
           <p>When you have an idea but no shape, I meet users directly, find the real problem, and define the journeys, edge cases, and wireframes for a clear, buildable first version.</p>
@@ -1194,9 +1407,12 @@
           </div>
         </div>
         <div class="cap-item">
+          <div class="cap-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+          </div>
           <div class="cap-num">02</div>
           <h3>Requirements &amp; Clarity</h3>
-          <p>When needs are fuzzy, I translate them into structured requirements, user stories, and acceptance criteria so developers build the right thing the first time.</p>
+          <p>I translate unclear needs into structured requirements, user stories and acceptance criteria that reduce ambiguity, missed edge cases and delivery rework.</p>
           <div class="cap-tags">
             <span class="tag">User Stories</span>
             <span class="tag">Acceptance Criteria</span>
@@ -1204,16 +1420,22 @@
           </div>
         </div>
         <div class="cap-item">
+          <div class="cap-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          </div>
           <div class="cap-num">03</div>
           <h3>Rapid Prototyping</h3>
-          <p>When you need to validate before you invest, I build clickable wireframes and AI-assisted working prototypes in days, not weeks.</p>
+          <p>I create testable prototypes quickly so teams can validate workflows and product decisions before investing in full development.</p>
           <div class="cap-tags">
-            <span class="tag">Google Stitch</span>
-            <span class="tag">AI-assisted</span>
-            <span class="tag">Clickable Prototypes</span>
+            <span class="tag">Figma</span>
+            <span class="tag">Interactive Prototypes</span>
+            <span class="tag">Product Validation</span>
           </div>
         </div>
         <div class="cap-item">
+          <div class="cap-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </div>
           <div class="cap-num">04</div>
           <h3>CRM &amp; SaaS Workflows</h3>
           <p>When your processes live in a CRM, I map, configure, and improve workflows so business users actually adopt them. Grounded in hands-on work at Vtiger CRM across multiple workflow and module configurations.</p>
@@ -1229,73 +1451,12 @@
 
 
   <!-- ============================================================
-       PM TOOLKIT
-  ============================================================ -->
-  <section id="toolkit" class="section">
-    <div class="container">
-      <p class="section-label reveal">PM Toolkit</p>
-      <h2 class="section-heading reveal">Competencies in practice</h2>
-      <p class="section-sub reveal">Each one grounded in real work, not theory.</p>
-
-      <div class="toolkit-grid reveal">
-
-        <div class="toolkit-item">
-          <h3>Problem discovery &amp; user research</h3>
-          <p>Met and interviewed primary users at Shaquantum Labs; discovered problems on the ground and converted them into validated requirements.</p>
-        </div>
-
-        <div class="toolkit-item">
-          <h3>Requirements &amp; user stories</h3>
-          <p>User stories and acceptance criteria at Shaquantum Labs and at Vtiger &mdash; written to remove ambiguity, not add formality.</p>
-        </div>
-
-        <div class="toolkit-item">
-          <h3>Wireframing &amp; UX thinking</h3>
-          <p>Shaquantum Labs feature wireframes and Agoda case study wireframes: room selection, manage booking, cancellation preview flows.</p>
-        </div>
-
-        <div class="toolkit-item">
-          <h3>Prototyping</h3>
-          <p>Working prototypes, AI-assisted (Antigravity, Google Stitch, AI Studio), so teams react to something concrete rather than debating abstractions.</p>
-        </div>
-
-        <div class="toolkit-item">
-          <h3>Prioritization &amp; MVP scoping</h3>
-          <p>P1/P2/P3 prioritization in the Agoda case study; feature scoping with developers at Shaquantum Labs to ship what mattered first.</p>
-        </div>
-
-        <div class="toolkit-item">
-          <h3>Cross-functional collaboration</h3>
-          <p>Daily coordination with developers, stakeholders, and business users across both roles &mdash; bridging intent and build.</p>
-        </div>
-
-        <div class="toolkit-item">
-          <h3>Hypothesis &amp; validation thinking</h3>
-          <p>Agoda case study: hypothesis formation, validation plan, and defined success metrics before proposing any solution.</p>
-        </div>
-
-        <div class="toolkit-item">
-          <h3>Metrics mindset</h3>
-          <p>Defined success metrics: acknowledgment rate, support-ticket reduction, booking confidence score. Claims tied to measurement.</p>
-        </div>
-
-        <div class="toolkit-item">
-          <h3>Communication &amp; documentation</h3>
-          <p>PRD-style docs, journey tables, flow diagrams, and case study decks that non-technical stakeholders can act on.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ============================================================
        SELECTED PRODUCT WORK
   ============================================================ -->
   <section id="work" class="section">
     <div class="container">
       <p class="section-label reveal">Selected Product Work</p>
-      <h2 class="section-heading reveal">Three projects. Real ownership. Real decisions.</h2>
+      <h2 class="section-heading reveal">Three projects showing discovery, product decisions and shipped execution.</h2>
 
       <!-- Pathwisse: Featured / flagship -->
       <div class="work-card-featured reveal">
@@ -1305,17 +1466,18 @@
             <span class="tag">Flagship</span>
             <span class="tag">B2B EdTech</span>
             <span class="tag">4 Portals</span>
-            <span class="tag">Shaquantum Labs</span>
+            <span class="tag">Pathwisse</span>
           </div>
           <h3>Pathwisse &mdash; Student Success Platform</h3>
-          <p>Discovery-led student success platform connecting academics, career development, readiness practice and institutional tracking across four role-based portals.</p>
+          <p>A discovery-led, role-based platform connecting student development, faculty intervention and institutional readiness visibility across four portals.</p>
+          <p style="font-size:14px;color:var(--text-3);margin-top:-8px;margin-bottom:16px">Key decision: shifted roadmap emphasis from expanding content to enabling continuous readiness tracking and early intervention.</p>
           <div class="work-card-featured-stats">
-            <div class="wc-stat"><strong>160+</strong><span>Stakeholders</span></div>
-            <div class="wc-stat"><strong>4</strong><span>Colleges onboarded</span></div>
+            <div class="wc-stat"><strong>5</strong><span>Colleges researched</span></div>
+            <div class="wc-stat"><strong>160+</strong><span>Stakeholders engaged</span></div>
             <div class="wc-stat"><strong>4</strong><span>Role-based portals</span></div>
-            <div class="wc-stat"><strong>5</strong><span>Colleges discovered</span></div>
+            <div class="wc-stat"><strong>4</strong><span>Colleges onboarded</span></div>
           </div>
-          <a href="pathwisse.html" class="btn-primary work-card-btn">Read full case study &rarr;</a>
+          <a href="pathwisse.html" class="btn-primary work-card-btn">Read the full case study &rarr;</a>
         </div>
       </div>
 
@@ -1347,9 +1509,7 @@
               <span class="tag">Live Product</span>
             </div>
             <h3>Mentor Connect</h3>
-            <p>A live web app to manage mentors and run webinars in one place. I owned product definition, UX and requirements from discovery through to shipped features.</p>
-            <a href="#connect" class="btn-primary work-card-btn">Ask me about it &rarr;</a>
-            <span class="work-card-note">Case study in preparation</span>
+            <p>Designed and launched a mentor-management and webinar-operations product, owning product definition, UX, requirements and validation.</p>
           </div>
         </div>
 
@@ -1359,38 +1519,24 @@
 
 
   <!-- ============================================================
-       CRAFT
+       EXPERIENCE SNAPSHOT
   ============================================================ -->
-  <section id="craft" class="section">
+  <section id="experience" class="section">
     <div class="container">
-      <p class="section-label reveal">Craft</p>
-      <h2 class="section-heading reveal">How I think about product</h2>
-      <p class="section-sub reveal">Six principles that show up in every piece of work I do.</p>
+      <p class="section-label reveal">Experience</p>
+      <h2 class="section-heading reveal">Experience Snapshot</h2>
 
-      <div class="craft-grid reveal">
-        <div class="craft-item">
-          <h3>Clarity before code</h3>
-          <p>Ambiguous requirements cost 10x more after development starts. The spec is the product until something ships.</p>
+      <div class="exp-grid reveal">
+        <div class="exp-item">
+          <div class="exp-company">Vtiger CRM</div>
+          <div class="exp-role">Business Analyst &middot; Jan 2024&ndash;Present</div>
+          <p>Translated recurring workflow and adoption problems across 20+ enterprise customers into 20+ NextGen enhancement proposals, with 3 shipped to date.</p>
+          <p class="exp-secondary">Redesigned 8+ workflows and supported permission and visibility models used by 300+ enterprise users.</p>
         </div>
-        <div class="craft-item">
-          <h3>Edge cases first</h3>
-          <p>Most user pain lives in error states, empty states, and the unhappy path. I design those before I design the happy path.</p>
-        </div>
-        <div class="craft-item">
-          <h3>Promise equals proof</h3>
-          <p>If the UI promises something, "free cancellation", "confirmed", "synced", the system must visibly back it up.</p>
-        </div>
-        <div class="craft-item">
-          <h3>Prototype to decide</h3>
-          <p>Teams decide better reacting to something concrete than debating abstractions. Build the thing that ends the argument.</p>
-        </div>
-        <div class="craft-item">
-          <h3>Honest scope</h3>
-          <p>I say what I did and what the developers did. Overclaiming destroys trust faster than any missed deadline.</p>
-        </div>
-        <div class="craft-item">
-          <h3>Numbers over adjectives</h3>
-          <p>Every claim should carry a metric or an artifact. "Improved" means nothing. A before and after means something.</p>
+        <div class="exp-item">
+          <div class="exp-company">Pathwisse</div>
+          <div class="exp-role">Product &amp; UX, Core Team (Part-time) &middot; Mar 2025&ndash;Present</div>
+          <p>Led discovery across five colleges and translated insights into roadmap priorities, four role-based portals and institutional onboarding.</p>
         </div>
       </div>
     </div>
@@ -1398,29 +1544,28 @@
 
 
   <!-- ============================================================
-       APPROACH
+       THREE PRODUCT PRINCIPLES
   ============================================================ -->
-  <section id="approach" class="section">
+  <section id="principles" class="section">
     <div class="container">
-      <p class="section-label reveal">Approach</p>
-      <h2 class="section-heading reveal">How I plug in</h2>
-      <p class="section-sub reveal">Three phases, whether I'm joining as product lead, BA, or early-team operator.</p>
+      <p class="section-label reveal">Principles</p>
+      <h2 class="section-heading reveal">How I think about product</h2>
 
-      <div class="approach-steps reveal">
-        <div class="approach-step">
-          <div class="step-num">01</div>
-          <h3>Listen where it hurts</h3>
-          <p>Talk to users and stakeholders, map current workflows, push past the presented problem to find the actual one. Agree on the real problem before touching a solution.</p>
+      <div class="principles-grid reveal">
+        <div class="principle-item">
+          <div class="principle-num">01</div>
+          <h3>Start with the underlying problem</h3>
+          <p>Understand the workflow, incentives and constraints before proposing a solution.</p>
         </div>
-        <div class="approach-step">
-          <div class="step-num">02</div>
-          <h3>Shape and prototype</h3>
-          <p>User flows, wireframes, requirements, and AI-assisted prototypes at the right fidelity. Teams react better to something concrete than to a deck full of abstractions.</p>
+        <div class="principle-item">
+          <div class="principle-num">02</div>
+          <h3>Make ownership and trade-offs explicit</h3>
+          <p>Clarify what I owned, what the team decided together and what engineering implemented.</p>
         </div>
-        <div class="approach-step">
-          <div class="step-num">03</div>
-          <h3>Build, verify, refine</h3>
-          <p>Work with developers through build, clarify edge cases in real time, define acceptance criteria, and learn from actual usage. Shipping is the beginning, not the end.</p>
+        <div class="principle-item">
+          <div class="principle-num">03</div>
+          <h3>Measure outcomes, not activity</h3>
+          <p>Tie decisions to adoption, efficiency, quality or commercial outcomes.</p>
         </div>
       </div>
     </div>
@@ -1449,25 +1594,6 @@
             <span class="connect-arrow">&#8594;</span>
           </a>
 
-          <div class="connect-link connect-link-pending">
-            <div class="connect-link-left">
-              <div class="connect-icon">in</div>
-              <div>
-                <div class="connect-link-label">LinkedIn</div>
-                <div class="connect-link-desc">Link coming soon</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="connect-link connect-link-pending">
-            <div class="connect-link-left">
-              <div class="connect-icon">&#8595;</div>
-              <div>
-                <div class="connect-link-label">Resume (PDF)</div>
-                <div class="connect-link-desc">Available on request &mdash; email above</div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -1481,7 +1607,7 @@
     <div class="container">
       <div class="footer-inner">
         <span class="footer-name">S Vishnu Vardhan</span>
-        <span class="footer-tagline">Product (UX &amp; Decisions) &middot; Business Analyst at Vtiger CRM &middot; AI-assisted Builder</span>
+        <span class="footer-tagline">Product &amp; UX at Pathwisse &middot; Business Analyst at Vtiger CRM</span>
       </div>
     </div>
   </footer>
