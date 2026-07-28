@@ -1005,6 +1005,178 @@
     }
 
     /* ============================================================
+       SELECTED WORK — FLAGSHIP + DUO LAYOUT
+    ============================================================ */
+
+    /* Full-width horizontal flagship card */
+    .wk-flagship {
+      display: grid;
+      grid-template-columns: 1fr 240px;
+      height: 236px;
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      border-top: 3px solid var(--accent);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      transition: box-shadow 0.2s;
+    }
+    .wk-flagship:hover { box-shadow: 0 8px 24px rgba(26,64,204,.1); }
+    .wk-flagship-body {
+      padding: 22px 26px;
+      display: flex;
+      flex-direction: column;
+    }
+    .wk-flagship-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.022em;
+      color: var(--text-1);
+      line-height: 1.25;
+      margin-bottom: 7px;
+    }
+    .wk-flagship-desc {
+      font-size: 13.5px;
+      color: var(--text-2);
+      line-height: 1.6;
+      flex: 1;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .wk-flagship-cta {
+      margin-top: auto;
+      padding-top: 12px;
+    }
+    .wk-flagship-media {
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(145deg, #d4deff 0%, #b8c6ff 100%);
+    }
+    .wk-flagship-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top left;
+      display: block;
+    }
+
+    /* Two-card row */
+    .wk-duo {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .wk-card {
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--border-hover);
+      background: var(--surface);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s, transform 0.2s var(--ease), box-shadow 0.2s;
+    }
+    .wk-card:hover {
+      border-top-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(17,17,17,.07);
+    }
+    .wk-card-body {
+      padding: 18px 20px 12px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .wk-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-1);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .wk-card-desc {
+      font-size: 13.5px;
+      color: var(--text-2);
+      line-height: 1.6;
+      flex: 1;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .wk-card-note {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-3);
+      margin-top: 5px;
+    }
+    .wk-card-cta {
+      margin-top: auto;
+      padding-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+    .wk-card-cta .btn-primary,
+    .wk-card-cta .btn-secondary {
+      padding: 7px 13px;
+      font-size: 13px;
+      min-height: auto;
+    }
+    .wk-media {
+      height: 88px;
+      overflow: hidden;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .wk-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .wk-media--agoda { background: #eaf0f8; }
+    .wk-media--mc    { background: linear-gradient(135deg, #f0f7ff, #e2eafb); }
+
+    /* Shared card icon */
+    .wk-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .wk-icon--accent  { background: var(--accent); color: #fff; }
+    .wk-icon--default { background: var(--accent-bg); color: var(--accent); border: 1px solid var(--accent-border); }
+
+    /* Card header row */
+    .wk-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 860px) {
+      .wk-flagship { grid-template-columns: 1fr; height: auto; }
+      .wk-flagship-media { height: 110px; }
+    }
+    @media (max-width: 640px) {
+      .wk-duo { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
        TESTIMONIALS
     ============================================================ */
     .testimonial-band {
@@ -1634,57 +1806,72 @@
       <p class="section-label reveal">Selected Product Work</p>
       <h2 class="section-heading reveal">Three projects showing discovery, product decisions and shipped execution.</h2>
 
-      <!-- Three-column equal-height project cards -->
-      <div class="selected-work-grid reveal">
-
-        <!-- Pathwisse — flagship -->
-        <div class="project-card project-card-flagship">
-          <div class="pc-header">
-            <div class="pc-icon">P</div>
+      <!-- Full-width flagship: Pathwisse -->
+      <div class="wk-flagship reveal">
+        <div class="wk-flagship-body">
+          <div class="wk-header">
+            <div class="wk-icon wk-icon--accent">P</div>
             <div class="pc-tags">
               <span class="tag">Flagship Case Study</span>
               <span class="tag">B2B EdTech</span>
             </div>
           </div>
-          <h3 class="pc-title">Pathwisse &mdash; Student Success Platform</h3>
-          <p class="pc-desc">A discovery-led, role-based platform connecting student development, faculty intervention and institutional readiness visibility. Five colleges, 160+ stakeholders, four portals.</p>
-          <div class="project-card-cta">
-            <a href="pathwisse.html" class="btn-primary work-card-btn">Read Case Study &rarr;</a>
+          <h3 class="wk-flagship-title">Pathwisse &mdash; Student Success Platform</h3>
+          <p class="wk-flagship-desc">A discovery-led, role-based platform connecting student development, faculty intervention and institutional readiness visibility across four portals. Five colleges, 160+ stakeholders.</p>
+          <div class="wk-flagship-cta">
+            <a href="pathwisse.html" class="btn-primary" style="padding:8px 16px;font-size:13px">Read Case Study &rarr;</a>
+          </div>
+        </div>
+        <div class="wk-flagship-media">
+          <!-- Pathwisse product preview — add screenshot when available -->
+          <!-- <img src="assets/images/pathwisse/dashboard.png" alt="Pathwisse student dashboard" loading="lazy"> -->
+        </div>
+      </div>
+
+      <!-- Agoda + Mentor Connects -->
+      <div class="wk-duo reveal">
+
+        <div class="wk-card">
+          <div class="wk-card-body">
+            <div class="wk-header">
+              <div class="wk-icon wk-icon--default">A</div>
+              <div class="pc-tags">
+                <span class="tag">Concept Case Study</span>
+                <span class="tag">TravelTech</span>
+              </div>
+            </div>
+            <h3 class="wk-card-title">Agoda Booking Assurance</h3>
+            <p class="wk-card-desc">Reducing post-booking uncertainty through a Booking Assurance Layer making hotel acknowledgment and risk status visible before check-in.</p>
+            <p class="wk-card-note">Independent concept &mdash; not affiliated with Agoda.</p>
+            <div class="wk-card-cta">
+              <a href="agoda.html" class="btn-primary">Read Case Study</a>
+              <a href="https://drive.google.com/file/d/11zVTObMYufiaz7DZqK9ErQ9-mLv9FBqF/view?usp=sharing" class="btn-secondary" target="_blank" rel="noopener noreferrer">View Deck</a>
+            </div>
+          </div>
+          <div class="wk-media wk-media--agoda">
+            <img src="assets/images/agoda/03-ready-for-check-in-verified.png" alt="Agoda Booking Assurance concept screen — Ready for Check-in verified state" loading="lazy">
           </div>
         </div>
 
-        <!-- Agoda -->
-        <div class="project-card">
-          <div class="pc-header">
-            <div class="pc-icon">A</div>
-            <div class="pc-tags">
-              <span class="tag">Concept Case Study</span>
-              <span class="tag">TravelTech</span>
+        <div class="wk-card">
+          <div class="wk-card-body">
+            <div class="wk-header">
+              <div class="wk-icon wk-icon--default">M</div>
+              <div class="pc-tags">
+                <span class="tag">Independently Built</span>
+                <span class="tag">Working Product</span>
+              </div>
+            </div>
+            <h3 class="wk-card-title">Mentor Connects</h3>
+            <p class="wk-card-desc">Role-based platform connecting mentor onboarding, webinar scheduling, registration visibility and administrative oversight.</p>
+            <div class="wk-card-cta">
+              <a href="mentor-connects.html" class="btn-primary">Read Case Study</a>
+              <a href="https://github.com/VishnuHub17/Mentor-Connects" class="btn-secondary" target="_blank" rel="noopener noreferrer">View Repository</a>
             </div>
           </div>
-          <h3 class="pc-title">Agoda Booking Assurance</h3>
-          <p class="pc-desc">Reducing post-booking uncertainty through a Booking Assurance Layer that makes hotel acknowledgment, detail-matching and risk status visible before check-in.</p>
-          <p class="pc-disclaimer">Independent concept &mdash; not affiliated with Agoda.</p>
-          <div class="project-card-cta">
-            <a href="agoda.html" class="btn-primary work-card-btn">Read Case Study</a>
-            <a href="https://drive.google.com/file/d/11zVTObMYufiaz7DZqK9ErQ9-mLv9FBqF/view?usp=sharing" class="btn-secondary work-card-btn" target="_blank" rel="noopener noreferrer">View Deck</a>
-          </div>
-        </div>
-
-        <!-- Mentor Connects -->
-        <div class="project-card">
-          <div class="pc-header">
-            <div class="pc-icon">M</div>
-            <div class="pc-tags">
-              <span class="tag">Independently Built</span>
-              <span class="tag">Working Product</span>
-            </div>
-          </div>
-          <h3 class="pc-title">Mentor Connects</h3>
-          <p class="pc-desc">Role-based platform connecting mentor onboarding, webinar scheduling, registration visibility and administrative oversight. Designed and built end-to-end.</p>
-          <div class="project-card-cta">
-            <a href="mentor-connects.html" class="btn-primary work-card-btn">Read Case Study</a>
-            <a href="https://github.com/VishnuHub17/Mentor-Connects" class="btn-secondary work-card-btn" target="_blank" rel="noopener noreferrer">View Repository</a>
+          <div class="wk-media wk-media--mc">
+            <!-- MC preview — add screenshot when available -->
+            <!-- <img src="assets/images/mentor-connects/mentor-dashboard.png" alt="Mentor Connects mentor dashboard" loading="lazy"> -->
           </div>
         </div>
 
