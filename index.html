@@ -828,6 +828,51 @@
       margin-top: 10px;
     }
 
+    /* Mentor Connects card */
+    .wc-meta {
+      font-size: 11.5px;
+      color: var(--text-3);
+      margin-bottom: 14px;
+      margin-top: -6px;
+      font-style: italic;
+    }
+    .wc-capabilities {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .wc-capabilities li {
+      font-size: 13px;
+      color: var(--text-2);
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .wc-capabilities li::before {
+      content: '\2192';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 11px;
+      top: 1px;
+    }
+    .wc-flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2px 2px;
+      margin-bottom: 16px;
+      font-size: 10.5px;
+      font-family: var(--font-mono);
+      font-weight: 500;
+      color: var(--text-3);
+      letter-spacing: 0.02em;
+    }
+    .wc-flow-arrow { color: var(--accent); padding: 0 2px; }
+
     /* ============================================================
        TESTIMONIALS
     ============================================================ */
@@ -1502,14 +1547,43 @@
           </div>
         </div>
 
-        <div class="work-card">
+        <div class="work-card" id="mentor-connects-overview">
           <div class="work-card-body">
             <div class="work-card-icon">M</div>
             <div class="work-card-tags">
-              <span class="tag">Live Product</span>
+              <span class="tag">Independently Built</span>
+              <span class="tag">Working Product</span>
             </div>
-            <h3>Mentor Connect</h3>
-            <p>Designed and launched a mentor-management and webinar-operations product, owning product definition, UX, requirements and validation.</p>
+            <h3>Mentor Connects</h3>
+            <p class="wc-meta">Working product &middot; early stage &middot; built independently</p>
+            <p>A mentor management and webinar operations platform with LinkedIn-based onboarding, role-separated portals for mentors and admins, and calendar-driven scheduling.</p>
+            <ul class="wc-capabilities">
+              <li>LinkedIn profile import via Composio OAuth</li>
+              <li>Multi-step mentor onboarding with profile preview</li>
+              <li>Webinar creation and scheduling with draft persistence</li>
+              <li>Admin calendar with per-mentor colour coding</li>
+            </ul>
+            <div class="wc-flow">
+              <span>Signup</span><span class="wc-flow-arrow">&rarr;</span>
+              <span>LinkedIn Import</span><span class="wc-flow-arrow">&rarr;</span>
+              <span>Profile Setup</span><span class="wc-flow-arrow">&rarr;</span>
+              <span>Mentor Portal</span><span class="wc-flow-arrow">&rarr;</span>
+              <span>Webinars &amp; Calendar</span>
+            </div>
+            <div class="work-card-tags" style="margin-bottom:18px">
+              <span class="tag">React</span>
+              <span class="tag">Supabase</span>
+              <span class="tag">Tailwind CSS</span>
+              <span class="tag">Composio</span>
+              <span class="tag">FullCalendar</span>
+            </div>
+            <!-- DEV: screenshot placeholders — replace with real screenshots before publishing -->
+            <!-- <div class="screenshot-slot todo-flag">[Screenshot: Mentor dashboard]</div> -->
+            <!-- <div class="screenshot-slot todo-flag">[Screenshot: Webinar creation modal]</div> -->
+            <!-- <div class="screenshot-slot todo-flag">[Screenshot: Admin calendar view]</div> -->
+            <div class="work-card-actions">
+              <a href="#mentor-connects-overview" class="btn-primary work-card-btn">View Product Overview &rarr;</a>
+            </div>
           </div>
         </div>
 
