@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Building Mentor Connects — how I designed and built a role-based platform for mentor onboarding, webinar management and administrative oversight. Product case study by S Vishnu Vardhan.">
+  <title>Building Mentor Connects | S Vishnu Vardhan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --font:'Outfit',system-ui,-apple-system,sans-serif;
+      --mono:'SF Mono','Cascadia Code','Fira Code','Courier New',monospace;
+      --bg:#fafaf9;--surface:#fff;--soft:#f4f4f2;
+      --border:#e8e8e6;--border-2:#d4d4d0;
+      --text:#111;--muted:#55554f;--light:#8a8a84;
+      --navy:#172554;--indigo:#1a40cc;--indigo-soft:#eff2ff;--indigo-border:#cdd5ff;
+      --green:#147d52;--green-soft:#eaf8f0;--green-border:#b7e4c7;
+      --orange:#9a4b06;--orange-soft:#fff4e5;--orange-border:#f3c892;
+      --max:1120px;--nav:68px;--ease:cubic-bezier(.22,1,.36,1)
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    img{max-width:100%;display:block}
+    .container{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,5vw,60px)}
+
+    /* Nav */
+    .nav{position:fixed;inset:0 0 auto;z-index:50;height:var(--nav);background:rgba(250,250,249,.92);border-bottom:1px solid var(--border);backdrop-filter:blur(14px)}
+    .nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .nav-logo{font-size:15px;font-weight:700;text-decoration:none;letter-spacing:-.02em;color:var(--text)}
+    .nav-links{display:flex;gap:4px;list-style:none}
+    .nav-links a{font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;padding:7px 13px;border-radius:7px;transition:color .2s,background .2s}
+    .nav-links a:hover{color:var(--text);background:var(--border)}
+    .nav-cta{color:var(--indigo)!important;background:var(--indigo-soft)!important;border:1px solid var(--indigo-border)!important}
+
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:11px 20px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;border:1px solid transparent;white-space:nowrap;transition:transform .2s var(--ease),background .2s,border-color .2s,color .2s}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:var(--text);color:#fff}
+    .btn-primary:hover{background:#2a2a2a}
+    .btn-secondary{background:transparent;border-color:var(--border-2);color:var(--text)}
+    .btn-secondary:hover{background:var(--surface);border-color:var(--text)}
+    .btn-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+
+    /* Tags */
+    .tag{display:inline-flex;align-items:center;min-height:26px;padding:3px 9px;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--light);font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+    .tag.green{color:var(--green);background:var(--green-soft);border-color:var(--green-border)}
+    .tag.indigo{color:var(--indigo);background:var(--indigo-soft);border-color:var(--indigo-border)}
+    .tag-row{display:flex;flex-wrap:wrap;gap:8px}
+
+    /* Hero */
+    .hero{padding:clamp(116px,14vw,156px) 0 56px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,#fff 0%,var(--bg) 100%)}
+    .back-link{display:inline-flex;gap:6px;margin-bottom:30px;color:var(--muted);font-size:14px;font-weight:600;text-decoration:none;transition:color .2s}
+    .back-link:hover{color:var(--text)}
+    .eyebrow{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo);margin-bottom:14px}
+    h1{max-width:860px;font-size:clamp(32px,5vw,58px);line-height:1.04;letter-spacing:-.04em;color:var(--text);margin-bottom:14px}
+    .hero-sub{max-width:740px;font-size:clamp(17px,2vw,21px);color:var(--muted);line-height:1.5;margin-bottom:20px}
+
+    /* Project snapshot */
+    .project-snapshot{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);border-radius:12px;background:var(--surface);overflow:hidden;margin-top:24px;max-width:800px}
+    .ps-item{padding:14px 18px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .ps-item:nth-child(3),.ps-item:nth-child(6){border-right:none}
+    .ps-item:nth-child(n+4){border-bottom:none}
+    .ps-key{font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--light);margin-bottom:4px}
+    .ps-val{font-size:14px;font-weight:600;color:var(--text);line-height:1.35}
+
+    /* Case sections */
+    .case-main{padding:64px 0 84px}
+    .case-section{display:grid;grid-template-columns:minmax(150px,220px) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:start;margin-bottom:72px}
+    .section-kicker{position:sticky;top:calc(var(--nav) + 24px)}
+    .section-number{font-family:var(--mono);font-size:11px;font-weight:800;color:var(--indigo);margin-bottom:8px}
+    h2{font-size:clamp(20px,2.5vw,28px);line-height:1.15;letter-spacing:-.025em;color:var(--text)}
+    h3{font-size:17px;line-height:1.25;color:var(--text);letter-spacing:-.01em}
+    .stack{display:grid;gap:18px}
+    .stack p,.stack li{max-width:850px;color:var(--muted)}
+    .lead{font-size:18px;font-weight:700;color:var(--text)!important}
+    .small-note{font-size:14px;color:var(--light)!important;font-style:italic}
+
+    /* Cards */
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px}
+    .card p,.card li{font-size:15px;color:var(--muted);line-height:1.6}
+    .card h3{margin-bottom:8px}
+    .card ul{padding-left:18px;margin-top:8px;display:grid;gap:4px}
+    .card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .card.indigo-top{border-top:3px solid var(--indigo)}
+
+    /* Role badges — 32px container, 13px content */
+    .role-badge{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;font-size:13px;font-weight:800;margin-bottom:10px}
+    .role-badge.mentor{background:var(--indigo-soft);color:var(--indigo);border:1px solid var(--indigo-border)}
+    .role-badge.admin{background:var(--green-soft);color:var(--green);border:1px solid var(--green-border)}
+
+    /* Problem visual */
+    .problem-stack{display:grid;gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface);max-width:420px}
+    .problem-row{display:flex;align-items:center;gap:14px;padding:11px 18px;border-bottom:1px solid var(--border)}
+    .problem-row:last-child{border-bottom:none;background:var(--indigo-soft)}
+    .problem-op{font-family:var(--mono);font-size:13px;font-weight:800;color:var(--border-2);width:14px;text-align:center;flex-shrink:0}
+    .problem-row:last-child .problem-op{color:var(--indigo)}
+    .problem-row:last-child .problem-label{color:var(--indigo);font-weight:700}
+    .problem-label{font-size:15px;color:var(--muted)}
+
+    /* Workflow visuals */
+    .workflow-label{font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+    .workflow-label.mentor-label{color:var(--indigo)}
+    .workflow-label.admin-label{color:var(--green)}
+    .workflow-row{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface)}
+    .workflow-step{flex:1;min-width:90px;padding:13px 10px;border-right:1px solid var(--border);text-align:center}
+    .workflow-step:last-child{border-right:none}
+    .workflow-step-num{font-family:var(--mono);font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+    .workflow-step-num.m{color:var(--indigo)}
+    .workflow-step-num.a{color:var(--green)}
+    .workflow-step-label{font-size:13px;font-weight:600;color:var(--text);line-height:1.3}
+
+    /* Decision cards */
+    .decision-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px}
+    .decision-num{font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo);margin-bottom:8px}
+    .decision-card h3{font-size:16px;margin-bottom:10px;letter-spacing:-.01em}
+    .decision-quote{font-size:14px;color:var(--muted);font-style:italic;line-height:1.6;border-left:2px solid var(--indigo-border);padding-left:14px;margin:0}
+
+    /* Ownership columns */
+    .ownership-col{border-radius:12px;padding:20px}
+    .ownership-col.mine{background:var(--indigo-soft);border:1px solid var(--indigo-border)}
+    .ownership-col.build{background:var(--soft);border:1px solid var(--border-2)}
+    .ownership-col-label{font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+    .ownership-col.mine .ownership-col-label{color:var(--indigo)}
+    .ownership-col.build .ownership-col-label{color:var(--muted)}
+    .ownership-col ul{padding-left:16px;display:grid;gap:5px}
+    .ownership-col li{font-size:14px;color:var(--muted);line-height:1.5}
+
+    /* Built-with row */
+    .built-with{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:4px}
+    .built-with-label{font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--light)}
+
+    /* Limitations */
+    .limit-list{display:grid;gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;max-width:640px}
+    .limit-item{display:flex;align-items:baseline;gap:12px;padding:11px 18px;border-bottom:1px solid var(--border);background:var(--surface)}
+    .limit-item:last-child{border-bottom:none}
+    .limit-dash{flex-shrink:0;font-family:var(--mono);font-size:12px;color:var(--border-2)}
+    .limit-text{font-size:15px;color:var(--muted);line-height:1.5}
+
+    /* Proposed metrics */
+    .metrics-note{display:block;font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+    .metrics-list{display:grid;gap:7px;max-width:560px}
+    .metric-item{display:flex;align-items:baseline;gap:10px;padding:11px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px}
+    .metric-dot{flex-shrink:0;width:5px;height:5px;border-radius:50%;background:var(--border-2);margin-top:6px}
+    .metric-text{font-size:14px;color:var(--muted)}
+
+    /* Learnings */
+    .learning-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px}
+    .learning-num{font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo);margin-bottom:8px}
+    .learning-card h3{font-size:16px;margin-bottom:8px;letter-spacing:-.01em}
+    .learning-card p{font-size:15px;color:var(--muted);line-height:1.6}
+
+    /* Gallery — only shown when real screenshots are available */
+    .gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .gallery-item img{width:100%;border-radius:10px;border:1px solid var(--border);display:block}
+    .gallery-caption{font-size:12px;color:var(--light);margin-top:6px;text-align:center}
+
+    /* Footer CTA */
+    .final-cta{background:var(--text);color:#fff;border-radius:18px;padding:clamp(28px,5vw,48px);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin:0 0 64px}
+    .final-cta h2{color:#fff;font-size:clamp(20px,2.5vw,28px);margin-bottom:6px}
+    .final-cta p{color:#d7d7d2;font-size:15px}
+    .btn-light{background:#fff;color:var(--text);border:none}
+    .btn-light:hover{background:#f0f0f0}
+    .btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}
+    .btn-ghost:hover{background:rgba(255,255,255,.1)}
+
+    /* Site footer */
+    .site-footer{border-top:1px solid var(--border);padding:32px 0}
+    .footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--light);font-size:14px}
+    .footer-inner a{color:var(--light);text-decoration:none}
+    .footer-inner a:hover{color:var(--text)}
+
+    /* Scroll reveal */
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    @media(prefers-reduced-motion:reduce){.reveal,.reveal.visible{opacity:1;transform:none;transition:none}}
+
+    /* Responsive */
+    @media(max-width:980px){
+      .case-section{grid-template-columns:1fr}
+      .section-kicker{position:static}
+      .project-snapshot{grid-template-columns:repeat(2,1fr)}
+      .ps-item:nth-child(3),.ps-item:nth-child(6){border-right:1px solid var(--border)}
+      .ps-item:nth-child(2),.ps-item:nth-child(4){border-right:none}
+      .ps-item:nth-child(n+3){border-bottom:1px solid var(--border)}
+      .ps-item:nth-child(n+5){border-bottom:none}
+    }
+    @media(max-width:640px){
+      .nav-links a:not(.nav-cta){display:none}
+      .hero{padding-top:104px}
+      .card-grid{grid-template-columns:1fr}
+      .project-snapshot{grid-template-columns:1fr}
+      .ps-item{border-right:none!important;border-bottom:1px solid var(--border)!important}
+      .ps-item:last-child{border-bottom:none!important}
+      .workflow-row{flex-direction:column}
+      .workflow-step{border-right:none;border-bottom:1px solid var(--border)}
+      .workflow-step:last-child{border-bottom:none}
+      .btn-row{flex-direction:column;align-items:stretch}
+      .final-cta{flex-direction:column}
+      .gallery-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">S Vishnu Vardhan</a>
+      <ul class="nav-links">
+        <li><a href="index.html#work">All Work</a></li>
+        <li><a href="index.html#connect" class="nav-cta">Let&rsquo;s Connect</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <a href="index.html#work" class="back-link reveal">&larr; Back to all work</a>
+      <p class="eyebrow reveal">Independently Built Product &middot; Mentor Connects</p>
+      <h1 class="reveal">Building Mentor Connects</h1>
+      <p class="hero-sub reveal">How I designed and built a role-based platform for mentor onboarding, webinar management and administrative oversight.</p>
+      <div class="tag-row reveal">
+        <span class="tag indigo">Working Product</span>
+        <span class="tag">Role-Based Portals</span>
+        <span class="tag">Independent Build</span>
+        <span class="tag">React &middot; Supabase</span>
+      </div>
+      <div class="project-snapshot reveal">
+        <div class="ps-item">
+          <div class="ps-key">Role</div>
+          <div class="ps-val">Product Designer and Developer</div>
+        </div>
+        <div class="ps-item">
+          <div class="ps-key">Ownership</div>
+          <div class="ps-val">Independently designed and built</div>
+        </div>
+        <div class="ps-item">
+          <div class="ps-key">Users</div>
+          <div class="ps-val">Mentors and administrators</div>
+        </div>
+        <div class="ps-item">
+          <div class="ps-key">Product</div>
+          <div class="ps-val">Mentor onboarding and webinar operations</div>
+        </div>
+        <div class="ps-item">
+          <div class="ps-key">Status</div>
+          <div class="ps-val">Working application</div>
+        </div>
+        <div class="ps-item">
+          <div class="ps-key">Stack</div>
+          <div class="ps-val">React, Supabase, Tailwind CSS, Composio, FullCalendar</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="case-main">
+    <div class="container">
+
+      <!-- 01 The problem -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">01</div>
+          <h2>The Problem</h2>
+        </div>
+        <div class="stack">
+          <p>Mentor profiles, webinar schedules and registration information often become separate operational records. This makes it difficult to maintain accurate mentor information and understand programme activity from one place.</p>
+          <p>The challenge was not simply storing mentor and webinar data. It was connecting mentor onboarding, webinar planning, registrations and administrative oversight into one manageable workflow.</p>
+          <div class="problem-stack">
+            <div class="problem-row">
+              <span class="problem-op">&mdash;</span>
+              <span class="problem-label">Mentor information</span>
+            </div>
+            <div class="problem-row">
+              <span class="problem-op">+</span>
+              <span class="problem-label">Webinar schedules</span>
+            </div>
+            <div class="problem-row">
+              <span class="problem-op">+</span>
+              <span class="problem-label">Registration records</span>
+            </div>
+            <div class="problem-row">
+              <span class="problem-op">+</span>
+              <span class="problem-label">Administrative oversight</span>
+            </div>
+            <div class="problem-row">
+              <span class="problem-op">&rarr;</span>
+              <span class="problem-label">One connected platform</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 Product goal -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">02</div>
+          <h2>Product Goal</h2>
+        </div>
+        <div class="stack">
+          <p>Create a focused platform where mentors can complete their professional profiles and manage webinar activity, while administrators can oversee mentors, sessions and registrations without switching between disconnected tools.</p>
+          <div class="card-grid">
+            <div class="card">
+              <div class="role-badge mentor">M</div>
+              <h3>Mentor</h3>
+              <ul>
+                <li>Complete professional profile</li>
+                <li>Create and manage webinars</li>
+                <li>View upcoming sessions</li>
+                <li>Review registrations</li>
+              </ul>
+            </div>
+            <div class="card">
+              <div class="role-badge admin">A</div>
+              <h3>Administrator</h3>
+              <ul>
+                <li>Search and review mentors</li>
+                <li>Monitor onboarding status</li>
+                <li>Review all webinars</li>
+                <li>View platform-wide schedules</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 How the product works -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">03</div>
+          <h2>How the Product Works</h2>
+        </div>
+        <div class="stack">
+          <div>
+            <p class="workflow-label mentor-label">Mentor workflow</p>
+            <div class="workflow-row">
+              <div class="workflow-step">
+                <div class="workflow-step-num m">01</div>
+                <div class="workflow-step-label">Sign up</div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-step-num m">02</div>
+                <div class="workflow-step-label">Import or enter profile</div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-step-num m">03</div>
+                <div class="workflow-step-label">Review and complete</div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-step-num m">04</div>
+                <div class="workflow-step-label">Enter dashboard</div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-step-num m">05</div>
+                <div class="workflow-step-label">Schedule webinar</div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-step-num m">06</div>
+                <div class="workflow-step-label">Review registrations</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="workflow-label admin-label">Administrator workflow</p>
+            <div class="workflow-row">
+              <div class="workflow-step">
+                <div class="workflow-step-num a">01</div>
+                <div class="workflow-step-label">Open admin dashboard</div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-step-num a">02</div>
+                <div class="workflow-step-label">Review mentors</div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-step-num a">03</div>
+                <div class="workflow-step-label">Open mentor profile</div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-step-num a">04</div>
+                <div class="workflow-step-label">Review webinars</div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-step-num a">05</div>
+                <div class="workflow-step-label">Monitor sessions</div>
+              </div>
+              <div class="workflow-step">
+                <div class="workflow-step-num a">06</div>
+                <div class="workflow-step-label">View global calendar</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 What I designed and built -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">04</div>
+          <h2>What I Designed and Built</h2>
+        </div>
+        <div class="stack">
+          <div class="card indigo-top">
+            <h3>Mentor onboarding</h3>
+            <p>Mentors import their LinkedIn profile through Composio or enter details manually. After importing, they review and edit the pre-filled profile before completing setup. Manual entry prevents the LinkedIn integration from blocking onboarding when the external service is unavailable.</p>
+            <ul>
+              <li>LinkedIn-assisted import via Composio OAuth</li>
+              <li>Editable profile preview before completion</li>
+              <li>Manual-entry fallback for all profile fields</li>
+              <li>Profile completion required before accessing mentor workflows</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Webinar management</h3>
+            <p>Mentors create webinars with a title, description, date, time, target audience and meeting link. Draft inputs persist across page reloads using session storage. Webinars carry upcoming, held and not-held statuses, and mentors can review registrations against each session.</p>
+            <ul>
+              <li>Webinar creation with date, time, audience and meeting link</li>
+              <li>Form draft persistence via session storage</li>
+              <li>List and calendar views</li>
+              <li>Registration visibility per webinar</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Administrative oversight</h3>
+            <p>Administrators access a separate portal to review all mentors, their onboarding status and their webinar history. A global webinar list with time-based filters gives a cross-platform view, while FullCalendar renders all sessions on a calendar with per-mentor colour coding.</p>
+            <ul>
+              <li>Admin dashboard with mentor search</li>
+              <li>Per-mentor profile and webinar history</li>
+              <li>Global webinar list with status filters</li>
+              <li>Calendar view with per-mentor colour coding</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 Key product decisions -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">05</div>
+          <h2>Key Product Decisions</h2>
+        </div>
+        <div class="card-grid">
+          <div class="decision-card">
+            <div class="decision-num">Decision 01</div>
+            <h3>Optional LinkedIn import</h3>
+            <p class="decision-quote">Automation should reduce effort without becoming a single point of failure.</p>
+          </div>
+          <div class="decision-card">
+            <div class="decision-num">Decision 02</div>
+            <h3>Separate role-based experiences</h3>
+            <p class="decision-quote">Mentors need self-service tools for their profiles and webinars. Administrators need platform-wide visibility and control.</p>
+          </div>
+          <div class="decision-card">
+            <div class="decision-num">Decision 03</div>
+            <h3>Connect mentors to their webinar history</h3>
+            <p class="decision-quote">A mentor profile becomes more useful when it includes the sessions and registrations associated with that mentor.</p>
+          </div>
+          <div class="decision-card">
+            <div class="decision-num">Decision 04</div>
+            <h3>Provide list and calendar views</h3>
+            <p class="decision-quote">List views support management and scanning, while calendar views make upcoming schedules easier to understand.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 My ownership -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">06</div>
+          <h2>My Ownership</h2>
+        </div>
+        <div class="stack">
+          <p>I independently owned the product from definition to working implementation.</p>
+          <div class="card-grid">
+            <div class="ownership-col mine">
+              <div class="ownership-col-label">Product and UX</div>
+              <ul>
+                <li>Problem framing</li>
+                <li>Product scope</li>
+                <li>Information architecture</li>
+                <li>User flows</li>
+                <li>Role permissions</li>
+                <li>Interface design</li>
+              </ul>
+            </div>
+            <div class="ownership-col build">
+              <div class="ownership-col-label">Build and delivery</div>
+              <ul>
+                <li>Data modelling</li>
+                <li>React implementation</li>
+                <li>Supabase integration</li>
+                <li>LinkedIn and Composio integration</li>
+                <li>Testing and iteration</li>
+                <li>Repository maintenance</li>
+              </ul>
+            </div>
+          </div>
+          <p class="small-note">Unlike my cross-functional work on Pathwisse, Mentor Connects demonstrates my ability to define, design and build a complete product independently.</p>
+        </div>
+      </section>
+
+      <!-- 07 Current status and limitations -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">07</div>
+          <h2>Current Status and Limitations</h2>
+        </div>
+        <div class="stack">
+          <p>Mentor Connects is a working application with implemented mentor onboarding, profile management, webinar scheduling, registration visibility and administrator workflows.</p>
+          <div class="built-with">
+            <span class="built-with-label">Built with</span>
+            <span class="tag">React</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">Tailwind CSS</span>
+            <span class="tag">Composio</span>
+            <span class="tag">FullCalendar</span>
+          </div>
+          <div class="limit-list">
+            <div class="limit-item">
+              <span class="limit-dash">&mdash;</span>
+              <span class="limit-text">No mentor-to-mentee matching</span>
+            </div>
+            <div class="limit-item">
+              <span class="limit-dash">&mdash;</span>
+              <span class="limit-text">No built-in messaging</span>
+            </div>
+            <div class="limit-item">
+              <span class="limit-dash">&mdash;</span>
+              <span class="limit-text">No automated reminders</span>
+            </div>
+            <div class="limit-item">
+              <span class="limit-dash">&mdash;</span>
+              <span class="limit-text">No advanced webinar analytics</span>
+            </div>
+            <div class="limit-item">
+              <span class="limit-dash">&mdash;</span>
+              <span class="limit-text">Product adoption and business impact have not yet been measured</span>
+            </div>
+          </div>
+          <p class="small-note">LinkedIn import depends on Composio, an external integration. If Composio is unavailable, manual profile entry remains as a fallback.</p>
+          <div>
+            <span class="metrics-note">Proposed metrics &mdash; not yet measured</span>
+            <div class="metrics-list">
+              <div class="metric-item"><div class="metric-dot"></div><div class="metric-text">Mentor onboarding completion rate</div></div>
+              <div class="metric-item"><div class="metric-dot"></div><div class="metric-text">LinkedIn import success rate</div></div>
+              <div class="metric-item"><div class="metric-dot"></div><div class="metric-text">Webinar creation completion rate</div></div>
+              <div class="metric-item"><div class="metric-dot"></div><div class="metric-text">Percentage of webinars receiving registrations</div></div>
+              <div class="metric-item"><div class="metric-dot"></div><div class="metric-text">Repeat webinar creation by mentors</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 08 Learnings and product gallery -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number">08</div>
+          <h2>Learnings and Product Gallery</h2>
+        </div>
+        <div class="stack">
+          <div class="card-grid">
+            <div class="learning-card">
+              <div class="learning-num">Learning 01</div>
+              <h3>Automation needs a fallback</h3>
+              <p>External integrations should reduce effort without blocking the core workflow.</p>
+            </div>
+            <div class="learning-card">
+              <div class="learning-num">Learning 02</div>
+              <h3>Role-based products need different experiences</h3>
+              <p>Mentors and administrators use connected data but need different permissions, views and actions.</p>
+            </div>
+          </div>
+          <div class="learning-card">
+            <div class="learning-num">Learning 03</div>
+            <h3>Product and implementation decisions shape one another</h3>
+            <p>Building the product end-to-end required balancing ideal workflows with authentication, data, integration and interface constraints. The clearest lesson: ownership of the full stack forces you to understand why your product decisions are hard to implement &mdash; and to find the right trade-offs rather than pushing them to someone else.</p>
+          </div>
+          <p>Mentor Connects taught me how product definition, interface design, data structure and implementation constraints influence one another when one person owns the complete product.</p>
+
+          <!-- Product gallery — shown only when real screenshots are available.
+               Required screenshots (6–8 preferred):
+               1. Mentor onboarding or profile preview  →  assets/images/mentor-connects/onboarding-profile-preview.png
+               2. Mentor dashboard                      →  assets/images/mentor-connects/mentor-dashboard.png
+               3. Webinar list                          →  assets/images/mentor-connects/webinar-list.png
+               4. Create-webinar modal                  →  assets/images/mentor-connects/create-webinar-modal.png
+               5. Webinar details and registrations     →  assets/images/mentor-connects/webinar-details.png
+               6. Admin mentor management               →  assets/images/mentor-connects/admin-mentors.png
+               7. Mentor detail page                    →  assets/images/mentor-connects/mentor-detail.png
+               8. Global calendar                       →  assets/images/mentor-connects/admin-calendar.png
+
+               To enable gallery: uncomment the block below and add real <img> tags.
+               Do not use staged or fabricated screenshots.
+          -->
+          <!--
+          <div class="gallery-grid">
+            <div class="gallery-item">
+              <img src="assets/images/mentor-connects/onboarding-profile-preview.png" alt="Mentor profile preview step during onboarding" loading="lazy">
+              <p class="gallery-caption">Profile preview — onboarding step before publishing</p>
+            </div>
+            <div class="gallery-item">
+              <img src="assets/images/mentor-connects/mentor-dashboard.png" alt="Mentor dashboard with upcoming webinars and profile summary" loading="lazy">
+              <p class="gallery-caption">Mentor dashboard</p>
+            </div>
+            <div class="gallery-item">
+              <img src="assets/images/mentor-connects/webinar-list.png" alt="Webinar list showing status indicators" loading="lazy">
+              <p class="gallery-caption">Webinar list — upcoming, held and not-held statuses</p>
+            </div>
+            <div class="gallery-item">
+              <img src="assets/images/mentor-connects/create-webinar-modal.png" alt="Webinar creation form" loading="lazy">
+              <p class="gallery-caption">Create webinar modal</p>
+            </div>
+            <div class="gallery-item">
+              <img src="assets/images/mentor-connects/admin-mentors.png" alt="Admin mentor management list" loading="lazy">
+              <p class="gallery-caption">Admin mentor management</p>
+            </div>
+            <div class="gallery-item">
+              <img src="assets/images/mentor-connects/admin-calendar.png" alt="Admin calendar with per-mentor colour coding" loading="lazy">
+              <p class="gallery-caption">Global admin calendar</p>
+            </div>
+          </div>
+          -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <div class="container">
+    <div class="final-cta reveal">
+      <div>
+        <h2>View the repository</h2>
+        <p>Explore the source code or read the Pathwisse case study.</p>
+      </div>
+      <div class="btn-row">
+        <a href="https://github.com/VishnuHub17/Mentor-Connects" class="btn btn-light" target="_blank" rel="noopener noreferrer">View Repository &rarr;</a>
+        <a href="pathwisse.html" class="btn btn-ghost">Read Pathwisse Case Study</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span>S Vishnu Vardhan</span>
+        <span>Product &amp; UX at Pathwisse &middot; Business Analyst at Vtiger CRM</span>
+        <a href="index.html">Back to Portfolio</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>

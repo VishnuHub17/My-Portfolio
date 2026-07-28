@@ -554,15 +554,15 @@
     .cap-item:nth-child(4)        { border-bottom: none; }
 
     .cap-icon {
-      width: 44px;
-      height: 44px;
+      width: 36px;
+      height: 36px;
       display: grid;
       place-items: center;
-      border-radius: 12px;
+      border-radius: 9px;
       background: var(--accent-bg);
       color: var(--accent);
       border: 1px solid var(--accent-border);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       flex-shrink: 0;
     }
 
@@ -671,19 +671,19 @@
     }
 
     .work-card-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
       background: var(--accent-bg);
       border: 1px solid var(--accent-border);
       color: var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 15px;
       font-weight: 800;
       letter-spacing: -0.02em;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .work-card-body {
@@ -830,11 +830,18 @@
 
     /* Mentor Connects card */
     .wc-meta {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-2);
+      margin-bottom: 12px;
+      margin-top: -4px;
+    }
+    .wc-ownership {
       font-size: 11.5px;
       color: var(--text-3);
+      font-style: italic;
       margin-bottom: 14px;
       margin-top: -6px;
-      font-style: italic;
     }
     .wc-capabilities {
       list-style: none;
@@ -1547,42 +1554,28 @@
           </div>
         </div>
 
-        <div class="work-card" id="mentor-connects-overview">
+        <div class="work-card">
           <div class="work-card-body">
             <div class="work-card-icon">M</div>
             <div class="work-card-tags">
-              <span class="tag">Independently Built</span>
-              <span class="tag">Working Product</span>
+              <span class="tag">Independently Built Product</span>
             </div>
             <h3>Mentor Connects</h3>
-            <p class="wc-meta">Working product &middot; early stage &middot; built independently</p>
-            <p>A mentor management and webinar operations platform with LinkedIn-based onboarding, role-separated portals for mentors and admins, and calendar-driven scheduling.</p>
+            <p class="wc-meta">Mentor Onboarding and Webinar Operations Platform</p>
+            <p>A role-based platform connecting mentor onboarding, webinar scheduling, registration visibility and administrative oversight.</p>
+            <p class="wc-ownership">Designed and built end-to-end</p>
             <ul class="wc-capabilities">
-              <li>LinkedIn profile import via Composio OAuth</li>
-              <li>Multi-step mentor onboarding with profile preview</li>
-              <li>Webinar creation and scheduling with draft persistence</li>
-              <li>Admin calendar with per-mentor colour coding</li>
+              <li>LinkedIn-assisted onboarding</li>
+              <li>Mentor and admin workflows</li>
+              <li>Webinar lifecycle management</li>
             </ul>
-            <div class="wc-flow">
-              <span>Signup</span><span class="wc-flow-arrow">&rarr;</span>
-              <span>LinkedIn Import</span><span class="wc-flow-arrow">&rarr;</span>
-              <span>Profile Setup</span><span class="wc-flow-arrow">&rarr;</span>
-              <span>Mentor Portal</span><span class="wc-flow-arrow">&rarr;</span>
-              <span>Webinars &amp; Calendar</span>
-            </div>
-            <div class="work-card-tags" style="margin-bottom:18px">
-              <span class="tag">React</span>
-              <span class="tag">Supabase</span>
-              <span class="tag">Tailwind CSS</span>
-              <span class="tag">Composio</span>
-              <span class="tag">FullCalendar</span>
-            </div>
-            <!-- DEV: screenshot placeholders — replace with real screenshots before publishing -->
-            <!-- <div class="screenshot-slot todo-flag">[Screenshot: Mentor dashboard]</div> -->
-            <!-- <div class="screenshot-slot todo-flag">[Screenshot: Webinar creation modal]</div> -->
-            <!-- <div class="screenshot-slot todo-flag">[Screenshot: Admin calendar view]</div> -->
+            <!-- DEV: replace comments with real screenshots before publishing -->
+            <!-- <img src="assets/images/mentor-connects/mentor-dashboard.png" alt="Mentor dashboard" loading="lazy" class="wc-screenshot"> -->
+            <!-- <img src="assets/images/mentor-connects/create-webinar-modal.png" alt="Create webinar modal" loading="lazy" class="wc-screenshot"> -->
+            <!-- <img src="assets/images/mentor-connects/admin-calendar.png" alt="Admin calendar" loading="lazy" class="wc-screenshot"> -->
             <div class="work-card-actions">
-              <a href="#mentor-connects-overview" class="btn-primary work-card-btn">View Product Overview &rarr;</a>
+              <a href="mentor-connects.html" class="btn-primary work-card-btn">Read Case Study</a>
+              <a href="https://github.com/VishnuHub17/Mentor-Connects" class="btn-secondary work-card-btn" target="_blank" rel="noopener noreferrer">View Repository</a>
             </div>
           </div>
         </div>
