@@ -881,6 +881,130 @@
     .wc-flow-arrow { color: var(--accent); padding: 0 2px; }
 
     /* ============================================================
+       SELECTED WORK — 3-COLUMN COMPACT GRID
+    ============================================================ */
+    .selected-work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .project-card {
+      height: 272px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--border-hover);
+      transition: border-color 0.2s, transform 0.2s var(--ease), box-shadow 0.2s;
+    }
+    .project-card:hover {
+      border-top-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(17, 17, 17, 0.08);
+    }
+
+    .project-card-flagship {
+      background: var(--accent-bg);
+      border-color: var(--accent-border);
+      border-top: 3px solid var(--accent);
+    }
+    .project-card-flagship:hover {
+      border-color: var(--accent-border);
+      border-top-color: var(--accent);
+    }
+
+    .pc-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .pc-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .project-card-flagship .pc-icon {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .pc-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      align-items: flex-start;
+      padding-top: 3px;
+    }
+
+    h3.pc-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-1);
+      line-height: 1.3;
+      margin-bottom: 7px;
+    }
+    .pc-desc {
+      font-size: 13.5px;
+      color: var(--text-2);
+      line-height: 1.6;
+      flex: 1;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+    .pc-disclaimer {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-3);
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+    .project-card-cta {
+      margin-top: auto;
+      padding-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      flex-shrink: 0;
+    }
+    .project-card-cta .btn-primary,
+    .project-card-cta .btn-secondary {
+      padding: 8px 14px;
+      font-size: 13px;
+      min-height: auto;
+    }
+
+    @media (max-width: 900px) {
+      .selected-work-grid { grid-template-columns: 1fr 1fr; }
+      .project-card-flagship { grid-column: 1 / -1; height: auto; min-height: 180px; }
+      .project-card { height: auto; min-height: 200px; }
+      .pc-desc { -webkit-line-clamp: unset; }
+    }
+    @media (max-width: 600px) {
+      .selected-work-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
        TESTIMONIALS
     ============================================================ */
     .testimonial-band {
@@ -1510,73 +1634,57 @@
       <p class="section-label reveal">Selected Product Work</p>
       <h2 class="section-heading reveal">Three projects showing discovery, product decisions and shipped execution.</h2>
 
-      <!-- Pathwisse: Featured / flagship -->
-      <div class="work-card-featured reveal">
-        <div class="work-card-featured-body">
-          <div class="work-card-icon">P</div>
-          <div class="work-card-tags" style="margin-bottom:14px">
-            <span class="tag">Flagship</span>
-            <span class="tag">B2B EdTech</span>
-            <span class="tag">4 Portals</span>
-            <span class="tag">Pathwisse</span>
+      <!-- Three-column equal-height project cards -->
+      <div class="selected-work-grid reveal">
+
+        <!-- Pathwisse — flagship -->
+        <div class="project-card project-card-flagship">
+          <div class="pc-header">
+            <div class="pc-icon">P</div>
+            <div class="pc-tags">
+              <span class="tag">Flagship Case Study</span>
+              <span class="tag">B2B EdTech</span>
+            </div>
           </div>
-          <h3>Pathwisse &mdash; Student Success Platform</h3>
-          <p>A discovery-led, role-based platform connecting student development, faculty intervention and institutional readiness visibility across four portals.</p>
-          <p style="font-size:14px;color:var(--text-3);margin-top:-8px;margin-bottom:16px">Key decision: shifted roadmap emphasis from expanding content to enabling continuous readiness tracking and early intervention.</p>
-          <div class="work-card-featured-stats">
-            <div class="wc-stat"><strong>5</strong><span>Colleges researched</span></div>
-            <div class="wc-stat"><strong>160+</strong><span>Stakeholders engaged</span></div>
-            <div class="wc-stat"><strong>4</strong><span>Role-based portals</span></div>
-            <div class="wc-stat"><strong>4</strong><span>Colleges onboarded</span></div>
+          <h3 class="pc-title">Pathwisse &mdash; Student Success Platform</h3>
+          <p class="pc-desc">A discovery-led, role-based platform connecting student development, faculty intervention and institutional readiness visibility. Five colleges, 160+ stakeholders, four portals.</p>
+          <div class="project-card-cta">
+            <a href="pathwisse.html" class="btn-primary work-card-btn">Read Case Study &rarr;</a>
           </div>
-          <a href="pathwisse.html" class="btn-primary work-card-btn">Read the full case study &rarr;</a>
         </div>
-      </div>
 
-      <!-- Agoda + Mentor Connect -->
-      <div class="work-cards reveal">
-
-        <div class="work-card">
-          <div class="work-card-body">
-            <div class="work-card-icon">A</div>
-            <div class="work-card-tags">
-              <span class="tag">Product Thinking</span>
+        <!-- Agoda -->
+        <div class="project-card">
+          <div class="pc-header">
+            <div class="pc-icon">A</div>
+            <div class="pc-tags">
+              <span class="tag">Concept Case Study</span>
               <span class="tag">TravelTech</span>
-              <span class="tag">UX Case Study</span>
             </div>
-            <h3>Agoda Booking Assurance &amp; Flexibility</h3>
-            <p>Reducing post-booking uncertainty in hotel bookings through a Booking Assurance Layer that makes hotel acknowledgment, detail-matching and risk status visible before check-in.</p>
-            <div class="work-card-disclaimer">Independent concept case study &mdash; not affiliated with Agoda. All metrics are proposed, not actual results.</div>
-            <div class="work-card-actions">
-              <a href="agoda.html" class="btn-primary work-card-btn">Read Case Study</a>
-              <a href="https://drive.google.com/file/d/11zVTObMYufiaz7DZqK9ErQ9-mLv9FBqF/view?usp=sharing" class="btn-secondary work-card-btn" target="_blank" rel="noopener noreferrer">View Deck</a>
-            </div>
+          </div>
+          <h3 class="pc-title">Agoda Booking Assurance</h3>
+          <p class="pc-desc">Reducing post-booking uncertainty through a Booking Assurance Layer that makes hotel acknowledgment, detail-matching and risk status visible before check-in.</p>
+          <p class="pc-disclaimer">Independent concept &mdash; not affiliated with Agoda.</p>
+          <div class="project-card-cta">
+            <a href="agoda.html" class="btn-primary work-card-btn">Read Case Study</a>
+            <a href="https://drive.google.com/file/d/11zVTObMYufiaz7DZqK9ErQ9-mLv9FBqF/view?usp=sharing" class="btn-secondary work-card-btn" target="_blank" rel="noopener noreferrer">View Deck</a>
           </div>
         </div>
 
-        <div class="work-card">
-          <div class="work-card-body">
-            <div class="work-card-icon">M</div>
-            <div class="work-card-tags">
-              <span class="tag">Independently Built Product</span>
+        <!-- Mentor Connects -->
+        <div class="project-card">
+          <div class="pc-header">
+            <div class="pc-icon">M</div>
+            <div class="pc-tags">
+              <span class="tag">Independently Built</span>
+              <span class="tag">Working Product</span>
             </div>
-            <h3>Mentor Connects</h3>
-            <p class="wc-meta">Mentor Onboarding and Webinar Operations Platform</p>
-            <p>A role-based platform connecting mentor onboarding, webinar scheduling, registration visibility and administrative oversight.</p>
-            <p class="wc-ownership">Designed and built end-to-end</p>
-            <ul class="wc-capabilities">
-              <li>LinkedIn-assisted onboarding</li>
-              <li>Mentor and admin workflows</li>
-              <li>Webinar lifecycle management</li>
-            </ul>
-            <!-- DEV: replace comments with real screenshots before publishing -->
-            <!-- <img src="assets/images/mentor-connects/mentor-dashboard.png" alt="Mentor dashboard" loading="lazy" class="wc-screenshot"> -->
-            <!-- <img src="assets/images/mentor-connects/create-webinar-modal.png" alt="Create webinar modal" loading="lazy" class="wc-screenshot"> -->
-            <!-- <img src="assets/images/mentor-connects/admin-calendar.png" alt="Admin calendar" loading="lazy" class="wc-screenshot"> -->
-            <div class="work-card-actions">
-              <a href="mentor-connects.html" class="btn-primary work-card-btn">Read Case Study</a>
-              <a href="https://github.com/VishnuHub17/Mentor-Connects" class="btn-secondary work-card-btn" target="_blank" rel="noopener noreferrer">View Repository</a>
-            </div>
+          </div>
+          <h3 class="pc-title">Mentor Connects</h3>
+          <p class="pc-desc">Role-based platform connecting mentor onboarding, webinar scheduling, registration visibility and administrative oversight. Designed and built end-to-end.</p>
+          <div class="project-card-cta">
+            <a href="mentor-connects.html" class="btn-primary work-card-btn">Read Case Study</a>
+            <a href="https://github.com/VishnuHub17/Mentor-Connects" class="btn-secondary work-card-btn" target="_blank" rel="noopener noreferrer">View Repository</a>
           </div>
         </div>
 
