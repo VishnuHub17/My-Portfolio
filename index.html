@@ -1052,7 +1052,40 @@
     .wk-flagship-media {
       overflow: hidden;
       position: relative;
-      background: linear-gradient(145deg, #d4deff 0%, #b8c6ff 100%);
+    }
+    .pathwisse-metrics {
+      height: 100%;
+      min-height: 210px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+      background: rgba(255,255,255,0.42);
+      border-left: 1px solid rgba(26,64,204,.12);
+    }
+    .pathwisse-metric {
+      display: grid;
+      grid-template-columns: 72px minmax(0,1fr);
+      align-items: center;
+      gap: 14px;
+      padding: 15px 0;
+    }
+    .pathwisse-metric + .pathwisse-metric {
+      border-top: 1px solid rgba(26,64,204,.12);
+    }
+    .pathwisse-metric strong {
+      font-size: 30px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: #1A40CC;
+    }
+    .pathwisse-metric span {
+      font-size: 13px;
+      line-height: 1.35;
+      font-weight: 600;
+      color: #10204F;
     }
     .wk-flagship-media img {
       width: 100%;
@@ -1170,7 +1203,8 @@
 
     @media (max-width: 860px) {
       .wk-flagship { grid-template-columns: 1fr; height: auto; }
-      .wk-flagship-media { height: 110px; }
+      .wk-flagship-media { height: auto; }
+      .pathwisse-metrics { min-height: unset; border-left: none; border-top: 1px solid rgba(26,64,204,.12); }
     }
     @media (max-width: 640px) {
       .wk-duo { grid-template-columns: 1fr; }
@@ -1817,14 +1851,26 @@
             </div>
           </div>
           <h3 class="wk-flagship-title">Pathwisse &mdash; Student Success Platform</h3>
-          <p class="wk-flagship-desc">A discovery-led, role-based platform connecting student development, faculty intervention and institutional readiness visibility across four portals. Five colleges, 160+ stakeholders.</p>
+          <p class="wk-flagship-desc">A discovery-led, role-based platform connecting student development, faculty intervention and institutional readiness visibility across four portals.</p>
           <div class="wk-flagship-cta">
             <a href="pathwisse.html" class="btn-primary" style="padding:8px 16px;font-size:13px">Read Case Study &rarr;</a>
           </div>
         </div>
         <div class="wk-flagship-media">
-          <!-- Pathwisse product preview — add screenshot when available -->
-          <!-- <img src="assets/images/pathwisse/dashboard.png" alt="Pathwisse student dashboard" loading="lazy"> -->
+          <div class="pathwisse-metrics" aria-label="Pathwisse project evidence">
+            <div class="pathwisse-metric">
+              <strong>5</strong>
+              <span>Colleges Researched</span>
+            </div>
+            <div class="pathwisse-metric">
+              <strong>160+</strong>
+              <span>Stakeholders Engaged</span>
+            </div>
+            <div class="pathwisse-metric">
+              <strong>4</strong>
+              <span>Colleges Onboarded</span>
+            </div>
+          </div>
         </div>
       </div>
 
