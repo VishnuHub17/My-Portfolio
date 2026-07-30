@@ -161,7 +161,7 @@
     /* Screenshot components */
     .screenshot-wrap{margin-top:12px}
     .screenshot-frame{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--border);line-height:0}
-    .screenshot-frame img{width:100%;display:block;border-radius:0}
+    .screenshot-frame img{width:100%;height:auto;display:block;border-radius:0;object-fit:contain}
     .screenshot-caption{font-size:12px;color:var(--light);text-align:center;margin-top:6px}
     .privacy-mask{position:absolute;background:#f5f5f3}
 
@@ -184,6 +184,9 @@
     @media(prefers-reduced-motion:reduce){.reveal,.reveal.visible{opacity:1;transform:none;transition:none}}
 
     /* Responsive */
+    @media(max-width:760px){
+      .gallery-grid{grid-template-columns:1fr}
+    }
     @media(max-width:980px){
       .case-section{grid-template-columns:1fr}
       .section-kicker{position:static}
@@ -205,7 +208,6 @@
       .workflow-step:last-child{border-bottom:none}
       .btn-row{flex-direction:column;align-items:stretch}
       .final-cta{flex-direction:column}
-      .gallery-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -397,6 +399,32 @@
               </div>
             </div>
           </div>
+
+          <div>
+            <h3 style="font-size:15px;font-weight:700;letter-spacing:-.01em;margin-bottom:14px;color:var(--text)">Key Product Decisions</h3>
+            <div class="card-grid">
+              <div class="decision-card">
+                <div class="decision-num">Decision 01</div>
+                <h3>Optional LinkedIn import with manual fallback</h3>
+                <p class="decision-quote">LinkedIn import reduces the effort required to create a professional mentor profile, while manual entry ensures onboarding can continue when the external integration is unavailable or incomplete.</p>
+              </div>
+              <div class="decision-card">
+                <div class="decision-num">Decision 02</div>
+                <h3>Separate mentor and administrator experiences</h3>
+                <p class="decision-quote">Mentors need a focused workspace for profile and webinar management. Administrators need cross-platform visibility across mentors, sessions and onboarding status.</p>
+              </div>
+              <div class="decision-card">
+                <div class="decision-num">Decision 03</div>
+                <h3>Connecting mentor profiles with webinar history</h3>
+                <p class="decision-quote">Keeping professional profile information and session history together helps administrators understand both who a mentor is and how they are participating in the platform.</p>
+              </div>
+              <div class="decision-card">
+                <div class="decision-num">Decision 04</div>
+                <h3>Supporting both list and calendar views</h3>
+                <p class="decision-quote">The list view supports detailed session management, while the calendar view provides a faster understanding of scheduling conflicts and upcoming activity.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -442,7 +470,7 @@
             </div>
             <p class="screenshot-caption">Mentor dashboard — upcoming sessions and activity summary</p>
           </div>
-          <p>The create-webinar modal collects the webinar title, description, date, time, target audience and meeting link. Form inputs persist across page reloads using session storage, so a draft is not lost if the mentor navigates away. Once published, the webinar appears in the mentor's list and on the admin's global view.</p>
+          <p>The create-webinar modal collects the webinar title, description, date, time, target audience and meeting link. Form inputs persist across page reloads using session storage, so a draft is not lost if the mentor navigates away. Once published, the webinar appears in the mentor's list, and mentors can click through to see the registrations associated with each session.</p>
           <div class="screenshot-wrap">
             <div class="screenshot-frame">
               <img src="assets/images/mentor-connects/webinar-list.png" alt="Webinar management list showing upcoming sessions with date, time, audience and status" loading="lazy">
@@ -465,6 +493,8 @@
               <img src="assets/images/mentor-connects/admin-mentors.png" alt="Admin Mentor Management table listing mentors with onboarding status, company and actions" loading="lazy">
               <!-- Mask phone number in first mentor row (Phone column) -->
               <div class="privacy-mask" style="left:43%;top:27%;width:13%;height:7%"></div>
+              <!-- Mask admin account email in sidebar bottom-left -->
+              <div class="privacy-mask" style="left:0%;top:88%;width:14%;height:12%"></div>
             </div>
             <p class="screenshot-caption">Mentor Management — admin view with onboarding status and search</p>
           </div>
@@ -472,6 +502,8 @@
           <div class="screenshot-wrap">
             <div class="screenshot-frame">
               <img src="assets/images/mentor-connects/global-calendar.png" alt="Global admin calendar showing all mentor webinars in a monthly layout with per-mentor colour coding" loading="lazy">
+              <!-- Mask admin account email in sidebar bottom-left -->
+              <div class="privacy-mask" style="left:0%;top:88%;width:14%;height:12%"></div>
             </div>
             <p class="screenshot-caption">Global Calendar — FullCalendar with per-mentor colour coding</p>
           </div>
@@ -606,11 +638,11 @@
   <div class="container">
     <div class="final-cta reveal">
       <div>
-        <h2>Read the Pathwisse case study</h2>
-        <p>Flagship case study &middot; B2B EdTech &middot; Five colleges, four portals</p>
+        <h2>View all case studies</h2>
+        <p>Return to the portfolio to explore Pathwisse and Agoda Booking Assurance.</p>
       </div>
       <div class="btn-row">
-        <a href="pathwisse.html" class="btn btn-light">Read Pathwisse Case Study &rarr;</a>
+        <a href="index.html#work" class="btn btn-light">&larr; Back to All Work</a>
       </div>
     </div>
   </div>
