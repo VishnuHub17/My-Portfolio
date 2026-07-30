@@ -1161,6 +1161,21 @@
       font-size: 13px;
       min-height: auto;
     }
+    /* MC card homepage preview strip */
+    .wk-mc-preview {
+      height: 80px;
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .wk-mc-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
     /* Shared card icon */
     .wk-icon {
       width: 32px;
@@ -1892,6 +1907,9 @@
             <div class="wk-card-cta">
               <a href="mentor-connects.html" class="btn-primary">Read Case Study</a>
             </div>
+          </div>
+          <div class="wk-mc-preview">
+            <img src="assets/images/projects/mentor-connects-preview.png" alt="Mentor Connects webinar-management workspace" loading="lazy">
           </div>
         </div>
 
