@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="S Vishnu Vardhan — Product professional combining enterprise SaaS problem-solving at Vtiger CRM with zero-to-one product work at Pathwisse. Targeting Associate PM, PM and B2B SaaS roles.">
-  <title>S Vishnu Vardhan | Product Professional</title>
+  <meta name="description" content="S Vishnu Vardhan — Business Analyst at Vtiger CRM, combining enterprise SaaS workflow expertise with early-stage product discovery and B2B Student Success Platform work. Targeting Associate PM, Product Analyst, and Business Analyst roles.">
+  <title>S Vishnu Vardhan | Product Management &amp; Business Analysis</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -24,14 +24,14 @@
       --border:       #E8E8E6;
       --border-hover: #C8C8C6;
 
-      --text-1: #111111;
-      --text-2: #55554F;
+      --text-1: #151515;
+      --text-2: #625B56;
       --text-3: #9A9A94;
 
-      --accent:        #1A40CC;
-      --accent-hover:  #1230A3;
-      --accent-bg:     #EEF2FF;
-      --accent-border: #CAD5FF;
+      --accent:        #D65400; /* Orange accent */
+      --accent-hover:  #963400; /* Dark orange */
+      --accent-bg:     #FFF1E7; /* Soft orange */
+      --accent-border: #EFD8CA; /* Warm border */
       --blue-bright:   #4263EB;
       --navy-deep:     #10204F;
 
@@ -395,18 +395,22 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 1 / 1;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow:
+        0 24px 60px rgba(17, 17, 17, 0.10),
+        0 4px 16px rgba(17, 17, 17, 0.06);
+      justify-self: end;
     }
 
     .hero-img {
       width: 100%;
-      max-width: 420px;
-      aspect-ratio: 3 / 4;
-      border-radius: 24px;
+      height: 100%;
       object-fit: cover;
-      object-position: top center;
-      box-shadow:
-        0 24px 60px rgba(17, 17, 17, 0.10),
-        0 4px 16px rgba(17, 17, 17, 0.06);
+      object-position: 60% center;
       display: block;
     }
 
@@ -537,21 +541,30 @@
     ============================================================ */
     .caps-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(6, 1fr);
       border: 1px solid var(--border);
       border-radius: 14px;
       overflow: hidden;
     }
-
     .cap-item {
       background: var(--surface);
       padding: 36px 32px;
       border-right: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-    .cap-item:nth-child(2n)       { border-right: none; }
-    .cap-item:nth-child(3),
-    .cap-item:nth-child(4)        { border-bottom: none; }
+    .cap-item:nth-child(1),
+    .cap-item:nth-child(2),
+    .cap-item:nth-child(3) {
+      grid-column: span 2;
+    }
+    .cap-item:nth-child(4),
+    .cap-item:nth-child(5) {
+      grid-column: span 3;
+    }
+    .cap-item:nth-child(3) { border-right: none; }
+    .cap-item:nth-child(5) { border-right: none; }
+    .cap-item:nth-child(4),
+    .cap-item:nth-child(5) { border-bottom: none; }
 
     .cap-icon {
       width: 36px;
@@ -1053,7 +1066,7 @@
       overflow: hidden;
       position: relative;
     }
-    .pathwisse-metrics {
+    .student-success-metrics {
       height: 100%;
       min-height: 210px;
       padding: 18px 20px;
@@ -1062,7 +1075,7 @@
       justify-content: center;
       gap: 0;
       background: rgba(255,255,255,0.42);
-      border-left: 1px solid rgba(26,64,204,.12);
+      border-left: 1px solid var(--accent-border);
     }
     .pathwisse-metric {
       display: grid;
@@ -1072,20 +1085,20 @@
       padding: 15px 0;
     }
     .pathwisse-metric + .pathwisse-metric {
-      border-top: 1px solid rgba(26,64,204,.12);
+      border-top: 1px solid var(--accent-border);
     }
     .pathwisse-metric strong {
       font-size: 30px;
       line-height: 1;
       font-weight: 800;
       letter-spacing: -0.04em;
-      color: #1A40CC;
+      color: var(--accent);
     }
     .pathwisse-metric span {
       font-size: 13px;
       line-height: 1.35;
       font-weight: 600;
-      color: #10204F;
+      color: var(--navy-deep);
     }
     .wk-flagship-media img {
       width: 100%;
@@ -1156,7 +1169,8 @@
       flex-wrap: wrap;
       gap: 7px;
     }
-    .wk-card-cta .btn-primary {
+    .wk-card-cta .btn-primary,
+    .wk-card-cta .btn-secondary {
       padding: 7px 13px;
       font-size: 13px;
       min-height: auto;
@@ -1202,7 +1216,7 @@
     @media (max-width: 860px) {
       .wk-flagship { grid-template-columns: 1fr; height: auto; }
       .wk-flagship-media { height: auto; }
-      .pathwisse-metrics { min-height: unset; border-left: none; border-top: 1px solid rgba(26,64,204,.12); }
+      .student-success-metrics { min-height: unset; border-left: none; border-top: 1px solid var(--accent-border); }
     }
     @media (max-width: 640px) {
       .wk-duo { grid-template-columns: 1fr; }
@@ -1441,12 +1455,16 @@
         gap: clamp(32px, 5vw, 48px);
       }
 
-      .hero-image-wrap { justify-content: flex-start; }
-
-      .hero-img-ph,
-      .hero-img {
-        max-width: 260px;
+      .hero-image-wrap {
+        justify-content: center;
+        max-width: 320px;
         aspect-ratio: 1 / 1;
+        justify-self: center;
+      }
+
+      .hero-img {
+        width: 100%;
+        height: 100%;
       }
     }
 
@@ -1454,26 +1472,23 @@
        PROOF STRIP
     ============================================================ */
     .proof-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       background: var(--surface);
     }
     .proof-item {
-      flex: 1;
-      min-width: 160px;
       padding: 22px 28px;
       border-right: 1px solid var(--border);
       display: flex;
       flex-direction: column;
       transition: background 0.2s, box-shadow 0.2s;
     }
-    .proof-item:last-child { border-right: none; }
+    .proof-item:nth-child(4) { border-right: none; }
     .proof-item:hover {
-      background: #F5F7FF;
-      box-shadow: inset 0 -3px 0 var(--accent-border);
+      background: var(--accent-bg);
+      box-shadow: inset 0 -3px 0 var(--accent);
     }
     .proof-icon {
       width: 34px;
@@ -1610,8 +1625,12 @@
       .work-cards { grid-template-columns: 1fr; }
 
       .caps-grid { grid-template-columns: 1fr; }
-      .cap-item { border-right: none !important; }
-      .cap-item:nth-child(3) { border-bottom: 1px solid var(--border) !important; }
+      .cap-item {
+        grid-column: span 1 !important;
+        border-right: none !important;
+        border-bottom: 1px solid var(--border) !important;
+      }
+      .cap-item:last-child { border-bottom: none !important; }
 
       .toolkit-grid { grid-template-columns: 1fr; }
       .toolkit-item { border-right: none !important; border-bottom: 1px solid var(--border) !important; }
@@ -1629,8 +1648,20 @@
       .principles-grid { grid-template-columns: 1fr; }
       .principle-item { border-right: none; border-bottom: 1px solid var(--border); }
       .principle-item:last-child { border-bottom: none; }
-      .proof-item { border-right: none; border-bottom: 1px solid var(--border); }
-      .proof-item:last-child { border-bottom: none; }
+      .proof-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .proof-item {
+        border-right: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .proof-item:nth-child(2n) {
+        border-right: none;
+      }
+      .proof-item:nth-child(3),
+      .proof-item:nth-child(4) {
+        border-bottom: none;
+      }
     }
 
     @media (max-width: 768px) {
@@ -1673,9 +1704,10 @@
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#capabilities">Capabilities</a></li>
         <li><a href="#work">Work</a></li>
-        <li><a href="#principles">Principles</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="assets/vishnu-vardhan-resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
         <li><a href="#connect" class="nav-cta-link">Let's Connect</a></li>
       </ul>
     </div>
@@ -1691,18 +1723,21 @@
         <div class="hero-text">
           <p class="hero-name reveal">S Vishnu Vardhan</p>
           <h1 class="hero-headline reveal reveal-d1">
-            I turn complex customer and business problems into products
-            <span class="hero-hl-accent">teams can ship and users can adopt.</span>
+            I turn complex customer and business problems into clear product decisions, <span class="hero-hl-accent">requirements and experiences teams can ship and validate.</span>
           </h1>
           <p class="hero-sub reveal reveal-d2">
-            Product professional combining enterprise SaaS problem-solving at Vtiger CRM with zero-to-one product work at Pathwisse.
+            Business Analyst at Vtiger CRM, combining enterprise SaaS workflow expertise with early-stage product discovery and independent product building.
           </p>
           <p class="hero-credential reveal reveal-d2">
-            Product &amp; UX, Pathwisse &middot; Business Analyst, Vtiger CRM
+            Business Analyst, Vtiger CRM &middot; Product Discovery, Requirements &amp; UX
           </p>
           <div class="hero-ctas reveal reveal-d3">
             <a href="#work" class="btn-primary">View Selected Work</a>
+            <a href="assets/vishnu-vardhan-resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-secondary">View Resume</a>
           </div>
+        </div>
+        <div class="hero-image-wrap reveal reveal-d1">
+          <img src="assets/images/vishnu-hero.webp" alt="Portrait of S Vishnu Vardhan against an orange architectural background" class="hero-img" width="1402" height="1122" fetchpriority="high" decoding="async">
         </div>
       </div>
     </div>
@@ -1716,15 +1751,15 @@
       <div class="proof-icon" aria-hidden="true">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       </div>
-      <div class="proof-company">Pathwisse</div>
+      <div class="proof-company">Research</div>
       <strong>160+</strong>
-      <span>Stakeholders engaged across 5 colleges</span>
+      <span>Stakeholders across five colleges</span>
     </div>
     <div class="proof-item">
       <div class="proof-icon" aria-hidden="true">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
       </div>
-      <div class="proof-company">Pathwisse</div>
+      <div class="proof-company">Institutional validation</div>
       <strong>4</strong>
       <span>Colleges onboarded</span>
     </div>
@@ -1732,17 +1767,17 @@
       <div class="proof-icon" aria-hidden="true">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
       </div>
-      <div class="proof-company">Vtiger CRM</div>
+      <div class="proof-company">Enterprise product work</div>
       <strong>20+</strong>
-      <span>Enterprise customers engaged</span>
+      <span>NextGen enhancement proposals</span>
     </div>
     <div class="proof-item">
       <div class="proof-icon" aria-hidden="true">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
       </div>
-      <div class="proof-company">Vtiger CRM</div>
+      <div class="proof-company">Delivery</div>
       <strong>3</strong>
-      <span>NextGen enhancements shipped</span>
+      <span>Product improvements shipped</span>
     </div>
   </div>
 
@@ -1756,7 +1791,8 @@
       <h2 class="section-heading reveal">Hello, I'm Vishnu</h2>
 
       <div class="about-intro reveal">
-        <p>I work across product discovery, requirements, UX definition, validation and delivery. At Pathwisse, I helped shape a role-based student success platform through research across five colleges. At Vtiger CRM, I translate complex enterprise workflows into product improvements and scalable solutions.</p>
+        <p>I work across product discovery, workflow analysis, requirements, UX definition, stakeholder validation and UAT. My experience spans enterprise SaaS at Vtiger CRM, early-stage product work and independently built products.</p>
+        <p style="margin-top: 16px;">I am most effective where user needs, business constraints and delivery realities need to be translated into a clear product direction.</p>
       </div>
 
     </div>
@@ -1778,12 +1814,12 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
           </div>
           <div class="cap-num">01</div>
-          <h3>Product Discovery &amp; User Research</h3>
-          <p>When you have an idea but no shape, I meet users directly, find the real problem, and define the journeys, edge cases, and wireframes for a clear, buildable first version.</p>
+          <h3>Product Discovery &amp; Problem Framing</h3>
+          <p>I work with users and stakeholders to understand workflows, constraints and underlying needs before defining a solution.</p>
           <div class="cap-tags">
             <span class="tag">User Research</span>
-            <span class="tag">User Flows</span>
-            <span class="tag">Wireframes</span>
+            <span class="tag">Problem Framing</span>
+            <span class="tag">Workflow Analysis</span>
           </div>
         </div>
         <div class="cap-item">
@@ -1791,12 +1827,12 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
           </div>
           <div class="cap-num">02</div>
-          <h3>Requirements &amp; Clarity</h3>
-          <p>I translate unclear needs into structured requirements, user stories and acceptance criteria that reduce ambiguity, missed edge cases and delivery rework.</p>
+          <h3>Requirements &amp; Delivery Clarity</h3>
+          <p>I translate ambiguous needs into user journeys, structured requirements, role permissions, edge cases and acceptance criteria.</p>
           <div class="cap-tags">
+            <span class="tag">PRDs</span>
             <span class="tag">User Stories</span>
             <span class="tag">Acceptance Criteria</span>
-            <span class="tag">PRDs</span>
           </div>
         </div>
         <div class="cap-item">
@@ -1804,24 +1840,37 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
           </div>
           <div class="cap-num">03</div>
-          <h3>Rapid Prototyping</h3>
-          <p>I create testable prototypes quickly so teams can validate workflows and product decisions before investing in full development.</p>
+          <h3>Product Decisions &amp; Prioritisation</h3>
+          <p>I evaluate user value, business needs, dependencies and implementation constraints to help teams decide what to solve first.</p>
           <div class="cap-tags">
-            <span class="tag">Figma</span>
-            <span class="tag">Interactive Prototypes</span>
+            <span class="tag">Prioritisation</span>
+            <span class="tag">Trade-offs</span>
+            <span class="tag">Scope Definition</span>
+          </div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="cap-num">04</div>
+          <h3>Validation, UAT &amp; Measurement</h3>
+          <p>I validate workflows through prototypes, demonstrations and UAT, then define the metrics needed to assess adoption and product value.</p>
+          <div class="cap-tags">
+            <span class="tag">UAT</span>
             <span class="tag">Product Validation</span>
+            <span class="tag">Product Metrics</span>
           </div>
         </div>
         <div class="cap-item">
           <div class="cap-icon" aria-hidden="true">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </div>
-          <div class="cap-num">04</div>
-          <h3>CRM &amp; SaaS Workflows</h3>
-          <p>When your processes live in a CRM, I map, configure, and improve workflows so business users actually adopt them. Grounded in hands-on work at Vtiger CRM across multiple workflow and module configurations.</p>
+          <div class="cap-num">05</div>
+          <h3>Enterprise SaaS Workflows</h3>
+          <p>I analyse and improve CRM workflows, permissions and operational processes for complex enterprise environments.</p>
           <div class="cap-tags">
-            <span class="tag">CRM Config</span>
-            <span class="tag">Automation</span>
+            <span class="tag">CRM</span>
+            <span class="tag">Process Mapping</span>
             <span class="tag">Integrations</span>
           </div>
         </div>
@@ -1838,7 +1887,7 @@
       <p class="section-label reveal">Selected Product Work</p>
       <h2 class="section-heading reveal">Three projects showing discovery, product decisions and shipped execution.</h2>
 
-      <!-- Full-width flagship: Pathwisse -->
+      <!-- Full-width flagship: B2B Student Success Platform -->
       <div class="wk-flagship reveal">
         <div class="wk-flagship-body">
           <div class="wk-header">
@@ -1848,14 +1897,14 @@
               <span class="tag">B2B EdTech</span>
             </div>
           </div>
-          <h3 class="wk-flagship-title">Pathwisse &mdash; Student Success Platform</h3>
+          <h3 class="wk-flagship-title">B2B Student Success Platform</h3>
           <p class="wk-flagship-desc">A discovery-led, role-based platform connecting student development, faculty intervention and institutional readiness visibility across four portals.</p>
           <div class="wk-flagship-cta">
             <a href="pathwisse.html" class="btn-primary" style="padding:8px 16px;font-size:13px">Read Case Study &rarr;</a>
           </div>
         </div>
         <div class="wk-flagship-media">
-          <div class="pathwisse-metrics" aria-label="Pathwisse project evidence">
+          <div class="student-success-metrics" aria-label="B2B Student Success Platform project evidence">
             <div class="pathwisse-metric">
               <strong>5</strong>
               <span>Colleges Researched</span>
@@ -1888,7 +1937,7 @@
             <p class="wk-card-desc">Reducing post-booking uncertainty through a Booking Assurance Layer making hotel acknowledgment and risk status visible before check-in.</p>
             <p class="wk-card-note">Independent concept &mdash; not affiliated with Agoda.</p>
             <div class="wk-card-cta">
-              <a href="agoda.html" class="btn-primary">Read Case Study</a>
+              <a href="agoda.html" class="btn-primary">Read Case Study &rarr;</a>
             </div>
           </div>
         </div>
@@ -1905,11 +1954,9 @@
             <h3 class="wk-card-title">Mentor Connects</h3>
             <p class="wk-card-desc">Role-based platform connecting mentor onboarding, webinar scheduling, registration visibility and administrative oversight.</p>
             <div class="wk-card-cta">
-              <a href="mentor-connects.html" class="btn-primary">Read Case Study</a>
+              <a href="mentor-connects.html" class="btn-primary">Read Case Study &rarr;</a>
+              <a href="https://mentor-connects.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-secondary" aria-label="View live application of Mentor Connects">View Live App ↗</a>
             </div>
-          </div>
-          <div class="wk-mc-preview">
-            <img src="assets/images/projects/mentor-connects-preview.png" alt="Mentor Connects webinar-management workspace" loading="lazy">
           </div>
         </div>
 
@@ -1930,13 +1977,13 @@
         <div class="exp-item">
           <div class="exp-company">Vtiger CRM</div>
           <div class="exp-role">Business Analyst &middot; Jan 2024&ndash;Present</div>
-          <p>Translated recurring workflow and adoption problems across 20+ enterprise customers into 20+ NextGen enhancement proposals, with 3 shipped to date.</p>
-          <p class="exp-secondary">Redesigned 8+ workflows and supported permission and visibility models used by 300+ enterprise users.</p>
+          <p>Translated complex customer problems and business requirements into clear module configurations, custom fields and automated workflows.</p>
+          <p class="exp-secondary">Analysed user workflows to design 8+ key process improvements, defining role-based permissions and visibility rules used by 300+ enterprise users.</p>
         </div>
         <div class="exp-item">
-          <div class="exp-company">Pathwisse</div>
-          <div class="exp-role">Product &amp; UX, Core Team (Part-time) &middot; Mar 2025&ndash;Present</div>
-          <p>Led discovery across five colleges and translated insights into roadmap priorities, four role-based portals and institutional onboarding.</p>
+          <div class="exp-company">B2B Student Success Platform</div>
+          <div class="exp-role">Product Discovery, Requirements &amp; UX, Early-Stage Team (Part-time) &middot; Mar 2025&ndash;Present</div>
+          <p>Contributed to research across five colleges and led insight synthesis, problem definition and requirements for role-based student-success workflows.</p>
         </div>
       </div>
     </div>
@@ -1994,6 +2041,40 @@
             <span class="connect-arrow">&#8594;</span>
           </a>
 
+          <a href="tel:+918618220409" class="connect-link">
+            <div class="connect-link-left">
+              <div class="connect-icon" style="color:var(--accent)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <div class="connect-link-label">Phone</div>
+                <div class="connect-link-desc">+91 8618220409</div>
+              </div>
+            </div>
+            <span class="connect-arrow">&#8594;</span>
+          </a>
+
+          <a href="https://www.linkedin.com/in/vishnuvardhansudulagunta/" target="_blank" rel="noopener noreferrer" class="connect-link">
+            <div class="connect-link-left">
+              <div class="connect-icon">in</div>
+              <div>
+                <div class="connect-link-label">LinkedIn</div>
+                <div class="connect-link-desc">linkedin.com/in/vishnuvardhansudulagunta</div>
+              </div>
+            </div>
+            <span class="connect-arrow">&#8594;</span>
+          </a>
+
+          <a href="https://github.com/VishnuHub17" target="_blank" rel="noopener noreferrer" class="connect-link">
+            <div class="connect-link-left">
+              <div class="connect-icon">git</div>
+              <div>
+                <div class="connect-link-label">GitHub</div>
+                <div class="connect-link-desc">github.com/VishnuHub17</div>
+              </div>
+            </div>
+            <span class="connect-arrow">&#8594;</span>
+          </a>
         </div>
       </div>
     </div>
@@ -2007,7 +2088,7 @@
     <div class="container">
       <div class="footer-inner">
         <span class="footer-name">S Vishnu Vardhan</span>
-        <span class="footer-tagline">Product &amp; UX at Pathwisse &middot; Business Analyst at Vtiger CRM</span>
+        <span class="footer-tagline">Business Analyst at Vtiger CRM &middot; Product Discovery, Requirements &amp; UX</span>
       </div>
     </div>
   </footer>

@@ -209,6 +209,61 @@
       .btn-row{flex-direction:column;align-items:stretch}
       .final-cta{flex-direction:column}
     }
+
+    /* Collapsible Gallery Styles */
+    details.gallery-accordion {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      margin-top: 32px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.01);
+    }
+    details.gallery-accordion summary {
+      padding: 18px 24px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      cursor: pointer;
+      user-select: none;
+      outline: none;
+      background: var(--soft);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s;
+    }
+    details.gallery-accordion summary:hover {
+      background: var(--border);
+    }
+    details.gallery-accordion summary::-webkit-details-marker {
+      display: none;
+    }
+    details.gallery-accordion summary::after {
+      content: "▼";
+      font-size: 10px;
+      color: var(--light);
+      transition: transform .2s;
+    }
+    details[open].gallery-accordion summary::after {
+      transform: rotate(180deg);
+    }
+    .gallery-content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      border-top: 1px solid var(--border);
+    }
+    .gallery-content .screenshot-wrap {
+      margin-top: 0;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+    }
+    .gallery-content .screenshot-wrap:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
   </style>
 </head>
 <body>
@@ -217,8 +272,11 @@
     <div class="container nav-inner">
       <a href="index.html" class="nav-logo">S Vishnu Vardhan</a>
       <ul class="nav-links">
-        <li><a href="index.html#work">All Work</a></li>
-        <li><a href="index.html#connect" class="nav-cta">Let&rsquo;s Connect</a></li>
+        <li><a href="index.html#work">Work</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="assets/vishnu-vardhan-resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+        <li><a href="index.html#connect" class="nav-cta">Let's Connect</a></li>
       </ul>
     </div>
   </nav>
@@ -229,11 +287,15 @@
       <p class="eyebrow reveal">Independently Built Product &middot; Mentor Connects</p>
       <h1 class="reveal">Building Mentor Connects</h1>
       <p class="hero-sub reveal">How I designed and built a role-based platform for mentor onboarding, webinar management and administrative oversight.</p>
-      <div class="tag-row reveal">
+      <div class="tag-row reveal" style="margin-bottom:20px">
         <span class="tag indigo">Working Product</span>
         <span class="tag">Role-Based Portals</span>
         <span class="tag">Independent Build</span>
         <span class="tag">React &middot; Supabase</span>
+      </div>
+      <div class="btn-row reveal" style="margin-bottom:28px">
+        <a href="https://mentor-connects.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="View live application of Mentor Connects">View Live App ↗</a>
+        <a href="index.html#work" class="btn btn-secondary">&larr; Back to all work</a>
       </div>
       <div class="project-snapshot reveal">
         <div class="ps-item">
@@ -266,6 +328,34 @@
 
   <main class="case-main">
     <div class="container">
+
+      <!-- Validation Status Block -->
+      <section class="case-section reveal">
+        <div class="section-kicker">
+          <div class="section-number" style="color: var(--green);">Status</div>
+          <h2>Validation Status</h2>
+        </div>
+        <div class="validation-block" style="background: var(--green-soft); border: 1px solid var(--green-border); border-radius: 12px; padding: 24px; color: var(--text);">
+          <div style="display: flex; gap: 12px; align-items: start;">
+            <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--green); color: #fff; display: grid; place-items: center; font-weight: bold; flex-shrink: 0;">✓</div>
+            <div>
+              <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--text);">Verified Working Features</h3>
+              <p style="font-size: 14.5px; line-height: 1.6; color: var(--muted); margin-bottom: 12px;">This product is fully developed and hosted. The following core functionalities have been verified in the live environment:</p>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
+                <li style="position: relative; padding-left: 20px; font-size: 14px; color: var(--muted); line-height: 1.5;">
+                  <strong style="color: var(--text);">Google OAuth Authentication:</strong> Sign-up and login flows are fully functional using verified redirect configurations.
+                </li>
+                <li style="position: relative; padding-left: 20px; font-size: 14px; color: var(--muted); line-height: 1.5;">
+                  <strong style="color: var(--text);">Dynamic Calendar Synchronisation:</strong> Integrates with FullCalendar and Composio triggers to sync scheduled webinars dynamically.
+                </li>
+                <li style="position: relative; padding-left: 20px; font-size: 14px; color: var(--muted); line-height: 1.5;">
+                  <strong style="color: var(--text);">Database &amp; API Operations:</strong> Supabase schema and triggers execute correctly for onboarding and registrations.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- 01 The problem -->
       <section class="case-section reveal">
@@ -329,6 +419,32 @@
                 <li>Review all webinars</li>
                 <li>View platform-wide schedules</li>
               </ul>
+            </div>
+          </div>
+          
+          <div class="stack" style="margin-top: 24px; border-top: 1px solid var(--border); padding-top: 24px;">
+            <h3>MVP Scope and Non-Goals</h3>
+            <p>To deliver a working solution within a short development cycle, we defined a strict MVP scope and deferred advanced integrations to later phases.</p>
+            
+            <div class="card-grid" style="margin-top: 16px;">
+              <div class="card accent-top">
+                <h4 style="font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px;">MVP Scope (In-Goal)</h4>
+                <ul style="font-size: 13.5px; color: var(--muted); padding-left: 16px; display: flex; flex-direction: column; gap: 4px;">
+                  <li>Google Sign-up/Login verification</li>
+                  <li>Multi-step mentor onboarding flow</li>
+                  <li>Webinar creation and scheduling</li>
+                  <li>Composio calendar synchronization</li>
+                  <li>Admin approval &amp; registration tracking</li>
+                </ul>
+              </div>
+              <div class="card accent-top" style="border-top-color: var(--light);">
+                <h4 style="font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px;">Deferred Features (Non-Goals)</h4>
+                <ul style="font-size: 13.5px; color: var(--muted); padding-left: 16px; display: flex; flex-direction: column; gap: 4px;">
+                  <li><strong>Payment Integrations:</strong> Paid webinars or ticket purchases are deferred; all sessions are free.</li>
+                  <li><strong>Advanced Analytics:</strong> Participant engagement rates and drop-off reports are deferred; only raw registration counts are shown.</li>
+                  <li><strong>Automated Reminders:</strong> Automated notification loops are deferred (relying on manual calendar notifications).</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -435,21 +551,13 @@
           <h2>Mentor Onboarding</h2>
         </div>
         <div class="stack">
-          <p>Mentors begin by signing up and choosing how to complete their profile. The platform integrates with LinkedIn via Composio OAuth, pulling in the mentor's name, headline, bio and work history automatically. Mentors who prefer not to import — or whose import fails — complete the same form manually without any disruption to the flow.</p>
-          <div class="screenshot-wrap">
-            <div class="screenshot-frame">
-              <img src="assets/images/mentor-connects/linkedin-import.png" alt="LinkedIn OAuth consent dialog showing Mentor Connects requesting permission to import name, photo and email" loading="lazy">
-              <!-- Mask Supabase redirect URL at page bottom -->
-              <div class="privacy-mask" style="left:35%;top:86%;width:32%;height:10%"></div>
-            </div>
-            <p class="screenshot-caption">LinkedIn OAuth consent — mentors authorise profile import via Composio</p>
-          </div>
+          <p>Mentors begin by signing up and choosing how to complete their profile. The platform integrates with LinkedIn via Composio OAuth, pulling in the mentor's name, headline, bio and work history automatically. Mentors who prefer not to import &mdash; or whose import fails &mdash; complete the same form manually without any disruption to the flow.</p>
           <p>After importing or entering their details, mentors review a preview of their mentor card before completing setup. Profile completion is required before a mentor can access their dashboard or create webinars.</p>
           <div class="screenshot-wrap">
             <div class="screenshot-frame">
               <img src="assets/images/mentor-connects/profile-preview.png" alt="Mentor profile preview step showing name, bio, professional history and skills before completing onboarding" loading="lazy">
             </div>
-            <p class="screenshot-caption">Profile preview — mentors review their card before completing onboarding</p>
+            <p class="screenshot-caption">Profile preview &mdash; mentors review their card before completing onboarding</p>
           </div>
         </div>
       </section>
@@ -466,15 +574,9 @@
             <div class="screenshot-frame">
               <img src="assets/images/mentor-connects/mentor-dashboard.png" alt="Mentor dashboard showing total webinars, enrolments and upcoming sessions" loading="lazy">
             </div>
-            <p class="screenshot-caption">Mentor dashboard — upcoming sessions and activity summary</p>
+            <p class="screenshot-caption">Mentor dashboard &mdash; upcoming sessions and activity summary</p>
           </div>
           <p>The create-webinar modal collects the webinar title, description, date, time, target audience and meeting link. Form inputs persist across page reloads using session storage, so a draft is not lost if the mentor navigates away. Once published, the webinar appears in the mentor's list, and mentors can click through to see the registrations associated with each session.</p>
-          <div class="screenshot-wrap">
-            <div class="screenshot-frame">
-              <img src="assets/images/mentor-connects/webinar-list.png" alt="Webinar management list showing upcoming sessions with date, time, audience and status" loading="lazy">
-            </div>
-            <p class="screenshot-caption">Webinar management list — date, time, audience and upcoming status</p>
-          </div>
         </div>
       </section>
 
@@ -486,16 +588,6 @@
         </div>
         <div class="stack">
           <p>Administrators access a separate portal with platform-wide visibility. The Mentor Management page lists all registered mentors with their onboarding status and allows search by name, university or company. Clicking through to a mentor profile shows their full webinar history.</p>
-          <div class="screenshot-wrap">
-            <div class="screenshot-frame">
-              <img src="assets/images/mentor-connects/admin-mentors.png" alt="Admin Mentor Management table listing mentors with onboarding status, company and actions" loading="lazy">
-              <!-- Mask phone number in first mentor row (Phone column) -->
-              <div class="privacy-mask" style="left:43%;top:27%;width:13%;height:7%"></div>
-              <!-- Mask admin account email in sidebar bottom-left -->
-              <div class="privacy-mask" style="left:0%;top:88%;width:14%;height:12%"></div>
-            </div>
-            <p class="screenshot-caption">Mentor Management — admin view with onboarding status and search</p>
-          </div>
           <p>A FullCalendar-powered calendar gives administrators a cross-platform view of all webinar sessions. Each mentor's sessions are colour-coded using a deterministic hash, making it easy to distinguish whose sessions fall when at a glance.</p>
           <div class="screenshot-wrap">
             <div class="screenshot-frame">
@@ -503,7 +595,7 @@
               <!-- Mask admin account email in sidebar bottom-left -->
               <div class="privacy-mask" style="left:0%;top:88%;width:14%;height:12%"></div>
             </div>
-            <p class="screenshot-caption">Global Calendar — FullCalendar with per-mentor colour coding</p>
+            <p class="screenshot-caption">Global Calendar &mdash; FullCalendar with per-mentor colour coding</p>
           </div>
         </div>
       </section>
@@ -540,7 +632,7 @@
               </ul>
             </div>
           </div>
-          <p class="small-note">Unlike my cross-functional work on Pathwisse, Mentor Connects demonstrates my ability to define, design and build a complete product independently.</p>
+          <p class="small-note">Unlike my cross-functional work on B2B Student Success Platform, Mentor Connects demonstrates my ability to define, design and build a complete product independently.</p>
           <div class="built-with">
             <span class="built-with-label">Built with</span>
             <span class="tag">React</span>
@@ -609,22 +701,55 @@
             <p>Building end-to-end required balancing ideal workflows with authentication, data, integration and interface constraints. Owning the full stack forces you to understand why your product decisions are hard to implement — and to find the right trade-offs rather than pushing them to someone else.</p>
           </div>
 
-          <div class="gallery-grid">
-            <div class="gallery-item">
-              <div class="screenshot-frame">
-                <img src="assets/images/mentor-connects/create-webinar.png" alt="Schedule New Webinar modal with title, description, date, audience and meeting link fields" loading="lazy">
+          <details class="gallery-accordion">
+            <summary>View Complete Product Gallery (5 Screens)</summary>
+            <div class="gallery-content">
+              
+              <div class="screenshot-wrap">
+                <div class="screenshot-frame">
+                  <img src="assets/images/mentor-connects/linkedin-import.png" alt="LinkedIn OAuth consent dialog showing Mentor Connects requesting permission to import name, photo and email" loading="lazy">
+                  <!-- Mask Supabase redirect URL at page bottom -->
+                  <div class="privacy-mask" style="left:35%;top:86%;width:32%;height:10%"></div>
+                </div>
+                <p class="screenshot-caption">LinkedIn OAuth consent &mdash; mentors authorise profile import via Composio</p>
               </div>
-              <p class="gallery-caption">Schedule New Webinar — form with session storage draft persistence</p>
-            </div>
-            <div class="gallery-item">
-              <div class="screenshot-frame">
-                <img src="assets/images/mentor-connects/webinar-details.png" alt="Webinar session details showing description, registered students and logistics panel" loading="lazy">
-                <!-- Mask Google Meet URL shown in Join Virtual Room card -->
-                <div class="privacy-mask" style="left:64%;top:88%;width:25%;height:9%"></div>
+
+              <div class="screenshot-wrap">
+                <div class="screenshot-frame">
+                  <img src="assets/images/mentor-connects/webinar-list.png" alt="Webinar management list showing upcoming sessions with date, time, audience and status" loading="lazy">
+                </div>
+                <p class="screenshot-caption">Webinar management list &mdash; date, time, audience and upcoming status</p>
               </div>
-              <p class="gallery-caption">Webinar session details and registrations</p>
+
+              <div class="screenshot-wrap">
+                <div class="screenshot-frame">
+                  <img src="assets/images/mentor-connects/admin-mentors.png" alt="Admin Mentor Management table listing mentors with onboarding status, company and actions" loading="lazy">
+                  <!-- Mask phone number in first mentor row (Phone column) -->
+                  <div class="privacy-mask" style="left:43%;top:27%;width:13%;height:7%"></div>
+                  <!-- Mask admin account email in sidebar bottom-left -->
+                  <div class="privacy-mask" style="left:0%;top:88%;width:14%;height:12%"></div>
+                </div>
+                <p class="screenshot-caption">Mentor Management &mdash; admin view with onboarding status and search</p>
+              </div>
+
+              <div class="screenshot-wrap">
+                <div class="screenshot-frame">
+                  <img src="assets/images/mentor-connects/create-webinar.png" alt="Schedule New Webinar modal with title, description, date, audience and meeting link fields" loading="lazy">
+                </div>
+                <p class="screenshot-caption">Schedule New Webinar &mdash; form with session storage draft persistence</p>
+              </div>
+
+              <div class="screenshot-wrap">
+                <div class="screenshot-frame">
+                  <img src="assets/images/mentor-connects/webinar-details.png" alt="Webinar session details showing description, registered students and logistics panel" loading="lazy">
+                  <!-- Mask Google Meet URL shown in Join Virtual Room card -->
+                  <div class="privacy-mask" style="left:64%;top:88%;width:25%;height:9%"></div>
+                </div>
+                <p class="screenshot-caption">Webinar session details and registrations</p>
+              </div>
+
             </div>
-          </div>
+          </details>
         </div>
       </section>
 
@@ -635,10 +760,11 @@
     <div class="final-cta reveal">
       <div>
         <h2>View all case studies</h2>
-        <p>Return to the portfolio to explore Pathwisse and Agoda Booking Assurance.</p>
+        <p>Return to the portfolio to explore B2B Student Success Platform and Agoda Booking Assurance.</p>
       </div>
       <div class="btn-row">
-        <a href="index.html#work" class="btn btn-light">&larr; Back to All Work</a>
+        <a href="https://mentor-connects.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background:#fff;color:var(--text);border-color:#fff" aria-label="View live application of Mentor Connects">View Live App ↗</a>
+        <a href="index.html#work" class="btn btn-secondary" style="color:#fff;border-color:rgba(255,255,255,0.3)">&larr; Back to All Work</a>
       </div>
     </div>
   </div>
@@ -647,7 +773,7 @@
     <div class="container">
       <div class="footer-inner">
         <span>S Vishnu Vardhan</span>
-        <span>Product &amp; UX at Pathwisse &middot; Business Analyst at Vtiger CRM</span>
+        <span>Business Analyst at Vtiger CRM &middot; Product Discovery, Requirements &amp; UX</span>
         <a href="index.html">Back to Portfolio</a>
       </div>
     </div>
