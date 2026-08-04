@@ -316,17 +316,15 @@
        HERO — TWO COLUMN LAYOUT
     ============================================================ */
     #home {
-      min-height: 100dvh;
-      display: flex;
-      align-items: center;
-      padding-top: var(--nav-h);
+      padding-top: calc(var(--nav-h) + clamp(20px, 4vw, 40px));
+      padding-bottom: clamp(40px, 6vw, 80px);
       background:
         radial-gradient(circle at 80% 25%, rgba(66, 99, 235, 0.12), transparent 35%),
         var(--bg);
     }
 
     .hero-inner {
-      padding: clamp(48px, 7vw, 100px) 0;
+      padding: 0;
       display: grid;
       grid-template-columns: 55fr 45fr;
       gap: clamp(40px, 6vw, 80px);
@@ -438,43 +436,7 @@
       line-height: 1.5;
     }
 
-    /* ============================================================
-       SCROLL-DRIVEN EXIT ANIMATIONS (progressive enhancement)
-       Falls back gracefully to no animation in unsupported browsers.
-    ============================================================ */
-    @supports (animation-timeline: view()) {
-      @media (prefers-reduced-motion: no-preference) {
 
-        /* Hero content exits as section scrolls off top */
-        .hero-inner {
-          animation: hero-content-exit linear both;
-          animation-timeline: view(block);
-          animation-range: exit 0% exit 55%;
-        }
-
-        /* Image additionally scales down for parallax depth */
-        .hero-img-ph,
-        .hero-img {
-          animation: hero-img-scale linear both;
-          animation-timeline: view(block);
-          animation-range: exit 0% exit 65%;
-        }
-
-        @keyframes hero-content-exit {
-          to {
-            opacity: 0;
-            transform: translateY(-22px);
-          }
-        }
-
-        @keyframes hero-img-scale {
-          to {
-            transform: scale(0.85);
-          }
-        }
-
-      }
-    }
 
     /* ============================================================
        ABOUT
